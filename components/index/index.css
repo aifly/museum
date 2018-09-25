@@ -1,0 +1,87 @@
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.zmiti-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+
+.zmiti-play {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1000;
+  right: .5rem;
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.zmiti-index-main-ui {
+  overflow: hidden;
+  width: 10rem;
+  left: 50% !important;
+  margin-left: -375px;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: start;
+  opacity: 0;
+  z-index: -1;
+}
+
+.zmiti-index-main-ui h4 {
+  height: 6vh;
+}
+
+.zmiti-index-main-ui .wm-index-task-btn {
+  margin-top: 30px;
+  width: 400px;
+}
+
+.zmiti-index-main-ui .wm-index-title {
+  width: 680px;
+  margin: 30px 0;
+}
+
+.zmiti-index-main-ui.show {
+  opacity: 1;
+  z-index: 500;
+}
+
+@media all and (max-height: 1108px) {
+  .zmiti-index-main-ui h4 {
+    height: 6vh;
+  }
+  .zmiti-index-main-ui .wm-index-task-btn {
+    margin-top: 30px;
+  }
+  .zmiti-index-main-ui .wm-index-index {
+    width: 400px;
+  }
+  .zmiti-index-main-ui .wm-index-title {
+    width: 600px;
+    margin: 30px 0;
+  }
+}

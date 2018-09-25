@@ -1,0 +1,67 @@
+﻿@import "../css/base.scss";
+$baseColor: #fcffb4;
+$viewW: 750px;
+$bgColor: #ffffff;
+
+.zmiti-index-main-ui {
+	overflow: hidden;
+	width: 10rem;
+	left: 50% !important;
+	margin-left: -$viewW/2;
+	background: $bgColor;
+	@include displayBox(vertical);
+	-webkit-box-pack:start;
+	h4{
+		height:6vh;
+	}
+	.wm-index-task-btn{
+		margin-top: 30px;
+		width: 400px;
+	}
+	.wm-index-title{
+		width: 680px;
+		margin: 30px 0;
+	}
+
+	opacity:0;
+	z-index: -1;
+
+	&.show{
+		opacity: 1;
+		z-index: 500;
+	}
+
+	 
+
+}
+
+.zmiti-play {
+}
+
+@media all and (max-height:1108px){
+	.zmiti-index-main-ui {
+
+		h4 {
+			height: 6vh;
+		}
+
+		.wm-index-task-btn {
+			margin-top: 30px;
+			
+		}
+		.wm-index-index{
+			width: 400px;
+		}
+
+		.wm-index-title {
+			width: 600px;
+			margin: 30px 0;
+		}
+
+		
+
+	
+
+
+	}
+}
