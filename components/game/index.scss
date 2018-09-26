@@ -191,7 +191,7 @@ $color: #fffb88;
                             & > div {}
 
                             .wm-game-result-C {
-                                width: 100px;
+                                width: 80px;
                                 height: 100%;
                                 overflow: hidden;
 
@@ -210,10 +210,38 @@ $color: #fffb88;
                             .wm-game-main-place {
                                 -webkit-box-flex: 1;
                                 height: 100%;
+                                overflow: hidden;
+                                ul{
+                                    @include displayBox(horizontal);
+                                    -webkit-box-align: start;
+                                    li{
+                                        box-sizing:border-box;
+                                        -webkit-box-flex:1;
+
+                                        margin-left:50px;
+                                            
+                                        div{
+                                            margin: 20px 0;
+                                            @include pos(r);
+                                            img{
+                                                width: 90%;
+                                                display: inline-block;
+                                            }
+                                            span{
+                                                display: inline-block;
+                                                text-align: center;
+                                                width: 100%;
+                                                height: 100%;
+                                                @include transformOrigin(left top);;
+                                                @include transform(rotate(90deg));
+                                            }
+                                        }
+                                    }
+                                }
                             }
 
                             .wm-game-time {
-                                width: 100px;
+                                width: 80px;
                                 height: 100%;
 
                                 @include displayBox(vertical);
@@ -234,7 +262,7 @@ $color: #fffb88;
                                             color:#fff;
                                             border-top-right-radius: 30px;
                                             border-bottom-right-radius: 30px;
-                                            @include transform(translate(-20px,12px) rotate(90deg));
+                                            @include transform(translate(-36px,12px) rotate(90deg));
                                         }
                                     }
 
@@ -278,7 +306,7 @@ $color: #fffb88;
                                              color: #fff;
                                              border-top-left-radius: 30px;
                                              border-bottom-left-radius: 30px;
-                                             @include transform(translate(-20px, 40px) rotate(90deg));
+                                             @include transform(translate(-36px, 40px) rotate(90deg));
                                          }
                                     }
                                 }

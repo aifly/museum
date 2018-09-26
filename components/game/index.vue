@@ -52,8 +52,21 @@
 									<li style="height:10px;"></li>
 								</ul>
 							</div>
-							<div class='wm-game-main-place'>
-
+							<div class='wm-game-main-place' ref='game'>
+								<ul>
+									<li>
+										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i'>
+											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
+											<img :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+										</div>
+									</li>
+									<li>
+										<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'>
+											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
+											<img :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+										</div>
+									</li>
+								</ul>
 							</div>
 							<div class='wm-game-time'>
 								<div>
@@ -99,7 +112,7 @@
 				width:0,
 				viewW:window.innerWidth,
 				viewH:window.innerHeight,
-				
+				museums:window.museums,
 			}
 		},
 		components:{
@@ -114,6 +127,12 @@
 
 				//return false;
 			},
+			imgLoaded($event,m,index){
+				console.log($event.path[0].clientHeight);
+				m.width = this.$refs['museums'][index].offsetHeight;
+				m.height = 40;
+				this.museums = this.museums.concat([]);
+			}
 			
 			
 		},
@@ -127,10 +146,14 @@
 			this.resultScroll = new IScroll(this.$refs['result'],{
 				zmitiV:true
 			});
+			this.gameScroll = new IScroll(this.$refs['game'],{
+				zmitiV:true
+			})
 
 			setTimeout(() => {
 				this.scroll.refresh();
 				this.resultScroll.refresh();
+				this.gameScroll.refresh();
 			}, 1000);
 
 			this.width = this.$refs['send'].offsetHeight;

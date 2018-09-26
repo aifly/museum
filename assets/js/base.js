@@ -42,8 +42,7 @@
  for (var attr in imgs) {
  	arr.push(imgs[attr]);
  }
-
-window.museums = [
+window.culturalRelicsList = [//文物列表
 	{
 		title: '后母戊鼎',
 		content: '原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作',
@@ -51,6 +50,49 @@ window.museums = [
 		key:1,
 
 	}
+];
+window.museums = [
+	{
+		image:imgs.anhui,
+		name:"安徽博物馆",
+		key:'anhui'
+	},{
+		image:imgs.hubeisheng,
+		name:'湖北省博物馆',
+		key:'hubeisheng'
+	},{
+		image:imgs.jincheng,
+		name:'晋阳博物馆',
+		key:'jinyang'
+	},{
+		image:imgs.pingxiang,
+		name:'萍乡博物馆',
+		key:'pingxiang'
+	},{
+		image:imgs.yunnansheng,
+		name:'云南博物馆',
+		key:'yunnansheng'
+	},{
+		image:imgs.quanzhouhaiwaijiaotongshi,
+		name:'博物馆',
+		key:'quanzhouhaiwaijiaotongshi'
+	},{
+		image:imgs.maanshanshi,
+		name:'马鞍山市博物馆',
+		key:'maanshanshi'
+	},{
+		image:imgs.yangzhou,
+		name:'扬州博物馆',
+		key:'yangzhou'
+	},{
+		image:imgs.huizhou,
+		name:'惠州博物馆',
+		key:'huizhou'
+	},{
+		image:imgs.hainansheng,
+		name:'海南省博物馆',
+		key:'hainansheng'
+	},
 ];
  
 
