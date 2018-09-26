@@ -493,13 +493,19 @@
 
 
 
+
 			var point = e.touches ? e.touches[0] : e,
 				deltaY = this.pointX - point.pageX,
 				deltaX = this.pointY - point.pageY,
 				timestamp = utils.getTime(),
 				newX, newY,
 				absDistX, absDistY;
-
+				if (this.options.zmitiV){
+					deltaX = this.pointX - point.pageX;
+					deltaY = -(this.pointY - point.pageY);
+				}
+					
+			
 			this.pointX = point.pageX;
 			this.pointY = point.pageY;
 
@@ -566,7 +572,7 @@
 			}
 
 			this.moved = true;
-
+		
 			this._translate(newX, newY);
 
 			/* REPLACE START: _move */
@@ -1849,6 +1855,7 @@
 		},
 
 		_move: function(e) {
+			
 			var point = e.touches ? e.touches[0] : e,
 				deltaX, deltaY,
 				newX, newY,
@@ -1857,7 +1864,7 @@
 			if (!this.moved) {
 				this.scroller._execEvent('scrollStart');
 			}
-
+			
 			this.moved = true;
 
 			deltaX = point.pageX - this.lastPointX;

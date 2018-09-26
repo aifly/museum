@@ -13,6 +13,10 @@
 							<span></span>
 							<span></span>
 							<span></span>
+							<label></label>
+							<label></label>
+							<label></label>
+							<label></label>
 							<div class='wm-game-Q-title'>
 								<div ref='text'>
 									<div>
@@ -31,7 +35,42 @@
 						</section>
 					</div>
 					<div class='wm-game-Q-content'>
-						222
+						<div class='wm-game-Q-C'>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<label></label>
+							<label></label>
+							<label></label>
+							<label></label>
+							<div class='wm-game-result-C' ref='result'>
+								<ul>
+									<li v-for='(item,i) in questionLen' :key="i">
+										<img :src="imgs.resultBg" alt="">
+									</li>
+									<li style="height:10px;"></li>
+								</ul>
+							</div>
+							<div class='wm-game-main-place'>
+
+							</div>
+							<div class='wm-game-time'>
+								<div>
+									<div>{{current+" / "+ questionLen.length}}</div>
+								</div>
+								<div ref='send'>
+									<div :style="{height:100+'px',width:width+'px'}">
+										<span>后母戊鼎</span> 派送中... <img :src="imgs.send" alt="">
+									</div>
+								</div>
+								<div>
+									<div>
+										{{time}} s
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -54,7 +93,10 @@
 			return{
 				imgs,
 				show:true,
-				
+				time:60,
+				questionLen:new Array(10),
+				current:1,
+				width:0,
 				viewW:window.innerWidth,
 				viewH:window.innerHeight,
 				
@@ -82,10 +124,16 @@
 				//mouseWheel:true
 			});
 
+			this.resultScroll = new IScroll(this.$refs['result'],{
+				zmitiV:true
+			});
+
 			setTimeout(() => {
 				this.scroll.refresh();
+				this.resultScroll.refresh();
 			}, 1000);
 
+			this.width = this.$refs['send'].offsetHeight;
 			 
 		}
 	}
