@@ -7,7 +7,7 @@
 		<div class='wm-index-title'>
 			<img :src="imgs.title" alt="">
 		</div>
-		<div class='wm-index-task-btn'>
+		<div class='wm-index-task-btn' v-tap='[initGame]'>
 			<img :src="imgs.getTaskBtn" alt="">
 		</div>
 		
@@ -17,6 +17,7 @@
 
 <script>
 	import './index.css';
+	import Vue from 'vue';
 	import {imgs} from '../lib/assets.js';
 	import zmitiUtil from '../lib/util';
 	export default {
@@ -41,58 +42,16 @@
 		
 		methods:{
 
-			closeInfo(){
-				this.mynumber = '';
-				this.mynumberinfo = '';
-			},
+			 initGame(){
+			 	this.obserable.trigger({
+			 		type:'initGame'
+			 	})
+			 },
 
 			imgStart(e){
 				e.preventDefault(); 
 			},
-			close(){
-				this.showQD = false;
-			},
-			menuClick(index){
-				var {obserable } =this;
-				
-				switch (index) {
-					case 0:
-					case 1://签到
-					case 2:
-					case 6:
-					case 4:
-					case 7:
-					if(!window.openid){
-						return;
-					}
-					window.location.href = this.menus[index].href+'?openid='+window.openid;
-					break;
-					case 3:
-						this.mynumberinfo = '我的房间号是：'	
-						this.mynumber = this.userinfo.roomnumber||'未分配';
-					break;
-					/* case 4:
-						this.mynumberinfo = '我的座位号是：'	
-						this.mynumber = this.userinfo.seatnumber||'未分配';
-						
-						
-					break; */
-					case 5:
-						obserable.trigger({
-							type:'showSearch',
-							data:false
-						})
-					break;
-					
-					break;
-					case 8:
-						obserable.trigger({
-							type:'showSearch',
-							data:true
-						})
-					break;
-				}
-			}
+			 
 	 
 		},
 		mounted(){

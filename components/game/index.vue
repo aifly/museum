@@ -45,7 +45,7 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div v-if='resultArr.length>0' class='wm-game-result-C' ref='result'>
+							<div v-if='resultArr.length<=questionLen.length' class='wm-game-result-C' ref='result'>
 								<ul>
 									<li v-for='(item,i) in questionLen' :key="i">
 										<img :src="imgs.resultBg" alt="">
@@ -55,7 +55,7 @@
 									<li style="height:10px;"></li>
 								</ul>
 							</div>
-							<div v-if='resultArr.length>0' class='wm-game-main-place' ref='game'>
+							<div v-if='resultArr.length<=questionLen.length' class='wm-game-main-place' ref='game'>
 								<ul>
 									<li>
 										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
@@ -75,7 +75,7 @@
 									</li>
 								</ul>
 							</div>
-							<div v-if='resultArr.length>0 && culturalRelicsList[current]' class='wm-game-time' >
+							<div v-if='resultArr.length<=questionLen.length && culturalRelicsList[current]' class='wm-game-time' >
 								<div>
 									<div>{{(current+1)+" / "+ questionLen.length}}</div>
 								</div>
@@ -90,22 +90,24 @@
 									</div>
 								</div>
 							</div>
-							<section v-if='resultArr.length<=0' class='wm-result-page'>
+							<section v-if='resultArr.length>questionLen.length' class='wm-result-page'>
 								<div class='wm-result-person'>
 									<div><img :src="imgs.person" alt=""></div>
 									<div>
 										<div>
-											60秒正确投送了XX博物馆
+											60秒正确投送了{{rightCount}}个博物馆
 										</div>
 										<div>您是知识达人！</div>
 									</div>
 								</div>
 								<div class='wm-result-btns'>
 									<div><img :src="imgs.wxBtn" alt=""></div>
-									<div><img :src="imgs.restartBtn" alt=""></div>
+									<div>
+										<a :href="href"><img :src="imgs.restartBtn" alt=""></a>
+									</div>
 								</div>
 								<div class='wm-share'>
-									<span>分享成绩</span>
+									<span v-tap='[showShare]'>分享成绩</span>
 								</div>
 							</section>
 						</div>
@@ -116,6 +118,13 @@
 				<img :src="imgs.reel1" alt="">
 			</div>
 		</div>
+		<div class="wm-game-loading lt-full" v-if='showTip' v-tap='[clearTip]'>
+			<span v-if='countdown>=0'>{{countdown}}</span>
+			<div v-else><img :src="imgs.tip" alt=""></div>
+		</div>
+		<div class="wm-mask lt-full" v-if='showMask' v-tap='[showShare,false]'>
+			<img :src="imgs.arrow" alt="">
+		</div>
 	</div>
 </template>
 
@@ -123,15 +132,19 @@
 	import './index.css';
 	import {imgs,mainImgList} from '../lib/assets.js';
 	import $ from 'jquery';
+	import Vue from 'vue';
 	import IScroll from '../../assets/js/iscroll';
 	export default {
 		props:['obserable','pv','randomPv','nickname','headimgurl'],
 		name:'zmitiindex',
 		data(){
 			return{
+				countdown:3,
 				imgs,
-				show:true,
+				show:false,
 				time:60,
+				showTip:true,
+				showMask:false,
 				questionLen:new Array(10),
 				current:0,
 				width:0,
@@ -139,8 +152,10 @@
 				viewH:window.innerHeight,
 				resultArr:[],
 				museums:window.museums,
-				culturalRelicsList:[],
-				canTap:true
+				culturalRelicsList:window.culturalRelicsList,
+				rightCount:0,
+				canTap:true,
+				href:window.location.href,
 			}
 		},
 		components:{
@@ -148,16 +163,39 @@
 		
 		methods:{
 
+			clearTip(){
+				if(this.countdown<0){
+					this.showTip = false;
+				}
+
+				this.t = setInterval(()=>{
+					this.time--;
+					if(this.time<=0){
+						clearInterval(this.t);//
+						for(var i =0 ;i<this.questionLen.length+1;i++){
+							this.resultArr.push(i);
+						}
+					}
+				},1000)
+
+			},
+
+			showShare(flag = true){
+				this.showMask = flag;
+			},
+
 			choose(m,i){
 				if(this.canTap){
 					this.canTap = false;
 					if(this.resultArr.length>=this.questionLen.length){
+						this.resultArr.push(1);
 						this.canTap = false;
 						return;
 					}
 	
 					if(m.key  === this.culturalRelicsList[this.current].key){
 						m.isRight = true;
+						this.rightCount++;
 						this.resultArr.push(true)
 					}else{
 						m.isRight = false;
@@ -186,43 +224,56 @@
 				m.width = $event.path[0].clientHeight;
 				m.height = 40;
 				this.museums = this.museums.concat([]);
+			},
+			init(){
+				var t = setInterval(()=>{
+					this.countdown--;
+					if(this.countdown<=0){
+						//clearInterval(t);
+					}
+				},1000)
+				
+				window.ss = this;
+				var arr = window.culturalRelicsList.concat([]);
+				this.culturalRelicsList = [];
+				for(var i = 0; i<this.questionLen.length;i++){
+					
+					var index = (Math.random()*this.questionLen.length)|0;
+					this.culturalRelicsList.push(arr.splice(index,1)[0]);
+				}
+
+
+				setTimeout(() => {
+					this.scroll = new IScroll(this.$refs['text'],{
+						scrollbars:true,
+						//mouseWheel:true
+					});
+					
+					this.$refs['result'] && (this.resultScroll = new IScroll(this.$refs['result'],{
+						zmitiV:true
+					}));
+					this.$refs['game'] && (this.gameScroll = new IScroll(this.$refs['game'],{
+						zmitiV:true
+					}));
+					setTimeout(() => {
+						this.scroll.refresh();
+						this.$refs['result'] && this.resultScroll.refresh();
+						this.$refs['game'] && this.gameScroll.refresh();
+					}, 1000);
+
+					this.$refs['send'] && (this.width = this.$refs['send'].offsetHeight);
+				}, 100);
 			}
 			
 			
 		},
 		mounted(){
 
-
+			this.obserable.on("initGame",()=>{
+				this.show = true;
+				this.init();
+			})
 			
-			window.ss = this;
-			var arr = window.culturalRelicsList.concat([]);
-			for(var i = 0; i<this.questionLen.length;i++){
-				
-				var index = (Math.random()*this.questionLen.length)|0;
-				this.culturalRelicsList.push(arr.splice(index,1)[0]);
-			}
-
-
-			setTimeout(() => {
-				this.scroll = new IScroll(this.$refs['text'],{
-					scrollbars:true,
-					//mouseWheel:true
-				});
-				
-				this.$refs['result'] && (this.resultScroll = new IScroll(this.$refs['result'],{
-					zmitiV:true
-				}));
-				this.$refs['game'] && (this.gameScroll = new IScroll(this.$refs['game'],{
-					zmitiV:true
-				}));
-				setTimeout(() => {
-					this.scroll.refresh();
-					this.$refs['result'] && this.resultScroll.refresh();
-					this.$refs['game'] && this.gameScroll.refresh();
-				}, 1000);
-
-				this.$refs['send'] && (this.width = this.$refs['send'].offsetHeight);
-			}, 100);
 
 		
 

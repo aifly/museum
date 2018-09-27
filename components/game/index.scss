@@ -234,21 +234,28 @@ $color: #fffb88;
                                 @include transform( translate(-50%,-50%) rotate(90deg));
                                 width: 52vh;
                                 height: 450px;
-                                border: 1px solid red;
 
                                 .wm-result-person{
                                     @include displayBox(horizontal);
                                     img{
                                         width: 100px;
                                     }
+                                    text-align: center;
+                                    margin:100px 0 50px 0;
+                                    div{
+                                        div:nth-of-type(1){
+                                            color:#b20000;
+                                        }
+                                    }
                                 }
                                 .wm-result-btns{
                                     @include displayBox(horizontal);
+                                    margin: 40px 0;
                                     div{
                                         margin: 0 20px;
                                     }
                                     img{
-                                        width: 160px;
+                                        width: 200px;
                                     }
                                 }
                                 .wm-share{
@@ -540,5 +547,31 @@ $color: #fffb88;
     &.show {
         z-index: 520;
         opacity: 1;
+    }
+
+
+}
+ .wm-mask{
+    background:rgba(0,0,0,.7);
+    position: fixed !important;
+    text-align: right;
+    img{
+        width: 50%;
+        margin-right: 10px;
+        margin-top: 10px;
+
+    }
+}
+
+
+.wm-game-loading{
+    position:fixed !important;
+    background:rgba(0,0,0,.7);
+    @include displayBox(horizontal);
+    span{
+        display: block;
+        font-size: 200px;
+        color:#fff;
+        @include transform(rotate(90deg));;
     }
 }
