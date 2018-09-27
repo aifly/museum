@@ -39,7 +39,7 @@ var zmitiUtil = {
 	wxConfig: function(title, desc, url, isDebug = false) {
 		var s = this;
 
-		var img = window.baseUrl + '/assets/images/300.jpg';
+		var img =  'http://h5.zmiti.com/public/'+window.h5name+'/assets/images/300.jpg';
 
 		var appId = this.wxInfo().wxappid;
 
@@ -53,6 +53,7 @@ var zmitiUtil = {
 		$.ajax({
 			type: 'get',
 			url: "http://h5.zhongguowangshi.com/tree/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
+			url: "http://api.zmiti.com/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
 			dataType: 'jsonp',
 			jsonp: "callback",
 			jsonpCallback: "jsonFlickrFeed",

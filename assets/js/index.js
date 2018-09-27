@@ -62,15 +62,11 @@
 
 	var _componentsFormIndex2 = _interopRequireDefault(_componentsFormIndex);
 
-	var _componentsSigninIndex = __webpack_require__(27);
+	var _componentsGameIndex = __webpack_require__(27);
 
-	var _componentsSigninIndex2 = _interopRequireDefault(_componentsSigninIndex);
+	var _componentsGameIndex2 = _interopRequireDefault(_componentsGameIndex);
 
-	var _componentsSearchIndex = __webpack_require__(33);
-
-	var _componentsSearchIndex2 = _interopRequireDefault(_componentsSearchIndex);
-
-	var _componentsLibObserable = __webpack_require__(38);
+	var _componentsLibObserable = __webpack_require__(33);
 
 	var _componentsLibObserable2 = _interopRequireDefault(_componentsLibObserable);
 
@@ -84,9 +80,9 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	__webpack_require__(39);
+	__webpack_require__(34);
 
-	var _vueJsTap = __webpack_require__(40);
+	var _vueJsTap = __webpack_require__(35);
 
 	var _vueJsTap2 = _interopRequireDefault(_vueJsTap);
 
@@ -139,7 +135,7 @@
 	 	<Music :obserable='obserable'></Music>
 	 	<Main :pv='pv' :nickname='nickname' :headimgurl='headimgurl'  v-if='show && !isShare'  :obserable='obserable'></Main>
 	 	*/
-		template: '<div>\n\t\t\t<section v-if=\'isWeixin\'>\n\t\t\t\t<Signin :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Signin>\n\t\t\t\t<Index :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Index>\n\t\t\t\t<Form :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Form>\n\t\t\t\t<Search :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Search>\n\t\t\t\t<div  v-if=\'!loaded\' :style=\'{background:"#fff"}\' class=\'zmiti-loading lt-full\'>\n\t\t\t\t\t<div class=\'zmiti-loading-ui\'>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img src=' + _componentsLibAssets.imgs.logo + ' />\n\t\t\t\t\t\t\t<span :style = "scaleStyle" ></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\'zmiti-progress\'>{{width}}%</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t</section>\n\n\t\t\t<section v-if=\'!isWeixin\' class=\'lt-full\'>\n\t\t\t\t<Toast :errorMsg=\'errorMsg\'></Toast>\n\t\t\t</section>\n\n\n\n\t\n\t</div>',
+		template: '<div>\n\t\t\t<section>\n\t\t\t\t<Game :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Game>\n\t\t\t\t<Index :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Index>\n\t\t\t\t<Form :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Form>\n\t\t\t\t<div  v-if=\'!loaded\' :style=\'{background:"#fff"}\' class=\'zmiti-loading lt-full\'>\n\t\t\t\t\t<div class=\'zmiti-loading-ui\'>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img src=' + _componentsLibAssets.imgs.logo + ' />\n\t\t\t\t\t\t\t<span :style = "scaleStyle" ></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\'zmiti-progress\'>{{width}}%</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\t</div>',
 		methods: {
 
 			loading: function loading(arr, fn, fnEnd) {
@@ -174,7 +170,7 @@
 					url: window.protocol + '//api.zmiti.com/v2/custom/update_pvnum/',
 					type: 'post',
 					data: {
-						customid: 64
+						customid: 68
 					}
 				}).done(function (data) {
 					if (data.getret === 0) {
@@ -190,17 +186,16 @@
 		components: {
 			Index: _componentsIndexIndex2['default'],
 			Form: _componentsFormIndex2['default'],
-			Signin: _componentsSigninIndex2['default'],
-			Search: _componentsSearchIndex2['default'],
+			Game: _componentsGameIndex2['default'],
 			Toast: _componentsToastToast2['default']
 		},
 		mounted: function mounted() {
 			var _this2 = this;
 
-			this.isWeixin = !window.isCheckWeixin || _componentsLibUtilJs2['default'].isWeiXin();
-			if (!_componentsLibUtilJs2['default'].isWeiXin() && window.isCheckWeixin) {
-				this.errorMsg = '请在微信中访问';
-			}
+			/* this.isWeixin = !window.isCheckWeixin || zmitiUtil.isWeiXin();
+	  if (!zmitiUtil.isWeiXin() && window.isCheckWeixin) {
+	  	this.errorMsg = '请在微信中访问'
+	  } */
 			var s = this;
 
 			var keyword = _componentsLibUtilJs2['default'].getQueryString('keyword');
@@ -247,7 +242,7 @@
 				_this2.pv += data;
 			});
 			_componentsLibUtilJs2['default'].getOauthurl(obserable);
-			//zmitiUtil.wxConfig(document.title, window.desc);
+			_componentsLibUtilJs2['default'].wxConfig(document.title, window.desc);
 			this.updatePv();
 			return;
 			/*$.ajax({
@@ -11257,15 +11252,18 @@
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
+	/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+	            (typeof self !== "undefined" && self) ||
+	            window;
+	var apply = Function.prototype.apply;
 
 	// DOM APIs, for completeness
 
 	exports.setTimeout = function() {
-	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+	  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
 	};
 	exports.setInterval = function() {
-	  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+	  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
 	};
 	exports.clearTimeout =
 	exports.clearInterval = function(timeout) {
@@ -11280,7 +11278,7 @@
 	}
 	Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 	Timeout.prototype.close = function() {
-	  this._clearFn.call(window, this._id);
+	  this._clearFn.call(scope, this._id);
 	};
 
 	// Does not start the time, just sets up the members needed.
@@ -11308,7 +11306,7 @@
 
 	// setimmediate attaches itself to the global object
 	__webpack_require__(3);
-	// On some exotic environments, it's not clear which object `setimmeidate` was
+	// On some exotic environments, it's not clear which object `setimmediate` was
 	// able to install onto.  Search each possibility in the same order as the
 	// `setimmediate` library.
 	exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
@@ -11738,7 +11736,7 @@
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\nhtml, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\n  padding: 0;\n  margin: 0;\n}\n\na {\n  text-decoration: none;\n}\n\nli {\n  list-style: none;\n}\n\nhtml, body {\n  height: 100%;\n  -webkit-tap-highlight-color: transparent;\n}\n\nbody {\n  font-family: \"Helvetica Neue\", 'Helvetica', \"Microsoft YaHei\", '\\5FAE\\8F6F\\96C5\\9ED1', arial, sans-serif;\n  font-size: 30px;\n}\n\nimg {\n  border: none;\n  vertical-align: middle;\n  width: 100%;\n  height: auto;\n}\n\n.zmiti-loading {\n  z-index: 1000;\n  position: fixed;\n  background: #fff;\n}\n\n.zmiti-loading .zmiti-loading-ui {\n  width: 6rem;\n  left: 2rem;\n  position: absolute;\n  top: 6rem;\n}\n\n.zmiti-loading .zmiti-loading-ui > div {\n  color: #333;\n}\n\n.zmiti-loading .zmiti-loading-ui > div:nth-of-type(1) {\n  width: 200px;\n  margin: 0 auto;\n  position: relative;\n}\n\n.zmiti-loading .zmiti-loading-ui > div:nth-of-type(1) span {\n  position: absolute;\n  width: 102%;\n  left: -3px;\n  height: 4px;\n  background: #fff;\n  top: 48%;\n  -webkit-transform: scale(0.1, 1);\n  transform: scale(0.1, 1);\n  -webkit-transform-origin: right;\n  transform-origin: right;\n}\n\n.zmiti-loading .zmiti-loading-ui a {\n  text-align: center;\n  line-height: 200px;\n  display: block;\n  width: 200px;\n  height: 200px;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  border-radius: 50%;\n  margin: -100px 0 0 -100px;\n}\n\n.zmiti-loading .zmiti-loading-ui a .zmiti-head {\n  width: 70px;\n  height: 70px;\n  border-radius: 50%;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -35px;\n  margin-top: -35px;\n}\n\n.zmiti-loading .zmiti-loading-ui a .zmiti-progress {\n  width: 100%;\n  position: relative;\n  z-index: 10;\n  top: 90px;\n}\n\n.zmiti-loading .zmiti-loading-ui a .line1 {\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin: -42px 0 0 -42px;\n  border: 2px solid #fff;\n  border-radius: 80px 80px 80px 80px;\n  border-right-color: transparent;\n  border-top-color: transparent;\n}\n\n.zmiti-loading .zmiti-loading-ui a .line2 {\n  width: 100px;\n  height: 100px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin: -52px 0 0 -52px;\n  border: 2px solid #fff;\n  border-radius: 100px 100px 100px 100px;\n  border-right-color: transparent;\n  border-left-color: transparent;\n}\n\n.zmiti-loading .zmiti-loading-ui a .line3 {\n  width: 120px;\n  height: 120px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin: -62px 0 0 -62px;\n  border: 2px solid #fff;\n  border-radius: 120px 120px 120px 120px;\n  border-right-color: transparent;\n}\n\n@-webkit-keyframes line1 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  20% {\n    -webkit-transform: rotate(720deg);\n    transform: rotate(720deg);\n  }\n  50% {\n    -webkit-transform: rotate(1080deg);\n    transform: rotate(1080deg);\n  }\n  75% {\n    -webkit-transform: rotate(1300deg);\n    transform: rotate(1300deg);\n  }\n  100% {\n    -webkit-transform: rotate(2500deg);\n    transform: rotate(2500deg);\n  }\n}\n\n@keyframes line1 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  20% {\n    -webkit-transform: rotate(720deg);\n    transform: rotate(720deg);\n  }\n  50% {\n    -webkit-transform: rotate(1080deg);\n    transform: rotate(1080deg);\n  }\n  75% {\n    -webkit-transform: rotate(1300deg);\n    transform: rotate(1300deg);\n  }\n  100% {\n    -webkit-transform: rotate(2500deg);\n    transform: rotate(2500deg);\n  }\n}\n\n.zmiti-loading .zmiti-loading-ui a .line1 {\n  -webkit-animation: line1 14s ease-in-out 1s infinite alternate;\n  animation: line1 15s ease-in-out 1s infinite alternate;\n}\n\n@-webkit-keyframes line2 {\n  from {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n}\n\n@keyframes line2 {\n  from {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n}\n\n.zmiti-loading .zmiti-loading-ui a .line2 {\n  -webkit-animation: line2 3s ease-in-out infinite;\n  animation: line2 3s ease-in-out infinite;\n}\n\n@-webkit-keyframes line3 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  20% {\n    -webkit-transform: rotate(720deg);\n    transform: rotate(720deg);\n  }\n  50% {\n    -webkit-transform: rotate(1080deg);\n    transform: rotate(1080deg);\n  }\n  75% {\n    -webkit-transform: rotate(1300deg);\n    transform: rotate(1300deg);\n  }\n  100% {\n    -webkit-transform: rotate(2500deg);\n    transform: rotate(2500deg);\n  }\n}\n\n@keyframes line3 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  20% {\n    -webkit-transform: rotate(720deg);\n    transform: rotate(720deg);\n  }\n  50% {\n    -webkit-transform: rotate(1080deg);\n    transform: rotate(1080deg);\n  }\n  75% {\n    -webkit-transform: rotate(1300deg);\n    transform: rotate(1300deg);\n  }\n  100% {\n    -webkit-transform: rotate(2500deg);\n    transform: rotate(2500deg);\n  }\n}\n\n.zmiti-loading .zmiti-loading-ui a .line3 {\n  -webkit-animation: line3 20s ease-in-out infinite;\n  animation: line3 20s ease-in-out infinite;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar {\n  width: 2rem;\n  border-radius: 10px;\n  position: relative;\n  margin: 0 auto;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar:before {\n  content: '';\n  border-radius: 10px;\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar .zmiti-target {\n  width: 0.4rem;\n  height: 0.4rem;\n  border-radius: 50%;\n  background: #fff;\n  left: 50%;\n  top: .4rem;\n  position: absolute;\n  margin-left: -0.2rem;\n  -webkit-animation: scale linear 2s infinite alternate;\n  animation: scale linear 2s infinite alternate;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-progress {\n  margin-top: .5rem;\n  text-align: center;\n  color: #333 !important;\n  font-family: Georgia;\n  font-size: .5rem;\n}\n\n.zmiti-mask {\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.6);\n  z-index: 300;\n  text-align: right;\n}\n\n.zmiti-mask img {\n  width: 6rem;\n  margin-right: 20px;\n}\n\n@-webkit-keyframes scale {\n  from {\n    -webkit-transform: scale(0.96) translateZ(1px);\n  }\n  to {\n    -webkit-transform: scale(1.04) translateZ(1px);\n  }\n}\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\r\n.lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis;\r\n}\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n\r\n.zmiti-play.rotate {\r\n  -webkit-animation: rotate 5s linear infinite;\r\n  animation: rotate 5s linear infinite;\r\n}\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\nhtml, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\nli {\r\n  list-style: none;\r\n}\r\n\r\nhtml, body {\r\n  height: 100%;\r\n  -webkit-tap-highlight-color: transparent;\r\n}\r\n\r\nbody {\r\n  font-family: \"Helvetica Neue\", 'Helvetica', \"Microsoft YaHei\", '\\5FAE\\8F6F\\96C5\\9ED1', arial, sans-serif;\r\n  font-size: 30px;\r\n}\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: middle;\r\n  width: 100%;\r\n  height: auto;\r\n}\r\n\r\n.zmiti-loading {\r\n  z-index: 1000;\r\n  position: fixed;\r\n  background: #fff;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui {\r\n  width: 6rem;\r\n  left: 2rem;\r\n  position: absolute;\r\n  top: 6rem;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui > div {\r\n  color: #333;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui > div:nth-of-type(1) {\r\n  width: 200px;\r\n  margin: 0 auto;\r\n  position: relative;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui > div:nth-of-type(1) span {\r\n  position: absolute;\r\n  width: 102%;\r\n  left: -3px;\r\n  height: 4px;\r\n  background: #fff;\r\n  top: 48%;\r\n  -webkit-transform: scale(0.1, 1);\r\n  transform: scale(0.1, 1);\r\n  -webkit-transform-origin: right;\r\n  transform-origin: right;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a {\r\n  text-align: center;\r\n  line-height: 200px;\r\n  display: block;\r\n  width: 200px;\r\n  height: 200px;\r\n  position: fixed;\r\n  left: 50%;\r\n  top: 50%;\r\n  border-radius: 50%;\r\n  margin: -100px 0 0 -100px;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .zmiti-head {\r\n  width: 70px;\r\n  height: 70px;\r\n  border-radius: 50%;\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  margin-left: -35px;\r\n  margin-top: -35px;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .zmiti-progress {\r\n  width: 100%;\r\n  position: relative;\r\n  z-index: 10;\r\n  top: 90px;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line1 {\r\n  width: 80px;\r\n  height: 80px;\r\n  position: absolute;\r\n  left: 50%;\r\n  top: 50%;\r\n  margin: -42px 0 0 -42px;\r\n  border: 2px solid #fff;\r\n  border-radius: 80px 80px 80px 80px;\r\n  border-right-color: transparent;\r\n  border-top-color: transparent;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line2 {\r\n  width: 100px;\r\n  height: 100px;\r\n  position: absolute;\r\n  left: 50%;\r\n  top: 50%;\r\n  margin: -52px 0 0 -52px;\r\n  border: 2px solid #fff;\r\n  border-radius: 100px 100px 100px 100px;\r\n  border-right-color: transparent;\r\n  border-left-color: transparent;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line3 {\r\n  width: 120px;\r\n  height: 120px;\r\n  position: absolute;\r\n  left: 50%;\r\n  top: 50%;\r\n  margin: -62px 0 0 -62px;\r\n  border: 2px solid #fff;\r\n  border-radius: 120px 120px 120px 120px;\r\n  border-right-color: transparent;\r\n}\r\n\r\n@-webkit-keyframes line1 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  20% {\r\n    -webkit-transform: rotate(720deg);\r\n    transform: rotate(720deg);\r\n  }\r\n  50% {\r\n    -webkit-transform: rotate(1080deg);\r\n    transform: rotate(1080deg);\r\n  }\r\n  75% {\r\n    -webkit-transform: rotate(1300deg);\r\n    transform: rotate(1300deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(2500deg);\r\n    transform: rotate(2500deg);\r\n  }\r\n}\r\n\r\n@keyframes line1 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  20% {\r\n    -webkit-transform: rotate(720deg);\r\n    transform: rotate(720deg);\r\n  }\r\n  50% {\r\n    -webkit-transform: rotate(1080deg);\r\n    transform: rotate(1080deg);\r\n  }\r\n  75% {\r\n    -webkit-transform: rotate(1300deg);\r\n    transform: rotate(1300deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(2500deg);\r\n    transform: rotate(2500deg);\r\n  }\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line1 {\r\n  -webkit-animation: line1 14s ease-in-out 1s infinite alternate;\r\n  animation: line1 15s ease-in-out 1s infinite alternate;\r\n}\r\n\r\n@-webkit-keyframes line2 {\r\n  from {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n  to {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n}\r\n\r\n@keyframes line2 {\r\n  from {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n  to {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line2 {\r\n  -webkit-animation: line2 3s ease-in-out infinite;\r\n  animation: line2 3s ease-in-out infinite;\r\n}\r\n\r\n@-webkit-keyframes line3 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  20% {\r\n    -webkit-transform: rotate(720deg);\r\n    transform: rotate(720deg);\r\n  }\r\n  50% {\r\n    -webkit-transform: rotate(1080deg);\r\n    transform: rotate(1080deg);\r\n  }\r\n  75% {\r\n    -webkit-transform: rotate(1300deg);\r\n    transform: rotate(1300deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(2500deg);\r\n    transform: rotate(2500deg);\r\n  }\r\n}\r\n\r\n@keyframes line3 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  20% {\r\n    -webkit-transform: rotate(720deg);\r\n    transform: rotate(720deg);\r\n  }\r\n  50% {\r\n    -webkit-transform: rotate(1080deg);\r\n    transform: rotate(1080deg);\r\n  }\r\n  75% {\r\n    -webkit-transform: rotate(1300deg);\r\n    transform: rotate(1300deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(2500deg);\r\n    transform: rotate(2500deg);\r\n  }\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui a .line3 {\r\n  -webkit-animation: line3 20s ease-in-out infinite;\r\n  animation: line3 20s ease-in-out infinite;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar {\r\n  width: 2rem;\r\n  border-radius: 10px;\r\n  position: relative;\r\n  margin: 0 auto;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar:before {\r\n  content: '';\r\n  border-radius: 10px;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar .zmiti-target {\r\n  width: 0.4rem;\r\n  height: 0.4rem;\r\n  border-radius: 50%;\r\n  background: #fff;\r\n  left: 50%;\r\n  top: .4rem;\r\n  position: absolute;\r\n  margin-left: -0.2rem;\r\n  -webkit-animation: scale linear 2s infinite alternate;\r\n  animation: scale linear 2s infinite alternate;\r\n}\r\n\r\n.zmiti-loading .zmiti-loading-ui .zmiti-progress {\r\n  margin-top: .5rem;\r\n  text-align: center;\r\n  color: #333 !important;\r\n  font-family: Georgia;\r\n  font-size: .5rem;\r\n}\r\n\r\n.zmiti-mask {\r\n  position: fixed;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: rgba(0, 0, 0, 0.6);\r\n  z-index: 300;\r\n  text-align: right;\r\n}\r\n\r\n.zmiti-mask img {\r\n  width: 6rem;\r\n  margin-right: 20px;\r\n}\r\n\r\n@-webkit-keyframes scale {\r\n  from {\r\n    -webkit-transform: scale(0.96) translateZ(1px);\r\n  }\r\n  to {\r\n    -webkit-transform: scale(1.04) translateZ(1px);\r\n  }\r\n}\r\n", ""]);
 
 	// exports
 
@@ -12065,7 +12063,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "F:\\xuchang2018\\project\\signup\\components\\index\\index.vue"
+	  var id = "E:\\project\\museum\\components\\index\\index.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12078,53 +12076,19 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
-	// 	<div class="lt-full zmiti-index-main-ui "  :class="{'show':show}">
-	// 		<div class="zmiti-title">
-	// 			<div class="zmiti-index-logo">
-	// 				<img :src="imgs.logo" alt="">
-	// 			</div>
-	// 			<img @touchstart='imgStart' :src="imgs.title">
-	// 			<span style="display:inline-block;font-size:32px;top:-30px;text-indent:2em;position:relative">您好，{{userinfo.username}}</span>
-	// 			<div class="zmiti-tips">
-	// 				<div>温馨提示：</div>
-	// 				<div>
-	// 					<div>请及时收藏本页面，方便下次使用。</div>
-	// 				</div>
-	// 			</div>
+	// 	<div :style="{background:'url('+imgs.indexBg+') no-repeat center bottom',backgroundSize:'cover'}" class="lt-full zmiti-index-main-ui "  :class="{'show':show}">
+	// 		<h4></h4>
+	// 		<div class='wm-index-index'>
+	// 			<img :src="imgs.index" alt="">
 	// 		</div>
-	// 		<div class="zmiti-nav">
-	// 			<ul>
-	// 				<li v-for="(menu,i) in menus" :key="i" v-tap='[menuClick,i]'>
-	// 					<div>
-	// 						<img :style="{width:menu.width}" :src="menu.defaultImg" alt="">
-	// 					</div>
-	// 					<div :class="menu.class">{{menu.name}}</div>
-	// 				</li>
-	// 			</ul>
+	// 		<div class='wm-index-title'>
+	// 			<img :src="imgs.title" alt="">
+	// 		</div>
+	// 		<div class='wm-index-task-btn' v-tap='[initGame]'>
+	// 			<img :src="imgs.getTaskBtn" alt="">
 	// 		</div>
 	//
-	// 		<section class="lt-full zmiti-qd-mask" v-show='showQD'>
-	// 			<div>
-	// 				<img :src="imgs.qiandaoBg" alt="">
-	// 				<div class="zmiti-qd-info">
-	// 					<div>
-	// 						请打开微信扫一扫
-	// 					</div>
-	// 					<div>
-	// 						扫描签到二维码即可成功签到
-	// 					</div>
-	// 					<div class="zmiti-btn" v-tap='[close]'>关 闭</div>
-	// 				</div>
-	// 			</div>
-	// 		</section>
 	//
-	// 		<div v-if='mynumberinfo' class="lt-full zmiti-num-mask">
-	// 			<div>
-	// 				<div class="zmiti-number">{{mynumberinfo}}</div>
-	// 				<div class="zmiti-number" style="text-align:center;">{{mynumber}}</div>
-	// 				<div class="zmiti-btn" v-tap='[closeInfo]'>关 闭</div>
-	// 			</div>
-	// 		</div>
 	// 	</div>
 	// </template>
 	//
@@ -12139,6 +12103,10 @@
 
 	__webpack_require__(11);
 
+	var _vue = __webpack_require__(1);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
 	var _libAssetsJs = __webpack_require__(13);
 
 	var _libUtil = __webpack_require__(14);
@@ -12151,7 +12119,7 @@
 		data: function data() {
 			return {
 				imgs: _libAssetsJs.imgs,
-				show: false,
+				show: true,
 				showMasks: false,
 				viewW: window.innerWidth,
 				mynumber: "",
@@ -12166,57 +12134,14 @@
 
 		methods: {
 
-			closeInfo: function closeInfo() {
-				this.mynumber = '';
-				this.mynumberinfo = '';
+			initGame: function initGame() {
+				this.obserable.trigger({
+					type: 'initGame'
+				});
 			},
 
 			imgStart: function imgStart(e) {
 				e.preventDefault();
-			},
-			close: function close() {
-				this.showQD = false;
-			},
-			menuClick: function menuClick(index) {
-				var obserable = this.obserable;
-
-				switch (index) {
-					case 0:
-					case 1: //签到
-					case 2:
-					case 6:
-					case 4:
-					case 7:
-						if (!window.openid) {
-							return;
-						}
-						window.location.href = this.menus[index].href + '?openid=' + window.openid;
-						break;
-					case 3:
-						this.mynumberinfo = '我的房间号是：';
-						this.mynumber = this.userinfo.roomnumber || '未分配';
-						break;
-					/* case 4:
-	    	this.mynumberinfo = '我的座位号是：'	
-	    	this.mynumber = this.userinfo.seatnumber||'未分配';
-	    	
-	    	
-	    break; */
-					case 5:
-						obserable.trigger({
-							type: 'showSearch',
-							data: false
-						});
-						break;
-
-						break;
-					case 8:
-						obserable.trigger({
-							type: 'showSearch',
-							data: true
-						});
-						break;
-				}
 			}
 
 		},
@@ -12230,31 +12155,6 @@
 			});
 
 			var s = this;
-
-			$.ajax({
-				url: window.baseUrl + '/wenming/getsignuplist/',
-				type: 'post',
-				data: {
-					wxopenid: window.openid,
-					pnumber: window.pNumber
-				},
-				success: function success(data) {
-					if (data.getret === 0) {
-						s.userinfo = data.list[0];
-					}
-					console.log(data);
-				}
-			});
-
-			obserable.on('signin', function () {
-				s.issign = true;
-				/*s.menus.forEach((item,i)=>{
-	   	if(i>1){
-	   		item.defaultImg = item.img;
-	   		item.class = ''
-	   	}
-	   });*/
-			});
 		}
 	};
 
@@ -12296,7 +12196,7 @@
 
 
 	// module
-	exports.push([module.id, ".lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.zmiti-index-main-ui {\n  overflow: hidden;\n  width: 10rem;\n  left: 50% !important;\n  margin-left: -375px;\n  background: #ffffff;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n  opacity: 0;\n  z-index: -1;\n}\n\n.zmiti-index-main-ui .zmiti-tips {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.zmiti-index-main-ui .zmiti-tips > div:nth-of-type(1) {\n  color: #ee0000;\n}\n\n.zmiti-index-main-ui .zmiti-tips > div:nth-of-type(2) {\n  overflow: hidden;\n}\n\n.zmiti-index-main-ui .zmiti-tips > div:nth-of-type(2) div {\n  -webkit-animation: move linear 10s infinite;\n  animation: move linear 10s infinite;\n}\n\n@-webkit-keyframes move {\n  from {\n    -webkit-transform: translate(100%, 0);\n  }\n  to {\n    -webkit-transform: translate(-100%, 0);\n  }\n}\n\n.zmiti-index-main-ui > div {\n  -webkit-box-flex: 1;\n  width: 100%;\n  height: 50%;\n}\n\n.zmiti-index-main-ui.show {\n  opacity: 1;\n  z-index: 500;\n}\n\n.zmiti-index-main-ui .zmiti-index-logo {\n  position: absolute;\n  left: 30px;\n  top: 30px;\n}\n\n.zmiti-index-main-ui .zmiti-qd-mask {\n  background: rgba(0, 0, 0, 0.5);\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.zmiti-index-main-ui .zmiti-qd-mask > div {\n  position: relative;\n  text-align: center;\n}\n\n.zmiti-index-main-ui .zmiti-qd-mask > div img {\n  width: 300px;\n  position: relative;\n  z-index: 10;\n}\n\n.zmiti-index-main-ui .zmiti-qd-mask > div .zmiti-btn {\n  position: absolute;\n}\n\n.zmiti-index-main-ui .zmiti-qd-mask .zmiti-qd-info {\n  width: 500px;\n  background: #fff;\n  height: 300px;\n  position: relative;\n  overflow: hidden;\n  z-index: 0;\n  margin-top: -100px;\n  border-radius: 20px;\n  padding-top: 100px;\n  color: #999999;\n  box-sizing: border-box;\n}\n\n.zmiti-index-main-ui .zmiti-num-mask {\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  height: 100% !important;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.zmiti-index-main-ui .zmiti-num-mask > div {\n  position: relative;\n  min-width: 400px;\n  max-width: 600px;\n  min-height: 280px;\n  background: #fff;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n.zmiti-index-main-ui .zmiti-num-mask > div div.zmiti-number {\n  margin: 22px;\n  color: #999;\n}\n\n.zmiti-index-main-ui .zmiti-num-mask > div div.zmiti-number:nth-of-type(2) {\n  font-size: 34px;\n  color: #f90;\n  font-weight: bold;\n}\n\n.zmiti-index-main-ui .zmiti-num-mask > div .zmiti-btn {\n  position: absolute;\n  width: 100%;\n  left: 0;\n}\n\n.zmiti-btn {\n  width: 110%;\n  height: 90px;\n  line-height: 90px;\n  text-align: center;\n  position: absolute;\n  bottom: 0;\n  left: -5%;\n  color: #fff;\n  background-image: -webkit-linear-gradient(left, #fe6500, #f00000);\n}\n\n.zmiti-btn.active {\n  -webkit-transform-origin: bottom;\n  transform-origin: bottom;\n  -webkit-transform: scale(0.95);\n  transform: scale(0.95);\n}\n\n.zmiti-index-main-ui .zmiti-nav {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.zmiti-index-main-ui .zmiti-nav ul {\n  width: 85%;\n}\n\n.zmiti-index-main-ui .zmiti-nav li {\n  display: inline-block;\n  margin: 32px 50px;\n  min-width: 70px;\n  text-align: center;\n  font-size: 28px;\n}\n\n.zmiti-index-main-ui .zmiti-nav li div {\n  color: #00496b;\n  margin: 2px auto;\n}\n\n.zmiti-index-main-ui .zmiti-nav li div:nth-of-type(2) {\n  height: 60px;\n  line-height: 60px;\n}\n\n.zmiti-index-main-ui .zmiti-nav li .grey {\n  color: #bbbbbb;\n}\n\n@-webkit-keyframes rotate1 {\n  to {\n    -webkit-transform: rotate(360deg) scale(2);\n    transform: rotate(360deg) scale(2);\n    opacity: 0;\n  }\n}\n\n.zmiti-loading {\n  z-index: 1000;\n}\n\n.zmiti-loading .zmiti-loading-ui {\n  width: 6rem;\n  left: 2rem;\n  position: absolute;\n  top: 6rem;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar {\n  width: 2rem;\n  border-radius: 10px;\n  position: relative;\n  margin: 0 auto;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar:before {\n  content: '';\n  border-radius: 10px;\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-loading-bar .zmiti-target {\n  width: 0.4rem;\n  height: 0.4rem;\n  border-radius: 50%;\n  background: #fff;\n  left: 50%;\n  top: .4rem;\n  position: absolute;\n  margin-left: -0.2rem;\n  -webkit-animation: scale linear 2s infinite alternate;\n  animation: scale linear 2s infinite alternate;\n}\n\n.zmiti-loading .zmiti-loading-ui .zmiti-progress {\n  margin-top: .5rem;\n  text-align: center;\n  color: #fff;\n  font-family: Georgia;\n  font-size: .7rem;\n}\n", ""]);
+	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis;\r\n}\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n\r\n.zmiti-play.rotate {\r\n  -webkit-animation: rotate 5s linear infinite;\r\n  animation: rotate 5s linear infinite;\r\n}\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n.zmiti-index-main-ui {\r\n  overflow: hidden;\r\n  width: 10rem;\r\n  left: 50% !important;\r\n  margin-left: -375px;\r\n  background: #ffffff;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-pack: start;\r\n  opacity: 0;\r\n  z-index: -1;\r\n}\r\n\r\n.zmiti-index-main-ui h4 {\r\n  height: 6vh;\r\n}\r\n\r\n.zmiti-index-main-ui .wm-index-task-btn {\r\n  margin-top: 30px;\r\n  width: 400px;\r\n}\r\n\r\n.zmiti-index-main-ui .wm-index-title {\r\n  width: 680px;\r\n  margin: 30px 0;\r\n}\r\n\r\n.zmiti-index-main-ui.show {\r\n  opacity: 1;\r\n  z-index: 500;\r\n}\r\n\r\n@media all and (max-height: 1108px) {\r\n  .zmiti-index-main-ui h4 {\r\n    height: 6vh;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-task-btn {\r\n    margin-top: 30px;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-index {\r\n    width: 400px;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-title {\r\n    width: 600px;\r\n    margin: 30px 0;\r\n  }\r\n}\r\n", ""]);
 
 	// exports
 
@@ -12378,7 +12278,7 @@
 
 			var s = this;
 
-			var img = window.baseUrl + '/assets/images/300.jpg';
+			var img = 'http://h5.zmiti.com/public/' + window.h5name + '/assets/images/300.jpg';
 
 			var appId = this.wxInfo().wxappid;
 
@@ -12391,6 +12291,7 @@
 			_jquery2['default'].ajax({
 				type: 'get',
 				url: "http://h5.zhongguowangshi.com/tree/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
+				url: "http://api.zmiti.com/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
 				dataType: 'jsonp',
 				jsonp: "callback",
 				jsonpCallback: "jsonFlickrFeed",
@@ -22391,7 +22292,7 @@
 /* 16 */
 /***/ (function(module, exports) {
 
-	module.exports = "\r\n\t<div class=\"lt-full zmiti-index-main-ui \"  :class=\"{'show':show}\">\r\n\t\t<div class=\"zmiti-title\">\r\n\t\t\t<div class=\"zmiti-index-logo\">\r\n\t\t\t\t<img :src=\"imgs.logo\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t\t<img @touchstart='imgStart' :src=\"imgs.title\">\r\n\t\t\t<span style=\"display:inline-block;font-size:32px;top:-30px;text-indent:2em;position:relative\">您好，{{userinfo.username}}</span>\r\n\t\t\t<div class=\"zmiti-tips\">\r\n\t\t\t\t<div>温馨提示：</div>\r\n\t\t\t\t<div>\r\n\t\t\t\t\t<div>请及时收藏本页面，方便下次使用。</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"zmiti-nav\">\r\n\t\t\t<ul>\r\n\t\t\t\t<li v-for=\"(menu,i) in menus\" :key=\"i\" v-tap='[menuClick,i]'>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<img :style=\"{width:menu.width}\" :src=\"menu.defaultImg\" alt=\"\">\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div :class=\"menu.class\">{{menu.name}}</div>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\r\n\t\t<section class=\"lt-full zmiti-qd-mask\" v-show='showQD'>\r\n\t\t\t<div>\r\n\t\t\t\t<img :src=\"imgs.qiandaoBg\" alt=\"\">\r\n\t\t\t\t<div class=\"zmiti-qd-info\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t请打开微信扫一扫\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t扫描签到二维码即可成功签到\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"zmiti-btn\" v-tap='[close]'>关 闭</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</section>\r\n\r\n\t\t<div v-if='mynumberinfo' class=\"lt-full zmiti-num-mask\">\r\n\t\t\t<div>\r\n\t\t\t\t<div class=\"zmiti-number\">{{mynumberinfo}}</div>\r\n\t\t\t\t<div class=\"zmiti-number\" style=\"text-align:center;\">{{mynumber}}</div>\r\n\t\t\t\t<div class=\"zmiti-btn\" v-tap='[closeInfo]'>关 闭</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n";
+	module.exports = "\r\n\t<div :style=\"{background:'url('+imgs.indexBg+') no-repeat center bottom',backgroundSize:'cover'}\" class=\"lt-full zmiti-index-main-ui \"  :class=\"{'show':show}\">\r\n\t\t<h4></h4>\r\n\t\t<div class='wm-index-index'>\r\n\t\t\t<img :src=\"imgs.index\" alt=\"\">\r\n\t\t</div>\r\n\t\t<div class='wm-index-title'>\r\n\t\t\t<img :src=\"imgs.title\" alt=\"\">\r\n\t\t</div>\r\n\t\t<div class='wm-index-task-btn' v-tap='[initGame]'>\r\n\t\t\t<img :src=\"imgs.getTaskBtn\" alt=\"\">\r\n\t\t</div>\r\n\t\t\r\n\r\n\t</div>\r\n";
 
 /***/ }),
 /* 17 */
@@ -22407,7 +22308,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "F:\\xuchang2018\\project\\signup\\components\\form\\index.vue"
+	  var id = "E:\\project\\museum\\components\\form\\index.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -22422,65 +22323,7 @@
 	// <template>
 	// 	<transition name='main'>
 	// 		<div class="zmiti-form-main-ui lt-full" :class="{'show':show}">
-	// 			<div>
-	// 				<img :src="imgs.baomingTitle" alt="">
-	// 			</div>
-	// 			<div v-if='headimgurl' class="zmiti-wx-tip">
-	// 				<img :src="headimgurl" alt="" /> <span>{{nickname}} 请确保些微信是您本人的微信,否则后期无法签到!</span>
-	// 			</div>
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">姓名</label><input placeholder="请填写姓名" type="text" v-model="formUser.username">
-	// 			</div>
-	// 			<div class="zmiti-form-item select"  :data-content="formUser.sex !== '' ? '' :'请选择性别'">
-	// 				<label for="">性别</label><select v-model="formUser.sex">
-	// 					<option :value="1">--请选择--</option>
-	// 					<option :value="1">男</option>
-	// 					<option :value="0">女</option>
-	// 				</select>
-	// 				<input type="text" style='z-index:0' :value="formUser.sex === 1 ? '男':formUser.sex === 0 ? '女': ''" >
-	// 			</div>
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">民族</label><input  v-model="formUser.nation" placeholder="请输入民族 如：‘汉族’" />
-	// 			</div>
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">职务</label><input  v-model="formUser.job" placeholder="请输入职务"/>
-	// 			</div>
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">座机号</label><input ref='telphone' v-model="formUser.telphone" placeholder="请输入座机号码"/>
-	// 			</div>
 	//
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">邮箱</label><input ref='email' v-model="formUser.email" placeholder="请输入邮箱"/>
-	// 			</div>
-	//
-	// 			<div class="zmiti-form-item select" :data-content="formUser.provicename !== '' ? '' :'请选择省份'">
-	// 				<label for="">省份</label>
-	// 				<select  v-model="formUser.provicename">
-	// 					<option :value="p" v-for='(p,i) in provinceList' :key="i">{{p}}</option>
-	// 				</select>
-	// 				<input type="text" style='z-index:0' :value="formUser.provicename" >
-	// 			</div>
-	// 			<div class="zmiti-form-item">
-	// 				<label for="">手机号</label><input ref='mobile' v-model="formUser.mobile" placeholder="请输入手机号码"/>
-	// 			</div>
-	//
-	//
-	// 			<div v-if='showBtn' v-tap='[submit]' class="zmiti-btn" :class="{'active':isPress}" @touchstart='isPress = true' @touchend='isPress = false'>
-	// 				提交
-	// 			</div>
-	//
-	// 			<Toast :msg='msg' :errorMsg='errorMsg'></Toast>
-	//
-	// 			<div v-if='showMsg' class="lt-full zmiti-msg-mask">
-	// 				<div>
-	// 					<div class="zmiti-number">
-	// 						<div>
-	// 							{{showMsg}}
-	// 						</div>
-	// 					</div>
-	// 					<div class="zmiti-btn" v-tap='[closeInfo]'>关 闭</div>
-	// 				</div>
-	// 			</div>
 	// 		</div>
 	// 	</transition>
 	// </template>
@@ -22739,7 +22582,7 @@
 
 
 	// module
-	exports.push([module.id, ".lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.zmiti-form-main-ui {\n  overflow: hidden;\n  background: #f3f3f4;\n  opacity: 0;\n  z-index: -1;\n  position: absolute !important;\n}\n\n.zmiti-form-main-ui.show {\n  opacity: 1;\n  z-index: 202;\n}\n\n.zmiti-form-main-ui .zmiti-wx-tip {\n  background: #fff;\n  color: #f00;\n  text-align: center;\n}\n\n.zmiti-form-main-ui .zmiti-wx-tip img {\n  width: 40px;\n}\n\n.zmiti-form-main-ui .zmiti-msg-mask {\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  height: 100% !important;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.zmiti-form-main-ui .zmiti-msg-mask > div {\n  position: relative;\n  min-width: 500px;\n  max-width: 600px;\n  min-height: 280px;\n  background: #fff;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number {\n  color: #999;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 100%;\n  padding: 40px;\n  position: absolute;\n  width: 100%;\n  box-sizing: border-box;\n}\n\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number > div {\n  color: #f90;\n  margin-top: -100px;\n}\n\n.zmiti-form-main-ui .zmiti-msg-mask > div .zmiti-btn {\n  position: absolute;\n  width: 100%;\n  left: 0;\n}\n\n.zmiti-form-main-ui .zmiti-form-item {\n  background: #fff;\n  padding-left: 20px;\n  height: 90px;\n  color: #777777;\n  line-height: 100px;\n  position: relative;\n}\n\n.zmiti-form-main-ui .zmiti-form-item:before {\n  content: \"\";\n  width: 730px;\n  height: 1px;\n  position: absolute;\n  background: #f5f5f5;\n  left: 20px;\n  bottom: 0;\n}\n\n.zmiti-form-main-ui .zmiti-form-item span {\n  position: absolute;\n  left: 144px;\n  color: #000;\n}\n\n.zmiti-form-main-ui .zmiti-form-item input {\n  margin-left: 40px;\n  width: 510px;\n  height: 50px;\n  outline: none;\n  font-size: 30px;\n  border: none;\n  position: absolute;\n  top: 20px;\n  left: 105px;\n}\n\n.zmiti-form-main-ui .zmiti-form-item input::-webkit-input-placeholder {\n  color: #dddddd;\n}\n\n.zmiti-form-main-ui .zmiti-form-item.select:after {\n  content: attr(data-content);\n  color: #dddddd;\n  position: absolute;\n  left: 155px;\n}\n\n.zmiti-form-main-ui .zmiti-form-item.select label:before {\n  content: \"\";\n  width: 24px;\n  height: 24px;\n  border: 2px solid #ccc;\n  position: absolute;\n  right: 60px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  border-left: none;\n  border-bottom: none;\n  top: 30px;\n}\n\n.zmiti-form-main-ui .zmiti-form-item select {\n  outline: none;\n  font-size: 28px;\n  width: 80%;\n  height: 100%;\n  left: 100px;\n  top: 0;\n  opacity: 0;\n  z-index: 100;\n  position: absolute;\n}\n\n.zmiti-form-main-ui .zmiti-form-item label::after {\n  content: '*';\n  color: #f00;\n  position: absolute;\n  margin-top: 4px;\n  margin-left: 4px;\n}\n\n.zmiti-btn {\n  width: 110%;\n  height: 90px;\n  line-height: 90px;\n  text-align: center;\n  position: absolute;\n  bottom: 0;\n  left: -5%;\n  color: #fff;\n  background-image: -webkit-linear-gradient(left, #fe6500, #f00000);\n}\n\n.zmiti-btn.active {\n  -webkit-transform-origin: bottom;\n  transform-origin: bottom;\n  -webkit-transform: scale(0.95);\n  transform: scale(0.95);\n}\n\n@-webkit-keyframes ar {\n  from {\n    margin-top: -5px;\n  }\n  to {\n    margin-top: 5px;\n  }\n}\n", ""]);
+	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis;\r\n}\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n\r\n.zmiti-play.rotate {\r\n  -webkit-animation: rotate 5s linear infinite;\r\n  animation: rotate 5s linear infinite;\r\n}\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n.zmiti-form-main-ui {\r\n  overflow: hidden;\r\n  background: #f3f3f4;\r\n  opacity: 0;\r\n  z-index: -1;\r\n  position: absolute !important;\r\n}\r\n\r\n.zmiti-form-main-ui.show {\r\n  opacity: 1;\r\n  z-index: 202;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-wx-tip {\r\n  background: #fff;\r\n  color: #f00;\r\n  text-align: center;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-wx-tip img {\r\n  width: 40px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask {\r\n  background: rgba(0, 0, 0, 0.5);\r\n  z-index: 100;\r\n  height: 100% !important;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div {\r\n  position: relative;\r\n  min-width: 500px;\r\n  max-width: 600px;\r\n  min-height: 280px;\r\n  background: #fff;\r\n  border-radius: 8px;\r\n  overflow: hidden;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number {\r\n  color: #999;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n  height: 100%;\r\n  padding: 40px;\r\n  position: absolute;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number > div {\r\n  color: #f90;\r\n  margin-top: -100px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div .zmiti-btn {\r\n  position: absolute;\r\n  width: 100%;\r\n  left: 0;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item {\r\n  background: #fff;\r\n  padding-left: 20px;\r\n  height: 90px;\r\n  color: #777777;\r\n  line-height: 100px;\r\n  position: relative;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item:before {\r\n  content: \"\";\r\n  width: 730px;\r\n  height: 1px;\r\n  position: absolute;\r\n  background: #f5f5f5;\r\n  left: 20px;\r\n  bottom: 0;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item span {\r\n  position: absolute;\r\n  left: 144px;\r\n  color: #000;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item input {\r\n  margin-left: 40px;\r\n  width: 510px;\r\n  height: 50px;\r\n  outline: none;\r\n  font-size: 30px;\r\n  border: none;\r\n  position: absolute;\r\n  top: 20px;\r\n  left: 105px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item input::-webkit-input-placeholder {\r\n  color: #dddddd;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item.select:after {\r\n  content: attr(data-content);\r\n  color: #dddddd;\r\n  position: absolute;\r\n  left: 155px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item.select label:before {\r\n  content: \"\";\r\n  width: 24px;\r\n  height: 24px;\r\n  border: 2px solid #ccc;\r\n  position: absolute;\r\n  right: 60px;\r\n  -webkit-transform: rotate(45deg);\r\n  transform: rotate(45deg);\r\n  border-left: none;\r\n  border-bottom: none;\r\n  top: 30px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item select {\r\n  outline: none;\r\n  font-size: 28px;\r\n  width: 80%;\r\n  height: 100%;\r\n  left: 100px;\r\n  top: 0;\r\n  opacity: 0;\r\n  z-index: 100;\r\n  position: absolute;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item label::after {\r\n  content: '*';\r\n  color: #f00;\r\n  position: absolute;\r\n  margin-top: 4px;\r\n  margin-left: 4px;\r\n}\r\n\r\n.zmiti-btn {\r\n  width: 110%;\r\n  height: 90px;\r\n  line-height: 90px;\r\n  text-align: center;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\r\n  color: #fff;\r\n  background-image: -webkit-linear-gradient(left, #fe6500, #f00000);\r\n}\r\n\r\n.zmiti-btn.active {\r\n  -webkit-transform-origin: bottom;\r\n  transform-origin: bottom;\r\n  -webkit-transform: scale(0.95);\r\n  transform: scale(0.95);\r\n}\r\n\r\n@-webkit-keyframes ar {\r\n  from {\r\n    margin-top: -5px;\r\n  }\r\n  to {\r\n    margin-top: 5px;\r\n  }\r\n}\r\n", ""]);
 
 	// exports
 
@@ -22759,7 +22602,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "F:\\xuchang2018\\project\\signup\\components\\toast\\toast.vue"
+	  var id = "E:\\project\\museum\\components\\toast\\toast.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -22783,8 +22626,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4736e554&file=toast.vue!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./toast.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4736e554&file=toast.vue!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./toast.vue");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5ed3f17a&file=toast.vue!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./toast.vue", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5ed3f17a&file=toast.vue!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./toast.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -22919,7 +22762,7 @@
 /* 26 */
 /***/ (function(module, exports) {
 
-	module.exports = "\r\n\t<transition name='main'>\r\n\t\t<div class=\"zmiti-form-main-ui lt-full\" :class=\"{'show':show}\">\r\n\t\t\t<div>\r\n\t\t\t\t<img :src=\"imgs.baomingTitle\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t\t<div v-if='headimgurl' class=\"zmiti-wx-tip\">\r\n\t\t\t\t<img :src=\"headimgurl\" alt=\"\" /> <span>{{nickname}} 请确保些微信是您本人的微信,否则后期无法签到!</span>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">姓名</label><input placeholder=\"请填写姓名\" type=\"text\" v-model=\"formUser.username\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item select\"  :data-content=\"formUser.sex !== '' ? '' :'请选择性别'\">\r\n\t\t\t\t<label for=\"\">性别</label><select v-model=\"formUser.sex\">\r\n\t\t\t\t\t<option :value=\"1\">--请选择--</option>\r\n\t\t\t\t\t<option :value=\"1\">男</option>\r\n\t\t\t\t\t<option :value=\"0\">女</option>\r\n\t\t\t\t</select>\r\n\t\t\t\t<input type=\"text\" style='z-index:0' :value=\"formUser.sex === 1 ? '男':formUser.sex === 0 ? '女': ''\" >\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">民族</label><input  v-model=\"formUser.nation\" placeholder=\"请输入民族 如：‘汉族’\" />\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">职务</label><input  v-model=\"formUser.job\" placeholder=\"请输入职务\"/>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">座机号</label><input ref='telphone' v-model=\"formUser.telphone\" placeholder=\"请输入座机号码\"/>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">邮箱</label><input ref='email' v-model=\"formUser.email\" placeholder=\"请输入邮箱\"/>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"zmiti-form-item select\" :data-content=\"formUser.provicename !== '' ? '' :'请选择省份'\">\r\n\t\t\t\t<label for=\"\">省份</label>\r\n\t\t\t\t<select  v-model=\"formUser.provicename\">\r\n\t\t\t\t\t<option :value=\"p\" v-for='(p,i) in provinceList' :key=\"i\">{{p}}</option>\r\n\t\t\t\t</select>\r\n\t\t\t\t<input type=\"text\" style='z-index:0' :value=\"formUser.provicename\" >\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-form-item\">\r\n\t\t\t\t<label for=\"\">手机号</label><input ref='mobile' v-model=\"formUser.mobile\" placeholder=\"请输入手机号码\"/>\r\n\t\t\t</div>\r\n\r\n\r\n\t\t\t<div v-if='showBtn' v-tap='[submit]' class=\"zmiti-btn\" :class=\"{'active':isPress}\" @touchstart='isPress = true' @touchend='isPress = false'>\r\n\t\t\t\t提交\r\n\t\t\t</div>\r\n\r\n\t\t\t<Toast :msg='msg' :errorMsg='errorMsg'></Toast>\r\n\r\n\t\t\t<div v-if='showMsg' class=\"lt-full zmiti-msg-mask\">\r\n\t\t\t\t<div>\r\n\t\t\t\t\t<div class=\"zmiti-number\">\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t{{showMsg}}\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"zmiti-btn\" v-tap='[closeInfo]'>关 闭</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</transition>\r\n";
+	module.exports = "\r\n\t<transition name='main'>\r\n\t\t<div class=\"zmiti-form-main-ui lt-full\" :class=\"{'show':show}\">\r\n\t\t\t \r\n\t\t</div>\r\n\t</transition>\r\n";
 
 /***/ }),
 /* 27 */
@@ -22935,7 +22778,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "F:\\xuchang2018\\project\\signup\\components\\signin\\index.vue"
+	  var id = "E:\\project\\museum\\components\\game\\index.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -22948,34 +22791,133 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
-	// 	<transition name='main'>
-	//
-	// 		<div class="lt-full zmiti-signin-main-ui " :class="{'show':show}"  ref='page'>
-	// 			<div>
-	// 				<img :src="imgs.qd" alt="">
+	// 	<div class='zmiti-game-main-ui lt-full' :style="{background:'url('+imgs.gameBg+') no-repeat center center',backgroundSize:'cover'}" :class="{'show':show}">
+	// 		<div class='wm-game-main-content'>
+	// 			<div class='wm-game-reel'>
+	// 				<img :src="imgs.reel1" alt="">
 	// 			</div>
+	// 			<div class='wm-game-area'>
+	// 				<div class='wm-game-wrap' :style="{height:viewH-100+'px'}">
 	//
-	// 			<div v-tap='[signin]' class="zmiti-qd-btn" @touchstart='isPress = true' @touchend='isPress = false' :class="{'active':isPress}">
-	// 				点击签到
-	// 			</div>
-	//
-	// 			<div class="lt-full zmiti-signin-success" v-if='showQdSuccess'>
-	// 				<div>
-	// 					<div>
-	// 						<img :src="imgs.success" alt="">
-	// 						<div style="height:30px;"></div>
-	// 						<div>签到成功</div>
+	// 					<div class='wm-game-Q'>
+	// 						<section  v-if='culturalRelicsList[current]'>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<div class='wm-game-Q-title' >
+	// 								<div ref='text'>
+	// 									<div >
+	// 										<h1>{{culturalRelicsList[current].title}}</h1>
+	// 										<div>
+	// 											<section v-for='(text,i) in culturalRelicsList[current].content.split("|")' :key="i">
+	// 												{{text}}
+	// 											</section>
+	// 										</div>
+	// 										<h3 style="height:50px;"></h3>
+	// 									</div>
+	// 								</div>
+	// 							</div>
+	// 							<div class='wm-game-Q-pic'>
+	// 								<img :src="culturalRelicsList[current].image" alt="">
+	// 							</div>
+	// 						</section>
 	// 					</div>
-	// 					<div class="zmiti-btn" v-tap='[back]'>
-	// 						返回
+	// 					<div class='wm-game-Q-content'>
+	// 						<div class='wm-game-Q-C'>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<span></span>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<label></label>
+	// 							<div v-if='resultArr.length<=questionLen.length' class='wm-game-result-C' ref='result'>
+	// 								<ul>
+	// 									<li v-for='(item,i) in questionLen' :key="i">
+	// 										<img :src="imgs.resultBg" alt="">
+	// 										<img  v-if='resultArr[i] === true' class='wm-game-cultural-pic' :src="culturalRelicsList[i].image" alt="">
+	// 										<img  v-if='resultArr[i] === false' class='wm-game-cultural-pic wrong' :src="imgs.wrong" alt="">
+	// 									</li>
+	// 									<li style="height:10px;"></li>
+	// 								</ul>
+	// 							</div>
+	// 							<div v-if='resultArr.length<=questionLen.length' class='wm-game-main-place' ref='game'>
+	// 								<ul>
+	// 									<li>
+	// 										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
+	// 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
+	// 											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+	// 											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
+	// 											<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src="imgs.wrong" alt="">
+	// 										</div>
+	// 									</li>
+	// 									<li>
+	// 										<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>
+	// 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
+	// 											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+	// 											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
+	// 											<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src="imgs.wrong" alt="">
+	// 										</div>
+	// 									</li>
+	// 								</ul>
+	// 							</div>
+	// 							<div v-if='resultArr.length<=questionLen.length && culturalRelicsList[current]' class='wm-game-time' >
+	// 								<div>
+	// 									<div>{{(current+1)+" / "+ questionLen.length}}</div>
+	// 								</div>
+	// 								<div ref='send'>
+	// 									<div :style="{height:100+'px',width:width+'px'}" class='zmiti-text-overflow'>
+	// 										<span>{{culturalRelicsList[current].title}}</span> 派送中... <img :src="imgs.send" alt="">
+	// 									</div>
+	// 								</div>
+	// 								<div>
+	// 									<div>
+	// 										{{time}} s
+	// 									</div>
+	// 								</div>
+	// 							</div>
+	// 							<section v-if='resultArr.length>questionLen.length' class='wm-result-page'>
+	// 								<div class='wm-result-person'>
+	// 									<div><img :src="imgs.person" alt=""></div>
+	// 									<div>
+	// 										<div>
+	// 											60秒正确投送了{{rightCount}}个博物馆
+	// 										</div>
+	// 										<div>您是知识达人！</div>
+	// 									</div>
+	// 								</div>
+	// 								<div class='wm-result-btns'>
+	// 									<div><img :src="imgs.wxBtn" alt=""></div>
+	// 									<div>
+	// 										<a :href="href"><img :src="imgs.restartBtn" alt=""></a>
+	// 									</div>
+	// 								</div>
+	// 								<div class='wm-share'>
+	// 									<span v-tap='[showShare]'>分享成绩</span>
+	// 								</div>
+	// 							</section>
+	// 						</div>
 	// 					</div>
 	// 				</div>
 	// 			</div>
-	//
-	// 			<Toast :msg='msg'></Toast>
+	// 			<div class='wm-game-reel wm-game-reel1'>
+	// 				<img :src="imgs.reel1" alt="">
+	// 			</div>
 	// 		</div>
-	//
-	// 	</transition>
+	// 		<div class="wm-game-loading lt-full" v-if='showTip' v-tap='[clearTip]'>
+	// 			<span v-if='countdown>=0'>{{countdown}}</span>
+	// 			<div v-else><img :src="imgs.tip" alt=""></div>
+	// 		</div>
+	// 		<div class="wm-mask lt-full" v-if='showMask' v-tap='[showShare,false]'>
+	// 			<img :src="imgs.arrow" alt="">
+	// 		</div>
+	// 	</div>
 	// </template>
 	//
 	// <script>
@@ -22991,155 +22933,162 @@
 
 	var _libAssetsJs = __webpack_require__(13);
 
-	var _iscroll = __webpack_require__(31);
-
-	var _iscroll2 = _interopRequireDefault(_iscroll);
-
-	var _toastToast = __webpack_require__(21);
-
-	var _toastToast2 = _interopRequireDefault(_toastToast);
-
 	var _jquery = __webpack_require__(15);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _libUtil = __webpack_require__(14);
+	var _vue = __webpack_require__(1);
 
-	var _libUtil2 = _interopRequireDefault(_libUtil);
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _assetsJsIscroll = __webpack_require__(31);
+
+	var _assetsJsIscroll2 = _interopRequireDefault(_assetsJsIscroll);
 
 	exports['default'] = {
-
 		props: ['obserable', 'pv', 'randomPv', 'nickname', 'headimgurl'],
-
 		name: 'zmitiindex',
-
 		data: function data() {
-
 			return {
+				countdown: 3,
 				imgs: _libAssetsJs.imgs,
-				showTeam: false,
-				showQrcode: false,
 				show: false,
-				msg: "",
+				time: 60,
+				showTip: true,
+				showMask: false,
+				questionLen: new Array(10),
+				current: 0,
+				width: 0,
 				viewW: window.innerWidth,
 				viewH: window.innerHeight,
-				showMasks: false,
-				isPress: false,
-				showQdSuccess: false
+				resultArr: [],
+				museums: window.museums,
+				culturalRelicsList: window.culturalRelicsList,
+				rightCount: 0,
+				canTap: true,
+				href: window.location.href
 			};
 		},
+		components: {},
 
-		components: {
-			Toast: _toastToast2['default']
-		},
 		methods: {
-			restart: function restart() {
-				window.location.href = window.location.href.split('?')[0];
-			},
-			signin: function signin() {
-				//打卡
-				var obserable = this.obserable;
 
-				var s = this;
-				_jquery2['default'].ajax({
-					url: window.baseUrl + '/wenming/signin/',
-					type: 'post',
-					data: {
-						pnumber: window.pNumber,
-						wxopenid: window.openid
-					},
-					success: function success(data) {
-						if (data.getret === 0) {
-							s.showQdSuccess = true;
-							obserable.trigger({
-								type: 'signin'
-							});
-						} else {}
+			clearTip: function clearTip() {
+				var _this = this;
+
+				if (this.countdown < 0) {
+					this.showTip = false;
+				}
+
+				this.t = setInterval(function () {
+					_this.time--;
+					if (_this.time <= 0) {
+						clearInterval(_this.t); //
+						for (var i = 0; i < _this.questionLen.length + 1; i++) {
+							_this.resultArr.push(i);
+						}
 					}
-				});
-				//this.showQdSuccess = true;
+				}, 1000);
 			},
-			back: function back() {
-				this.show = false;
-				this.showQdSuccess = false;
-				this.obserable.trigger({
-					type: 'toggleIndex',
-					data: {
-						show: true
+
+			showShare: function showShare() {
+				var flag = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+				this.showMask = flag;
+			},
+
+			choose: function choose(m, i) {
+				var _this2 = this;
+
+				if (this.canTap) {
+					this.canTap = false;
+					if (this.resultArr.length >= this.questionLen.length) {
+						this.resultArr.push(1);
+						this.canTap = false;
+						return;
 					}
-				});
-				this.obserable.trigger({
-					type: 'hideForm'
-				});
+
+					if (m.key === this.culturalRelicsList[this.current].key) {
+						m.isRight = true;
+						this.rightCount++;
+						this.resultArr.push(true);
+					} else {
+						m.isRight = false;
+						this.resultArr.push(false);
+					}
+
+					this.museums = this.museums.concat([]);
+					setTimeout(function () {
+						_this2.current++;
+						_this2.current = Math.min(_this2.current, _this2.questionLen.length - 1);
+						m.isRight = null;
+						_this2.museums = _this2.museums.concat([]);
+						setTimeout(function () {
+							_this2.scroll.refresh();
+							_this2.canTap = true;
+						}, 100);
+					}, 1000);
+				}
+			},
+
+			touchstart: function touchstart(e) {
+				e.preventDefault();
+			},
+			imgLoaded: function imgLoaded($event, m, index) {
+				m.width = $event.path[0].clientHeight;
+				m.height = 40;
+				this.museums = this.museums.concat([]);
+			},
+			init: function init() {
+				var _this3 = this;
+
+				var t = setInterval(function () {
+					_this3.countdown--;
+					if (_this3.countdown <= 0) {
+						//clearInterval(t);
+					}
+				}, 1000);
+
+				window.ss = this;
+				var arr = window.culturalRelicsList.concat([]);
+				this.culturalRelicsList = [];
+				for (var i = 0; i < this.questionLen.length; i++) {
+
+					var index = Math.random() * this.questionLen.length | 0;
+					this.culturalRelicsList.push(arr.splice(index, 1)[0]);
+				}
+
+				setTimeout(function () {
+					_this3.scroll = new _assetsJsIscroll2['default'](_this3.$refs['text'], {
+						scrollbars: true
+					});
+
+					//mouseWheel:true
+					_this3.$refs['result'] && (_this3.resultScroll = new _assetsJsIscroll2['default'](_this3.$refs['result'], {
+						zmitiV: true
+					}));
+					_this3.$refs['game'] && (_this3.gameScroll = new _assetsJsIscroll2['default'](_this3.$refs['game'], {
+						zmitiV: true
+					}));
+					setTimeout(function () {
+						_this3.scroll.refresh();
+						_this3.$refs['result'] && _this3.resultScroll.refresh();
+						_this3.$refs['game'] && _this3.gameScroll.refresh();
+					}, 1000);
+
+					_this3.$refs['send'] && (_this3.width = _this3.$refs['send'].offsetHeight);
+				}, 100);
 			}
 
 		},
-
 		mounted: function mounted() {
-			var obserable = this.obserable;
+			var _this4 = this;
 
-			var s = this;
-			obserable.on('showQD', function () {
-
-				_jquery2['default'].ajax({
-					url: window.baseUrl + '/wenming/getsignuplist/',
-					type: 'post',
-					data: {
-						wxopenid: window.openid,
-						pnumber: window.pNumber
-					},
-					success: function success(data) {
-						if (data.getret === 0) {
-
-							if (data.list.length <= 0) {
-								s.show = false;
-								obserable.trigger({
-									type: 'showForm'
-								});
-								return;
-							} else {
-								s.show = true;
-								if (data.list[data.list.length - 1].status * 1 === 1 && !data.list[data.list.length - 1].issign) {
-									s.signin();
-
-									setTimeout(function () {
-										s.back();
-									}, 2000);
-
-									return;
-								};
-								if (!window.openid || data.list[data.list.length - 1].status * 1 !== 1) {
-									//没有审核通过或者已经签到
-									s.show = false;
-									obserable.trigger({
-										type: 'showForm'
-									});
-									obserable.trigger({
-										type: 'toggleIndex',
-										data: {
-											show: false
-										}
-									});
-									return;
-								}
-								if (data.list[data.list.length - 1].issign) {
-									s.msg = '你已签到';
-									s.show = false;
-									obserable.trigger({
-										type: 'toggleIndex',
-										data: {
-											show: true
-										}
-									});
-								}
-							}
-						}
-						console.log(data);
-					}
-				});
+			this.obserable.on("initGame", function () {
+				_this4.show = true;
+				_this4.init();
 			});
 		}
-
 	};
 
 	// </script>
@@ -23180,7 +23129,7 @@
 
 
 	// module
-	exports.push([module.id, ".lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.zmiti-signin-main-ui {\n  opacity: 0;\n  z-index: -1;\n  background: #fff;\n}\n\n.zmiti-signin-main-ui.show {\n  z-index: 1230;\n  opacity: 1;\n}\n\n.zmiti-signin-main-ui .zmiti-qd-btn {\n  position: absolute;\n  width: 240px;\n  height: 240px;\n  border-radius: 50%;\n  background-image: -webkit-linear-gradient(top, #ff7822, #f4110f);\n  text-align: center;\n  line-height: 240px;\n  color: #fff;\n  font-size: 34px;\n  left: 50%;\n  margin-left: -120px;\n  bottom: 200px;\n}\n\n.zmiti-signin-main-ui .zmiti-qd-btn.active {\n  -webkit-transform: scale(0.95);\n  transform: scale(0.95);\n  -webkit-transition: 0.1s;\n  transition: 0.1s;\n}\n\n.zmiti-signin-main-ui .zmiti-qd-btn:before, .zmiti-signin-main-ui .zmiti-qd-btn:after {\n  content: '';\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  box-shadow: 0 0 50px rgba(254, 111, 32, 0.3);\n  background: rgba(254, 111, 32, 0.3);\n  left: 0;\n  top: 0;\n  z-index: -1;\n  -webkit-animation: flash 2s linear infinite;\n  animation: flash 2s linear infinite;\n}\n\n.zmiti-signin-main-ui .zmiti-qd-btn:before {\n  -webkit-animation: flash 2s 1s linear infinite;\n  animation: flash 2s 1s linear infinite;\n}\n\n.zmiti-signin-main-ui .zmiti-signin-success {\n  z-index: 100;\n  background: #fff;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.zmiti-signin-main-ui .zmiti-signin-success > div {\n  position: relative;\n  height: 65vh;\n  text-align: center;\n}\n\n.zmiti-signin-main-ui .zmiti-signin-success > div .zmiti-btn {\n  border-radius: 10px;\n}\n\n.zmiti-back {\n  width: 100px;\n  height: 100px;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  z-index: 100;\n}\n\n@-webkit-keyframes flash {\n  to {\n    -webkit-transform: scale(1.8);\n    transform: scale(1.8);\n    opacity: 0;\n  }\n}\n", ""]);
+	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0; }\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis; }\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem; }\r\n  .zmiti-play.rotate {\r\n    -webkit-animation: rotate 5s linear infinite;\r\n    animation: rotate 5s linear infinite; }\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg); } }\r\n.zmiti-game-main-ui {\r\n  z-index: -1;\r\n  opacity: 0;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n  position: relative; }\r\n  .zmiti-game-main-ui .wm-game-main-content {\r\n    width: 680px;\r\n    height: 100vh;\r\n    display: -webkit-box;\r\n    -webkit-box-align: center;\r\n    -webkit-box-pack: center;\r\n    -webkit-box-orient: vertical; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel {\r\n      height: 50px; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-reel img {\r\n        display: block;\r\n        position: relative;\r\n        top: 15px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel1 img {\r\n      top: -5px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-area {\r\n      -webkit-box-flex: 1;\r\n      width: 624px;\r\n      -webkit-transform: scale(0.99, 1);\r\n      transform: scale(0.99, 1);\r\n      -webkit-transform-origin: left;\r\n      transform-origin: left;\r\n      box-flex: 1;\r\n      display: -webkit-box;\r\n      -webkit-box-align: center;\r\n      -webkit-box-pack: center;\r\n      -webkit-box-orient: horizontal; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap {\r\n        height: 100%;\r\n        width: 630px;\r\n        position: relative;\r\n        display: -webkit-box;\r\n        -webkit-box-align: center;\r\n        -webkit-box-pack: center;\r\n        -webkit-box-orient: vertical; }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap:before {\r\n          z-index: -1;\r\n          content: '';\r\n          position: absolute;\r\n          width: 100%;\r\n          left: 0;\r\n          top: 0;\r\n          height: 100%;\r\n          background: -webkit-linear-gradient(top, #a46e35, #e2c06c 30%, #a46e34 100%); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div {\r\n          margin: 20px 0;\r\n          box-sizing: border-box;\r\n          width: 90%; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) {\r\n            box-flex: 2;\r\n            -webkit-box-flex: 2;\r\n            background: #fff;\r\n            font-size: 30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) h1 {\r\n              text-align: center;\r\n              text-indent: 0;\r\n              color: #c42542;\r\n              font-weight: normal; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content {\r\n            background: #f2ede1;\r\n            box-flex: 5;\r\n            -webkit-box-flex: 5;\r\n            position: relative;\r\n            overflow: hidden; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C {\r\n              position: absolute;\r\n              width: 500px;\r\n              left: 30px;\r\n              top: 30px;\r\n              height: 92%;\r\n              border: 2px solid #e4c26d;\r\n              background: #fff;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: horizontal; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label {\r\n                position: absolute;\r\n                background: #fff; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(1) {\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(2) {\r\n                  left: -33px;\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  bottom: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(3) {\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -10px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(4) {\r\n                  top: -10px;\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  right: -32px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span {\r\n                border-right: 2px solid #e4c26d;\r\n                -webkit-transform: rotate(45deg);\r\n                transform: rotate(45deg);\r\n                position: absolute;\r\n                z-index: 10;\r\n                width: 50px;\r\n                height: 50px;\r\n                background: #fff;\r\n                border-radius: 50%;\r\n                left: -25px;\r\n                top: -25px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(2) {\r\n                  left: auto;\r\n                  right: -25px;\r\n                  -webkit-transform: rotate(135deg);\r\n                  transform: rotate(135deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(3) {\r\n                  top: auto;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-45deg);\r\n                  transform: rotate(-45deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(4) {\r\n                  left: auto;\r\n                  top: auto;\r\n                  right: -25px;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-135deg);\r\n                  transform: rotate(-135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C {\r\n                width: 80px;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: vertical; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li {\r\n                    width: 60px;\r\n                    height: 60px;\r\n                    -webkit-box-flex: 1;\r\n                    margin-top: 20px;\r\n                    position: relative; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic {\r\n                      position: absolute;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      max-width: 50px;\r\n                      max-height: 50px;\r\n                      -webkit-transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg);\r\n                      transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg); }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic.wrong {\r\n                        -webkit-transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg);\r\n                        transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page {\r\n                position: absolute;\r\n                left: 50%;\r\n                top: 50%;\r\n                -webkit-transform: translate(-50%, -50%) rotate(90deg);\r\n                transform: translate(-50%, -50%) rotate(90deg);\r\n                width: 52vh;\r\n                height: 450px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  text-align: center;\r\n                  margin: 100px 0 50px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person img {\r\n                    width: 100px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person div div:nth-of-type(1) {\r\n                    color: #b20000; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  margin: 40px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns div {\r\n                    margin: 0 20px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns img {\r\n                    width: 200px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share {\r\n                  text-align: right; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share span {\r\n                    margin-right: 30px;\r\n                    text-decoration: underline;\r\n                    font-size: 26px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place {\r\n                -webkit-box-flex: 1;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  -webkit-box-align: start; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li {\r\n                    box-sizing: border-box;\r\n                    -webkit-box-flex: 1;\r\n                    margin-left: 50px; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li .wm-result-img {\r\n                      position: absolute;\r\n                      z-index: 10;\r\n                      width: 50px;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      margin-left: -25px;\r\n                      margin-top: -25px;\r\n                      -webkit-transform: rotate(90deg);\r\n                      transform: rotate(90deg); }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div {\r\n                      margin: 20px 0;\r\n                      position: relative; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div img {\r\n                        width: 90%;\r\n                        display: inline-block; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div span {\r\n                        font-size: 24px;\r\n                        position: absolute;\r\n                        left: 0;\r\n                        display: inline-block;\r\n                        text-align: center;\r\n                        width: 100%;\r\n                        height: 100%;\r\n                        min-width: 200px;\r\n                        -webkit-transform-origin: left top;\r\n                        transform-origin: left top;\r\n                        -webkit-transform: rotate(90deg);\r\n                        transform: rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time {\r\n                width: 80px;\r\n                height: 100%;\r\n                display: -webkit-box;\r\n                -webkit-box-align: center;\r\n                -webkit-box-pack: center;\r\n                -webkit-box-orient: vertical; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) div {\r\n                    text-indent: 1em;\r\n                    width: 100%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #e4c26d;\r\n                    color: #fff;\r\n                    border-top-right-radius: 30px;\r\n                    border-bottom-right-radius: 30px;\r\n                    -webkit-transform: translate(-36px, 12px) rotate(90deg);\r\n                    transform: translate(-36px, 12px) rotate(90deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) {\r\n                  -webkit-box-flex: 1;\r\n                  position: relative;\r\n                  width: 100%; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div {\r\n                    -webkit-transform-origin: left top;\r\n                    transform-origin: left top;\r\n                    -webkit-transform: translate(100px, 0) rotate(90deg);\r\n                    transform: translate(100px, 0) rotate(90deg);\r\n                    line-height: 130px;\r\n                    position: absolute;\r\n                    left: 0;\r\n                    top: 0;\r\n                    width: 100%;\r\n                    height: 100%;\r\n                    text-align: center; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div span {\r\n                      color: #c42542; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div img {\r\n                      width: 70px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) div {\r\n                    text-indent: 1em;\r\n                    width: 100%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #c42542;\r\n                    color: #fff;\r\n                    border-top-left-radius: 30px;\r\n                    border-bottom-left-radius: 30px;\r\n                    -webkit-transform: translate(-36px, 40px) rotate(90deg);\r\n                    transform: translate(-36px, 40px) rotate(90deg); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q {\r\n          position: relative; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section {\r\n            position: absolute;\r\n            width: 100%;\r\n            height: 100%;\r\n            -webkit-transform: scale(0.9, 0.8);\r\n            transform: scale(0.9, 0.8);\r\n            background: #f2ede1;\r\n            border: 2px solid #e4c26d; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label {\r\n              position: absolute;\r\n              background: #fff; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(1) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                top: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(2) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                bottom: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(3) {\r\n                width: 30px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                left: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(4) {\r\n                width: 10px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                right: -30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span {\r\n              border-right: 2px solid #e4c26d;\r\n              -webkit-transform: rotate(45deg);\r\n              transform: rotate(45deg);\r\n              position: absolute;\r\n              z-index: 10;\r\n              width: 50px;\r\n              height: 50px;\r\n              background: #fff;\r\n              border-radius: 50%;\r\n              left: -25px;\r\n              top: -25px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(2) {\r\n                left: auto;\r\n                right: -25px;\r\n                -webkit-transform: rotate(135deg);\r\n                transform: rotate(135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(3) {\r\n                top: auto;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-45deg);\r\n                transform: rotate(-45deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(4) {\r\n                left: auto;\r\n                top: auto;\r\n                right: -25px;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-135deg);\r\n                transform: rotate(-135deg); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title {\r\n              height: 100%;\r\n              position: absolute;\r\n              width: 65%;\r\n              left: 5%; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title:after {\r\n                content: '';\r\n                width: 2px;\r\n                height: 80%;\r\n                top: 10%;\r\n                background: #e4c26d;\r\n                right: 0;\r\n                position: absolute; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div {\r\n                padding: 20px;\r\n                box-sizing: border-box;\r\n                width: 280px;\r\n                text-indent: 2em;\r\n                height: 340px;\r\n                overflow: hidden;\r\n                -webkit-transform-origin: left top;\r\n                transform-origin: left top;\r\n                -webkit-transform: rotate(90deg) translate3d(0, -350px, 0);\r\n                transform: rotate(90deg) translate3d(0, -350px, 0); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic {\r\n              width: 200px;\r\n              height: 280px;\r\n              position: absolute;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: vertical;\r\n              right: 0;\r\n              top: 0%;\r\n              -webkit-transform: translate3d(0, 0%, 0);\r\n              transform: translate3d(0, 0%, 0); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic img {\r\n                -webkit-transform: rotate(90deg);\r\n                transform: rotate(90deg); }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q img {\r\n            width: auto;\r\n            height: auto;\r\n            max-width: 80%;\r\n            max-height: 80%;\r\n            display: block; }\r\n  .zmiti-game-main-ui.show {\r\n    z-index: 520;\r\n    opacity: 1; }\r\n\r\n.wm-mask {\r\n  background: rgba(0, 0, 0, 0.7);\r\n  position: fixed !important;\r\n  text-align: right; }\r\n  .wm-mask img {\r\n    width: 50%;\r\n    margin-right: 10px;\r\n    margin-top: 10px; }\r\n\r\n.wm-game-loading {\r\n  position: fixed !important;\r\n  background: rgba(0, 0, 0, 0.7);\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal; }\r\n  .wm-game-loading span {\r\n    display: block;\r\n    font-size: 200px;\r\n    color: #fff;\r\n    -webkit-transform: rotate(90deg);\r\n    transform: rotate(90deg); }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
 
 	// exports
 
@@ -23190,100 +23139,99 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
+	'use strict';
+
 	(function (window, document, Math) {
-	var rAF = window.requestAnimationFrame	||
-		window.webkitRequestAnimationFrame	||
-		window.mozRequestAnimationFrame		||
-		window.oRequestAnimationFrame		||
-		window.msRequestAnimationFrame		||
-		function (callback) { window.setTimeout(callback, 1000 / 60); };
+		var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+			window.setTimeout(callback, 1000 / 60);
+		};
 
-	var utils = (function () {
-		var me = {};
+		var utils = (function () {
+			var me = {};
 
-		var _elementStyle = document.createElement('div').style;
-		var _vendor = (function () {
-			var vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
-				transform,
-				i = 0,
-				l = vendors.length;
+			var _elementStyle = document.createElement('div').style;
+			var _vendor = (function () {
+				var vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
+				    transform,
+				    i = 0,
+				    l = vendors.length;
 
-			for ( ; i < l; i++ ) {
-				transform = vendors[i] + 'ransform';
-				if ( transform in _elementStyle ) return vendors[i].substr(0, vendors[i].length-1);
+				for (; i < l; i++) {
+					transform = vendors[i] + 'ransform';
+					if (transform in _elementStyle) return vendors[i].substr(0, vendors[i].length - 1);
+				}
+
+				return false;
+			})();
+
+			function _prefixStyle(style) {
+				if (_vendor === false) return false;
+				if (_vendor === '') return style;
+				return _vendor + style.charAt(0).toUpperCase() + style.substr(1);
 			}
 
-			return false;
-		})();
-
-		function _prefixStyle (style) {
-			if ( _vendor === false ) return false;
-			if ( _vendor === '' ) return style;
-			return _vendor + style.charAt(0).toUpperCase() + style.substr(1);
-		}
-
-		me.getTime = Date.now || function getTime () { return new Date().getTime(); };
-
-		me.extend = function (target, obj) {
-			for ( var i in obj ) {
-				target[i] = obj[i];
-			}
-		};
-
-		me.addEvent = function (el, type, fn, capture) {
-			el.addEventListener(type, fn, !!capture);
-		};
-
-		me.removeEvent = function (el, type, fn, capture) {
-			el.removeEventListener(type, fn, !!capture);
-		};
-
-		me.prefixPointerEvent = function (pointerEvent) {
-			return window.MSPointerEvent ?
-				'MSPointer' + pointerEvent.charAt(7).toUpperCase() + pointerEvent.substr(8):
-				pointerEvent;
-		};
-
-		me.momentum = function (current, start, time, lowerMargin, wrapperSize, deceleration) {
-			var distance = current - start,
-				speed = Math.abs(distance) / time,
-				destination,
-				duration;
-
-			deceleration = deceleration === undefined ? 0.0006 : deceleration;
-
-			destination = current + ( speed * speed ) / ( 2 * deceleration ) * ( distance < 0 ? -1 : 1 );
-			duration = speed / deceleration;
-
-			if ( destination < lowerMargin ) {
-				destination = wrapperSize ? lowerMargin - ( wrapperSize / 2.5 * ( speed / 8 ) ) : lowerMargin;
-				distance = Math.abs(destination - current);
-				duration = distance / speed;
-			} else if ( destination > 0 ) {
-				destination = wrapperSize ? wrapperSize / 2.5 * ( speed / 8 ) : 0;
-				distance = Math.abs(current) + destination;
-				duration = distance / speed;
-			}
-
-			return {
-				destination: Math.round(destination),
-				duration: duration
+			me.getTime = Date.now || function getTime() {
+				return new Date().getTime();
 			};
-		};
 
-		var _transform = _prefixStyle('transform');
+			me.extend = function (target, obj) {
+				for (var i in obj) {
+					target[i] = obj[i];
+				}
+			};
 
-		me.extend(me, {
-			hasTransform: _transform !== false,
-			hasPerspective: _prefixStyle('perspective') in _elementStyle,
-			hasTouch: 'ontouchstart' in window,
-			hasPointer: !!(window.PointerEvent || window.MSPointerEvent), // IE10 is prefixed
-			hasTransition: _prefixStyle('transition') in _elementStyle
-		});
+			me.addEvent = function (el, type, fn, capture) {
+				el.addEventListener(type, fn, !!capture);
+			};
 
-		/*
-		This should find all Android browsers lower than build 535.19 (both stock browser and webview)
-		- galaxy S2 is ok
+			me.removeEvent = function (el, type, fn, capture) {
+				el.removeEventListener(type, fn, !!capture);
+			};
+
+			me.prefixPointerEvent = function (pointerEvent) {
+				return window.MSPointerEvent ? 'MSPointer' + pointerEvent.charAt(7).toUpperCase() + pointerEvent.substr(8) : pointerEvent;
+			};
+
+			me.momentum = function (current, start, time, lowerMargin, wrapperSize, deceleration) {
+				var distance = current - start,
+				    speed = Math.abs(distance) / time,
+				    destination,
+				    duration;
+
+				deceleration = deceleration === undefined ? 0.0006 : deceleration;
+
+				destination = current + speed * speed / (2 * deceleration) * (distance < 0 ? -1 : 1);
+				duration = speed / deceleration;
+
+				if (destination < lowerMargin) {
+					destination = wrapperSize ? lowerMargin - wrapperSize / 2.5 * (speed / 8) : lowerMargin;
+					distance = Math.abs(destination - current);
+					duration = distance / speed;
+				} else if (destination > 0) {
+					destination = wrapperSize ? wrapperSize / 2.5 * (speed / 8) : 0;
+					distance = Math.abs(current) + destination;
+					duration = distance / speed;
+				}
+
+				return {
+					destination: Math.round(destination),
+					duration: duration
+				};
+			};
+
+			var _transform = _prefixStyle('transform');
+
+			me.extend(me, {
+				hasTransform: _transform !== false,
+				hasPerspective: _prefixStyle('perspective') in _elementStyle,
+				hasTouch: 'ontouchstart' in window,
+				hasPointer: !!(window.PointerEvent || window.MSPointerEvent), // IE10 is prefixed
+				hasTransition: _prefixStyle('transition') in _elementStyle
+			});
+
+			/*
+	  This should find all Android browsers lower than build 535.19 (both stock browser and webview)
+	  - galaxy S2 is ok
 	    - 2.3.6 : `AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1`
 	    - 4.0.4 : `AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30`
 	   - galaxy S3 is badAndroid (stock brower, webview)
@@ -23295,2290 +23243,2008 @@
 	   - galaxy S6 is OK
 	     `AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36 (Chrome/)`
 	  */
-		me.isBadAndroid = (function() {
-			var appVersion = window.navigator.appVersion;
-			// Android browser is not a chrome browser.
-			if (/Android/.test(appVersion) && !(/Chrome\/\d/.test(appVersion))) {
-				var safariVersion = appVersion.match(/Safari\/(\d+.\d)/);
-				if(safariVersion && typeof safariVersion === "object" && safariVersion.length >= 2) {
-					return parseFloat(safariVersion[1]) < 535.19;
-				} else {
-					return true;
-				}
-			} else {
-				return false;
-			}
-		})();
-
-		me.extend(me.style = {}, {
-			transform: _transform,
-			transitionTimingFunction: _prefixStyle('transitionTimingFunction'),
-			transitionDuration: _prefixStyle('transitionDuration'),
-			transitionDelay: _prefixStyle('transitionDelay'),
-			transformOrigin: _prefixStyle('transformOrigin')
-		});
-
-		me.hasClass = function (e, c) {
-			var re = new RegExp("(^|\\s)" + c + "(\\s|$)");
-			return re.test(e.className);
-		};
-
-		me.addClass = function (e, c) {
-			if ( me.hasClass(e, c) ) {
-				return;
-			}
-
-			var newclass = e.className.split(' ');
-			newclass.push(c);
-			e.className = newclass.join(' ');
-		};
-
-		me.removeClass = function (e, c) {
-			if ( !me.hasClass(e, c) ) {
-				return;
-			}
-
-			var re = new RegExp("(^|\\s)" + c + "(\\s|$)", 'g');
-			e.className = e.className.replace(re, ' ');
-		};
-
-		me.offset = function (el) {
-			var left = -el.offsetLeft,
-				top = -el.offsetTop;
-
-			// jshint -W084
-			while (el = el.offsetParent) {
-				left -= el.offsetLeft;
-				top -= el.offsetTop;
-			}
-			// jshint +W084
-
-			return {
-				left: left,
-				top: top
-			};
-		};
-
-		me.preventDefaultException = function (el, exceptions) {
-			for ( var i in exceptions ) {
-				if ( exceptions[i].test(el[i]) ) {
-					return true;
-				}
-			}
-
-			return false;
-		};
-
-		me.extend(me.eventType = {}, {
-			touchstart: 1,
-			touchmove: 1,
-			touchend: 1,
-
-			mousedown: 2,
-			mousemove: 2,
-			mouseup: 2,
-
-			pointerdown: 3,
-			pointermove: 3,
-			pointerup: 3,
-
-			MSPointerDown: 3,
-			MSPointerMove: 3,
-			MSPointerUp: 3
-		});
-
-		me.extend(me.ease = {}, {
-			quadratic: {
-				style: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-				fn: function (k) {
-					return k * ( 2 - k );
-				}
-			},
-			circular: {
-				style: 'cubic-bezier(0.1, 0.57, 0.1, 1)',	// Not properly "circular" but this looks better, it should be (0.075, 0.82, 0.165, 1)
-				fn: function (k) {
-					return Math.sqrt( 1 - ( --k * k ) );
-				}
-			},
-			back: {
-				style: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-				fn: function (k) {
-					var b = 4;
-					return ( k = k - 1 ) * k * ( ( b + 1 ) * k + b ) + 1;
-				}
-			},
-			bounce: {
-				style: '',
-				fn: function (k) {
-					if ( ( k /= 1 ) < ( 1 / 2.75 ) ) {
-						return 7.5625 * k * k;
-					} else if ( k < ( 2 / 2.75 ) ) {
-						return 7.5625 * ( k -= ( 1.5 / 2.75 ) ) * k + 0.75;
-					} else if ( k < ( 2.5 / 2.75 ) ) {
-						return 7.5625 * ( k -= ( 2.25 / 2.75 ) ) * k + 0.9375;
+			me.isBadAndroid = (function () {
+				var appVersion = window.navigator.appVersion;
+				// Android browser is not a chrome browser.
+				if (/Android/.test(appVersion) && !/Chrome\/\d/.test(appVersion)) {
+					var safariVersion = appVersion.match(/Safari\/(\d+.\d)/);
+					if (safariVersion && typeof safariVersion === "object" && safariVersion.length >= 2) {
+						return parseFloat(safariVersion[1]) < 535.19;
 					} else {
-						return 7.5625 * ( k -= ( 2.625 / 2.75 ) ) * k + 0.984375;
+						return true;
+					}
+				} else {
+					return false;
+				}
+			})();
+
+			me.extend(me.style = {}, {
+				transform: _transform,
+				transitionTimingFunction: _prefixStyle('transitionTimingFunction'),
+				transitionDuration: _prefixStyle('transitionDuration'),
+				transitionDelay: _prefixStyle('transitionDelay'),
+				transformOrigin: _prefixStyle('transformOrigin')
+			});
+
+			me.hasClass = function (e, c) {
+				var re = new RegExp("(^|\\s)" + c + "(\\s|$)");
+				return re.test(e.className);
+			};
+
+			me.addClass = function (e, c) {
+				if (me.hasClass(e, c)) {
+					return;
+				}
+
+				var newclass = e.className.split(' ');
+				newclass.push(c);
+				e.className = newclass.join(' ');
+			};
+
+			me.removeClass = function (e, c) {
+				if (!me.hasClass(e, c)) {
+					return;
+				}
+
+				var re = new RegExp("(^|\\s)" + c + "(\\s|$)", 'g');
+				e.className = e.className.replace(re, ' ');
+			};
+
+			me.offset = function (el) {
+				var left = -el.offsetLeft,
+				    top = -el.offsetTop;
+
+				// jshint -W084
+				while (el = el.offsetParent) {
+					left -= el.offsetLeft;
+					top -= el.offsetTop;
+				}
+				// jshint +W084
+
+				return {
+					left: left,
+					top: top
+				};
+			};
+
+			me.preventDefaultException = function (el, exceptions) {
+				for (var i in exceptions) {
+					if (exceptions[i].test(el[i])) {
+						return true;
 					}
 				}
-			},
-			elastic: {
-				style: '',
-				fn: function (k) {
-					var f = 0.22,
-						e = 0.4;
 
-					if ( k === 0 ) { return 0; }
-					if ( k == 1 ) { return 1; }
+				return false;
+			};
 
-					return ( e * Math.pow( 2, - 10 * k ) * Math.sin( ( k - f / 4 ) * ( 2 * Math.PI ) / f ) + 1 );
+			me.extend(me.eventType = {}, {
+				touchstart: 1,
+				touchmove: 1,
+				touchend: 1,
+
+				mousedown: 2,
+				mousemove: 2,
+				mouseup: 2,
+
+				pointerdown: 3,
+				pointermove: 3,
+				pointerup: 3,
+
+				MSPointerDown: 3,
+				MSPointerMove: 3,
+				MSPointerUp: 3
+			});
+
+			me.extend(me.ease = {}, {
+				quadratic: {
+					style: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+					fn: function fn(k) {
+						return k * (2 - k);
+					}
+				},
+				circular: {
+					style: 'cubic-bezier(0.1, 0.57, 0.1, 1)', // Not properly "circular" but this looks better, it should be (0.075, 0.82, 0.165, 1)
+					fn: function fn(k) {
+						return Math.sqrt(1 - --k * k);
+					}
+				},
+				linear: {
+					style: 'cubic-bezier(0, 0, 1, 0.99)',
+					fn: function fn(k) {
+						return k;
+					}
+				},
+				back: {
+					style: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+					fn: function fn(k) {
+						var b = 4;
+						return (k = k - 1) * k * ((b + 1) * k + b) + 1;
+					}
+				},
+				bounce: {
+					style: '',
+					fn: function fn(k) {
+						if ((k /= 1) < 1 / 2.75) {
+							return 7.5625 * k * k;
+						} else if (k < 2 / 2.75) {
+							return 7.5625 * (k -= 1.5 / 2.75) * k + 0.75;
+						} else if (k < 2.5 / 2.75) {
+							return 7.5625 * (k -= 2.25 / 2.75) * k + 0.9375;
+						} else {
+							return 7.5625 * (k -= 2.625 / 2.75) * k + 0.984375;
+						}
+					}
+				},
+				elastic: {
+					style: '',
+					fn: function fn(k) {
+						var f = 0.22,
+						    e = 0.4;
+
+						if (k === 0) {
+							return 0;
+						}
+						if (k == 1) {
+							return 1;
+						}
+
+						return e * Math.pow(2, -10 * k) * Math.sin((k - f / 4) * (2 * Math.PI) / f) + 1;
+					}
 				}
-			}
-		});
+			});
 
-		me.tap = function (e, eventName) {
-			var ev = document.createEvent('Event');
-			ev.initEvent(eventName, true, true);
-			ev.pageX = e.pageX;
-			ev.pageY = e.pageY;
-			e.target.dispatchEvent(ev);
-		};
+			me.tap = function (e, eventName) {
+				var ev = document.createEvent('Event');
+				ev.initEvent(eventName, true, true);
+				ev.pageX = e.pageX;
+				ev.pageY = e.pageY;
+				e.target.dispatchEvent(ev);
+			};
 
-		me.click = function (e) {
-			var target = e.target,
-				ev;
+			me.click = function (e) {
+				var target = e.target,
+				    ev;
 
-			if ( !(/(SELECT|INPUT|TEXTAREA)/i).test(target.tagName) ) {
-				ev = document.createEvent('MouseEvents');
-				ev.initMouseEvent('click', true, true, e.view, 1,
-					target.screenX, target.screenY, target.clientX, target.clientY,
-					e.ctrlKey, e.altKey, e.shiftKey, e.metaKey,
-					0, null);
+				if (!/(SELECT|INPUT|TEXTAREA)/i.test(target.tagName)) {
+					ev = document.createEvent('MouseEvents');
+					ev.initMouseEvent('click', true, true, e.view, 1, target.screenX, target.screenY, target.clientX, target.clientY, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 0, null);
 
-				ev._constructed = true;
-				target.dispatchEvent(ev);
-			}
-		};
-
-		return me;
-	})();
-	function IScroll (el, options) {
-		this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
-		this.scroller = this.wrapper.children[0];
-		this.scrollerStyle = this.scroller.style;		// cache style for better performance
-
-		this.options = {
-
-			resizeScrollbars: true,
-
-			mouseWheelSpeed: 20,
-
-			snapThreshold: 0.334,
-
-	// INSERT POINT: OPTIONS
-			disablePointer : !utils.hasPointer,
-			disableTouch : utils.hasPointer || !utils.hasTouch,
-			disableMouse : utils.hasPointer || utils.hasTouch,
-			startX: 0,
-			startY: 0,
-			scrollY: true,
-			directionLockThreshold: 5,
-			momentum: true,
-
-			bounce: true,
-			bounceTime: 600,
-			bounceEasing: '',
-
-			preventDefault: true,
-			preventDefaultException: { tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/ },
-
-			HWCompositing: true,
-			useTransition: true,
-			useTransform: true,
-			bindToWrapper: typeof window.onmousedown === "undefined"
-		};
-
-		for ( var i in options ) {
-			this.options[i] = options[i];
-		}
-
-		// Normalize options
-		this.translateZ = this.options.HWCompositing && utils.hasPerspective ? ' translateZ(0)' : '';
-
-		this.options.useTransition = utils.hasTransition && this.options.useTransition;
-		this.options.useTransform = utils.hasTransform && this.options.useTransform;
-
-		this.options.eventPassthrough = this.options.eventPassthrough === true ? 'vertical' : this.options.eventPassthrough;
-		this.options.preventDefault = !this.options.eventPassthrough && this.options.preventDefault;
-
-		// If you want eventPassthrough I have to lock one of the axes
-		this.options.scrollY = this.options.eventPassthrough == 'vertical' ? false : this.options.scrollY;
-		this.options.scrollX = this.options.eventPassthrough == 'horizontal' ? false : this.options.scrollX;
-
-		// With eventPassthrough we also need lockDirection mechanism
-		this.options.freeScroll = this.options.freeScroll && !this.options.eventPassthrough;
-		this.options.directionLockThreshold = this.options.eventPassthrough ? 0 : this.options.directionLockThreshold;
-
-		this.options.bounceEasing = typeof this.options.bounceEasing == 'string' ? utils.ease[this.options.bounceEasing] || utils.ease.circular : this.options.bounceEasing;
-
-		this.options.resizePolling = this.options.resizePolling === undefined ? 60 : this.options.resizePolling;
-
-		if ( this.options.tap === true ) {
-			this.options.tap = 'tap';
-		}
-
-		if ( this.options.shrinkScrollbars == 'scale' ) {
-			this.options.useTransition = false;
-		}
-
-		this.options.invertWheelDirection = this.options.invertWheelDirection ? -1 : 1;
-
-	// INSERT POINT: NORMALIZATION
-
-		// Some defaults
-		this.x = 0;
-		this.y = 0;
-		this.directionX = 0;
-		this.directionY = 0;
-		this._events = {};
-
-	// INSERT POINT: DEFAULTS
-
-		this._init();
-		this.refresh();
-
-		this.scrollTo(this.options.startX, this.options.startY);
-		this.enable();
-	}
-
-	IScroll.prototype = {
-		version: '5.2.0',
-
-		_init: function () {
-			this._initEvents();
-
-			if ( this.options.scrollbars || this.options.indicators ) {
-				this._initIndicators();
-			}
-
-			if ( this.options.mouseWheel ) {
-				this._initWheel();
-			}
-
-			if ( this.options.snap ) {
-				this._initSnap();
-			}
-
-			if ( this.options.keyBindings ) {
-				this._initKeys();
-			}
-
-	// INSERT POINT: _init
-
-		},
-
-		destroy: function () {
-			this._initEvents(true);
-			clearTimeout(this.resizeTimeout);
-	 		this.resizeTimeout = null;
-			this._execEvent('destroy');
-		},
-
-		_transitionEnd: function (e) {
-			if ( e.target != this.scroller || !this.isInTransition ) {
-				return;
-			}
-
-			this._transitionTime();
-			if ( !this.resetPosition(this.options.bounceTime) ) {
-				this.isInTransition = false;
-				this._execEvent('scrollEnd');
-			}
-		},
-
-		_start: function (e) {
-			// React to left mouse button only
-			if ( utils.eventType[e.type] != 1 ) {
-			  // for button property
-			  // http://unixpapa.com/js/mouse.html
-			  var button;
-		    if (!e.which) {
-		      /* IE case */
-		      button = (e.button < 2) ? 0 :
-		               ((e.button == 4) ? 1 : 2);
-		    } else {
-		      /* All others */
-		      button = e.button;
-		    }
-				if ( button !== 0 ) {
-					return;
+					ev._constructed = true;
+					target.dispatchEvent(ev);
 				}
+			};
+
+			return me;
+		})();
+
+		function IScroll(el, options) {
+			this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
+			this.scroller = this.wrapper.children[0];
+			this.scrollerStyle = this.scroller.style; // cache style for better performance
+
+			this.options = {
+
+				resizeScrollbars: true,
+
+				mouseWheelSpeed: 20,
+
+				snapThreshold: 0.334,
+
+				// INSERT POINT: OPTIONS
+				disablePointer: !utils.hasPointer,
+				disableTouch: utils.hasPointer || !utils.hasTouch,
+				disableMouse: utils.hasPointer || utils.hasTouch,
+				startX: 0,
+				startY: 0,
+				scrollY: true,
+				directionLockThreshold: 5,
+				momentum: true,
+
+				bounce: true,
+				bounceTime: 600,
+				bounceEasing: '',
+
+				preventDefault: true,
+				preventDefaultException: {
+					tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
+				},
+
+				HWCompositing: true,
+				useTransition: true,
+				useTransform: true,
+				bindToWrapper: typeof window.onmousedown === "undefined"
+			};
+
+			for (var i in options) {
+				this.options[i] = options[i];
 			}
 
-			if ( !this.enabled || (this.initiated && utils.eventType[e.type] !== this.initiated) ) {
-				return;
+			// Normalize options
+			this.translateZ = this.options.HWCompositing && utils.hasPerspective ? ' translateZ(0)' : '';
+
+			this.options.useTransition = utils.hasTransition && this.options.useTransition;
+			this.options.useTransform = utils.hasTransform && this.options.useTransform;
+
+			this.options.eventPassthrough = this.options.eventPassthrough === true ? 'vertical' : this.options.eventPassthrough;
+			this.options.preventDefault = !this.options.eventPassthrough && this.options.preventDefault;
+
+			// If you want eventPassthrough I have to lock one of the axes
+			this.options.scrollY = this.options.eventPassthrough == 'vertical' ? false : this.options.scrollY;
+			this.options.scrollX = this.options.eventPassthrough == 'horizontal' ? false : this.options.scrollX;
+
+			// With eventPassthrough we also need lockDirection mechanism
+			this.options.freeScroll = this.options.freeScroll && !this.options.eventPassthrough;
+			this.options.directionLockThreshold = this.options.eventPassthrough ? 0 : this.options.directionLockThreshold;
+
+			this.options.bounceEasing = typeof this.options.bounceEasing == 'string' ? utils.ease[this.options.bounceEasing] || utils.ease.circular : this.options.bounceEasing;
+
+			this.options.resizePolling = this.options.resizePolling === undefined ? 60 : this.options.resizePolling;
+
+			if (this.options.tap === true) {
+				this.options.tap = 'tap';
 			}
 
-			if ( this.options.preventDefault && !utils.isBadAndroid && !utils.preventDefaultException(e.target, this.options.preventDefaultException) ) {
-				e.preventDefault();
+			if (this.options.shrinkScrollbars == 'scale') {
+				this.options.useTransition = false;
 			}
 
-			var point = e.touches ? e.touches[0] : e,
-				pos;
+			this.options.invertWheelDirection = this.options.invertWheelDirection ? -1 : 1;
 
-			this.initiated	= utils.eventType[e.type];
-			this.moved		= false;
-			this.distX		= 0;
-			this.distY		= 0;
+			// INSERT POINT: NORMALIZATION
+
+			// Some defaults
+			this.x = 0;
+			this.y = 0;
 			this.directionX = 0;
 			this.directionY = 0;
-			this.directionLocked = 0;
+			this._events = {};
 
-			this.startTime = utils.getTime();
+			// INSERT POINT: DEFAULTS
 
-			if ( this.options.useTransition && this.isInTransition ) {
+			this._init();
+			this.refresh();
+
+			this.scrollTo(this.options.startX, this.options.startY);
+			this.enable();
+		}
+
+		IScroll.prototype = {
+			version: '5.2.0',
+
+			_init: function _init() {
+				this._initEvents();
+
+				if (this.options.scrollbars || this.options.indicators) {
+					this._initIndicators();
+				}
+
+				if (this.options.mouseWheel) {
+					this._initWheel();
+				}
+
+				if (this.options.snap) {
+					this._initSnap();
+				}
+
+				if (this.options.keyBindings) {
+					this._initKeys();
+				}
+
+				// INSERT POINT: _init
+			},
+
+			destroy: function destroy() {
+				this._initEvents(true);
+				clearTimeout(this.resizeTimeout);
+				this.resizeTimeout = null;
+				this._execEvent('destroy');
+			},
+
+			_transitionEnd: function _transitionEnd(e) {
+				if (e.target != this.scroller || !this.isInTransition) {
+					return;
+				}
+
 				this._transitionTime();
-				this.isInTransition = false;
-				pos = this.getComputedPosition();
-				this._translate(Math.round(pos.x), Math.round(pos.y));
-				this._execEvent('scrollEnd');
-			} else if ( !this.options.useTransition && this.isAnimating ) {
-				this.isAnimating = false;
-				this._execEvent('scrollEnd');
-			}
-
-			this.startX    = this.x;
-			this.startY    = this.y;
-			this.absStartX = this.x;
-			this.absStartY = this.y;
-			this.pointX    = point.pageX;
-			this.pointY    = point.pageY;
-
-			this._execEvent('beforeScrollStart');
-		},
-
-		_move: function (e) {
-			if ( !this.enabled || utils.eventType[e.type] !== this.initiated ) {
-				return;
-			}
-
-			if ( this.options.preventDefault ) {	// increases performance on Android? TODO: check!
-				e.preventDefault();
-			}
-
-			var point		= e.touches ? e.touches[0] : e,
-				deltaX		= point.pageX - this.pointX,
-				deltaY		= point.pageY - this.pointY,
-				timestamp	= utils.getTime(),
-				newX, newY,
-				absDistX, absDistY;
-
-			this.pointX		= point.pageX;
-			this.pointY		= point.pageY;
-
-			this.distX		+= deltaX;
-			this.distY		+= deltaY;
-			absDistX		= Math.abs(this.distX);
-			absDistY		= Math.abs(this.distY);
-
-			// We need to move at least 10 pixels for the scrolling to initiate
-			if ( timestamp - this.endTime > 300 && (absDistX < 10 && absDistY < 10) ) {
-				return;
-			}
-
-			// If you are scrolling in one direction lock the other
-			if ( !this.directionLocked && !this.options.freeScroll ) {
-				if ( absDistX > absDistY + this.options.directionLockThreshold ) {
-					this.directionLocked = 'h';		// lock horizontally
-				} else if ( absDistY >= absDistX + this.options.directionLockThreshold ) {
-					this.directionLocked = 'v';		// lock vertically
-				} else {
-					this.directionLocked = 'n';		// no lock
+				if (!this.resetPosition(this.options.bounceTime)) {
+					this.isInTransition = false;
+					this._execEvent('scrollEnd');
 				}
-			}
+			},
 
-			if ( this.directionLocked == 'h' ) {
-				if ( this.options.eventPassthrough == 'vertical' ) {
-					e.preventDefault();
-				} else if ( this.options.eventPassthrough == 'horizontal' ) {
-					this.initiated = false;
+			_start: function _start(e) {
+				// React to left mouse button only
+				if (utils.eventType[e.type] != 1) {
+					// for button property
+					// http://unixpapa.com/js/mouse.html
+					var button;
+					if (!e.which) {
+						/* IE case */
+						button = e.button < 2 ? 0 : e.button == 4 ? 1 : 2;
+					} else {
+						/* All others */
+						button = e.button;
+					}
+					if (button !== 0) {
+						return;
+					}
+				}
+
+				if (!this.enabled || this.initiated && utils.eventType[e.type] !== this.initiated) {
 					return;
 				}
 
-				deltaY = 0;
-			} else if ( this.directionLocked == 'v' ) {
-				if ( this.options.eventPassthrough == 'horizontal' ) {
+				if (this.options.preventDefault && !utils.isBadAndroid && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
 					e.preventDefault();
-				} else if ( this.options.eventPassthrough == 'vertical' ) {
-					this.initiated = false;
-					return;
 				}
 
-				deltaX = 0;
-			}
+				var point = e.touches ? e.touches[0] : e,
+				    pos;
 
-			deltaX = this.hasHorizontalScroll ? deltaX : 0;
-			deltaY = this.hasVerticalScroll ? deltaY : 0;
-
-			newX = this.x + deltaX;
-			newY = this.y + deltaY;
-
-			// Slow down if outside of the boundaries
-			if ( newX > 0 || newX < this.maxScrollX ) {
-				newX = this.options.bounce ? this.x + deltaX / 3 : newX > 0 ? 0 : this.maxScrollX;
-			}
-			if ( newY > 0 || newY < this.maxScrollY ) {
-				newY = this.options.bounce ? this.y + deltaY / 3 : newY > 0 ? 0 : this.maxScrollY;
-			}
-
-			this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0;
-			this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0;
-
-			if ( !this.moved ) {
-				this._execEvent('scrollStart');
-			}
-
-			this.moved = true;
-
-			this._translate(newX, newY);
-
-	/* REPLACE START: _move */
-
-			if ( timestamp - this.startTime > 300 ) {
-				this.startTime = timestamp;
-				this.startX = this.x;
-				this.startY = this.y;
-			}
-
-	/* REPLACE END: _move */
-
-		},
-
-		_end: function (e) {
-			if ( !this.enabled || utils.eventType[e.type] !== this.initiated ) {
-				return;
-			}
-
-			if ( this.options.preventDefault && !utils.preventDefaultException(e.target, this.options.preventDefaultException) ) {
-				e.preventDefault();
-			}
-
-			var point = e.changedTouches ? e.changedTouches[0] : e,
-				momentumX,
-				momentumY,
-				duration = utils.getTime() - this.startTime,
-				newX = Math.round(this.x),
-				newY = Math.round(this.y),
-				distanceX = Math.abs(newX - this.startX),
-				distanceY = Math.abs(newY - this.startY),
-				time = 0,
-				easing = '';
-
-			this.isInTransition = 0;
-			this.initiated = 0;
-			this.endTime = utils.getTime();
-
-			// reset if we are outside of the boundaries
-			if ( this.resetPosition(this.options.bounceTime) ) {
-				return;
-			}
-
-			this.scrollTo(newX, newY);	// ensures that the last position is rounded
-
-			// we scrolled less than 10 pixels
-			if ( !this.moved ) {
-				if ( this.options.tap ) {
-					utils.tap(e, this.options.tap);
-				}
-
-				if ( this.options.click ) {
-					utils.click(e);
-				}
-
-				this._execEvent('scrollCancel');
-				return;
-			}
-
-			if ( this._events.flick && duration < 200 && distanceX < 100 && distanceY < 100 ) {
-				this._execEvent('flick');
-				return;
-			}
-
-			// start momentum animation if needed
-			if ( this.options.momentum && duration < 300 ) {
-				momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options.deceleration) : { destination: newX, duration: 0 };
-				momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options.deceleration) : { destination: newY, duration: 0 };
-				newX = momentumX.destination;
-				newY = momentumY.destination;
-				time = Math.max(momentumX.duration, momentumY.duration);
-				this.isInTransition = 1;
-			}
-
-
-			if ( this.options.snap ) {
-				var snap = this._nearestSnap(newX, newY);
-				this.currentPage = snap;
-				time = this.options.snapSpeed || Math.max(
-						Math.max(
-							Math.min(Math.abs(newX - snap.x), 1000),
-							Math.min(Math.abs(newY - snap.y), 1000)
-						), 300);
-				newX = snap.x;
-				newY = snap.y;
-
+				this.initiated = utils.eventType[e.type];
+				this.moved = false;
+				this.distX = 0;
+				this.distY = 0;
 				this.directionX = 0;
 				this.directionY = 0;
-				easing = this.options.bounceEasing;
-			}
+				this.directionLocked = 0;
 
-	// INSERT POINT: _end
+				this.startTime = utils.getTime();
 
-			if ( newX != this.x || newY != this.y ) {
-				// change easing function when scroller goes out of the boundaries
-				if ( newX > 0 || newX < this.maxScrollX || newY > 0 || newY < this.maxScrollY ) {
-					easing = utils.ease.quadratic;
+				if (this.options.useTransition && this.isInTransition) {
+					this._transitionTime();
+					this.isInTransition = false;
+					pos = this.getComputedPosition();
+					this._translate(Math.round(pos.x), Math.round(pos.y));
+					this._execEvent('scrollEnd');
+				} else if (!this.options.useTransition && this.isAnimating) {
+					this.isAnimating = false;
+					this._execEvent('scrollEnd');
 				}
 
-				this.scrollTo(newX, newY, time, easing);
-				return;
-			}
+				this.startX = this.x;
+				this.startY = this.y;
+				this.absStartX = this.x;
+				this.absStartY = this.y;
+				this.pointX = point.pageX;
+				this.pointY = point.pageY;
 
-			this._execEvent('scrollEnd');
-		},
+				this._execEvent('beforeScrollStart');
+			},
 
-		_resize: function () {
-			var that = this;
+			_move: function _move(e) {
+				if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+					return;
+				}
 
-			clearTimeout(this.resizeTimeout);
+				if (this.options.preventDefault) {
+					// increases performance on Android? TODO: check!
+					e.preventDefault();
+				}
 
-			this.resizeTimeout = setTimeout(function () {
-				that.refresh();
-			}, this.options.resizePolling);
-		},
+				var point = e.touches ? e.touches[0] : e,
+				    deltaY = this.pointX - point.pageX,
+				    deltaX = this.pointY - point.pageY,
+				    timestamp = utils.getTime(),
+				    newX,
+				    newY,
+				    absDistX,
+				    absDistY;
+				if (this.options.zmitiV) {
+					deltaX = this.pointX - point.pageX;
+					deltaY = -(this.pointY - point.pageY);
+				}
 
-		resetPosition: function (time) {
-			var x = this.x,
-				y = this.y;
+				this.pointX = point.pageX;
+				this.pointY = point.pageY;
 
-			time = time || 0;
+				this.distX += deltaX;
+				this.distY += deltaY;
+				absDistX = Math.abs(this.distX);
+				absDistY = Math.abs(this.distY);
 
-			if ( !this.hasHorizontalScroll || this.x > 0 ) {
-				x = 0;
-			} else if ( this.x < this.maxScrollX ) {
-				x = this.maxScrollX;
-			}
+				// We need to move at least 10 pixels for the scrolling to initiate
+				if (timestamp - this.endTime > 300 && absDistX < 10 && absDistY < 10) {
+					return;
+				}
 
-			if ( !this.hasVerticalScroll || this.y > 0 ) {
-				y = 0;
-			} else if ( this.y < this.maxScrollY ) {
-				y = this.maxScrollY;
-			}
+				// If you are scrolling in one direction lock the other
+				if (!this.directionLocked && !this.options.freeScroll) {
+					if (absDistX > absDistY + this.options.directionLockThreshold) {
+						this.directionLocked = 'h'; // lock horizontally
+					} else if (absDistY >= absDistX + this.options.directionLockThreshold) {
+							this.directionLocked = 'v'; // lock vertically
+						} else {
+								this.directionLocked = 'n'; // no lock
+							}
+				}
 
-			if ( x == this.x && y == this.y ) {
-				return false;
-			}
+				if (this.directionLocked == 'h') {
+					if (this.options.eventPassthrough == 'vertical') {
+						e.preventDefault();
+					} else if (this.options.eventPassthrough == 'horizontal') {
+						this.initiated = false;
+						return;
+					}
 
-			this.scrollTo(x, y, time, this.options.bounceEasing);
+					deltaY = 0;
+				} else if (this.directionLocked == 'v') {
+					if (this.options.eventPassthrough == 'horizontal') {
+						e.preventDefault();
+					} else if (this.options.eventPassthrough == 'vertical') {
+						this.initiated = false;
+						return;
+					}
 
-			return true;
-		},
+					deltaX = 0;
+				}
 
-		disable: function () {
-			this.enabled = false;
-		},
+				deltaX = this.hasHorizontalScroll ? deltaX : 0;
+				deltaY = this.hasVerticalScroll ? deltaY : 0;
 
-		enable: function () {
-			this.enabled = true;
-		},
+				newX = this.x + deltaX;
+				newY = this.y + deltaY;
 
-		refresh: function () {
-			var rf = this.wrapper.offsetHeight;		// Force reflow
+				// Slow down if outside of the boundaries
+				if (newX > 0 || newX < this.maxScrollX) {
+					newX = this.options.bounce ? this.x + deltaX / 3 : newX > 0 ? 0 : this.maxScrollX;
+				}
+				if (newY > 0 || newY < this.maxScrollY) {
+					newY = this.options.bounce ? this.y + deltaY / 3 : newY > 0 ? 0 : this.maxScrollY;
+				}
 
-			this.wrapperWidth	= this.wrapper.clientWidth;
-			this.wrapperHeight	= this.wrapper.clientHeight;
+				this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0;
+				this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0;
 
-	/* REPLACE START: refresh */
+				if (!this.moved) {
+					this._execEvent('scrollStart');
+				}
 
-			this.scrollerWidth	= this.scroller.offsetWidth;
-			this.scrollerHeight	= this.scroller.offsetHeight;
+				this.moved = true;
 
-			this.maxScrollX		= this.wrapperWidth - this.scrollerWidth;
-			this.maxScrollY		= this.wrapperHeight - this.scrollerHeight;
+				this._translate(newX, newY);
 
-	/* REPLACE END: refresh */
+				/* REPLACE START: _move */
 
-			this.hasHorizontalScroll	= this.options.scrollX && this.maxScrollX < 0;
-			this.hasVerticalScroll		= this.options.scrollY && this.maxScrollY < 0;
+				if (timestamp - this.startTime > 300) {
+					this.startTime = timestamp;
+					this.startX = this.x;
+					this.startY = this.y;
+				}
 
-			if ( !this.hasHorizontalScroll ) {
-				this.maxScrollX = 0;
-				this.scrollerWidth = this.wrapperWidth;
-			}
+				/* REPLACE END: _move */
+			},
 
-			if ( !this.hasVerticalScroll ) {
-				this.maxScrollY = 0;
-				this.scrollerHeight = this.wrapperHeight;
-			}
+			_end: function _end(e) {
+				if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+					return;
+				}
 
-			this.endTime = 0;
-			this.directionX = 0;
-			this.directionY = 0;
+				if (this.options.preventDefault && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
+					e.preventDefault();
+				}
 
-			this.wrapperOffset = utils.offset(this.wrapper);
+				var point = e.changedTouches ? e.changedTouches[0] : e,
+				    momentumX,
+				    momentumY,
+				    duration = utils.getTime() - this.startTime,
+				    newX = Math.round(this.x),
+				    newY = Math.round(this.y),
+				    distanceX = Math.abs(newX - this.startX),
+				    distanceY = Math.abs(newY - this.startY),
+				    time = 0,
+				    easing = '';
 
-			this._execEvent('refresh');
+				this.isInTransition = 0;
+				this.initiated = 0;
+				this.endTime = utils.getTime();
 
-			this.resetPosition();
+				// reset if we are outside of the boundaries
+				if (this.resetPosition(this.options.bounceTime)) {
+					return;
+				}
 
-	// INSERT POINT: _refresh
+				this.scrollTo(newX, newY); // ensures that the last position is rounded
 
-		},
+				// we scrolled less than 10 pixels
+				if (!this.moved) {
+					if (this.options.tap) {
+						utils.tap(e, this.options.tap);
+					}
 
-		on: function (type, fn) {
-			if ( !this._events[type] ) {
-				this._events[type] = [];
-			}
+					if (this.options.click) {
+						utils.click(e);
+					}
 
-			this._events[type].push(fn);
-		},
+					this._execEvent('scrollCancel');
+					return;
+				}
 
-		off: function (type, fn) {
-			if ( !this._events[type] ) {
-				return;
-			}
+				if (this._events.flick && duration < 200 && distanceX < 100 && distanceY < 100) {
+					this._execEvent('flick');
+					return;
+				}
 
-			var index = this._events[type].indexOf(fn);
+				// start momentum animation if needed
+				if (this.options.momentum && duration < 300) {
+					momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options.deceleration) : {
+						destination: newX,
+						duration: 0
+					};
+					momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options.deceleration) : {
+						destination: newY,
+						duration: 0
+					};
+					newX = momentumX.destination;
+					newY = momentumY.destination;
+					time = Math.max(momentumX.duration, momentumY.duration);
+					this.isInTransition = 1;
+				}
 
-			if ( index > -1 ) {
-				this._events[type].splice(index, 1);
-			}
-		},
+				if (this.options.snap) {
+					var snap = this._nearestSnap(newX, newY);
+					this.currentPage = snap;
+					time = this.options.snapSpeed || Math.max(Math.max(Math.min(Math.abs(newX - snap.x), 1000), Math.min(Math.abs(newY - snap.y), 1000)), 300);
+					newX = snap.x;
+					newY = snap.y;
 
-		_execEvent: function (type) {
-			if ( !this._events[type] ) {
-				return;
-			}
+					this.directionX = 0;
+					this.directionY = 0;
+					easing = this.options.bounceEasing;
+				}
 
-			var i = 0,
-				l = this._events[type].length;
+				// INSERT POINT: _end
 
-			if ( !l ) {
-				return;
-			}
+				if (newX != this.x || newY != this.y) {
+					// change easing function when scroller goes out of the boundaries
+					if (newX > 0 || newX < this.maxScrollX || newY > 0 || newY < this.maxScrollY) {
+						easing = utils.ease.quadratic;
+					}
 
-			for ( ; i < l; i++ ) {
-				this._events[type][i].apply(this, [].slice.call(arguments, 1));
-			}
-		},
+					this.scrollTo(newX, newY, time, easing);
+					return;
+				}
 
-		scrollBy: function (x, y, time, easing) {
-			x = this.x + x;
-			y = this.y + y;
-			time = time || 0;
+				this._execEvent('scrollEnd');
+			},
 
-			this.scrollTo(x, y, time, easing);
-		},
+			_resize: function _resize() {
+				var that = this;
 
-		scrollTo: function (x, y, time, easing) {
-			easing = easing || utils.ease.circular;
+				clearTimeout(this.resizeTimeout);
 
-			this.isInTransition = this.options.useTransition && time > 0;
-			var transitionType = this.options.useTransition && easing.style;
-			if ( !time || transitionType ) {
-					if(transitionType) {
+				this.resizeTimeout = setTimeout(function () {
+					that.refresh();
+				}, this.options.resizePolling);
+			},
+
+			resetPosition: function resetPosition(time) {
+				var x = this.x,
+				    y = this.y;
+
+				time = time || 0;
+
+				if (!this.hasHorizontalScroll || this.x > 0) {
+					x = 0;
+				} else if (this.x < this.maxScrollX) {
+					x = this.maxScrollX;
+				}
+
+				if (!this.hasVerticalScroll || this.y > 0) {
+					y = 0;
+				} else if (this.y < this.maxScrollY) {
+					y = this.maxScrollY;
+				}
+
+				if (x == this.x && y == this.y) {
+					return false;
+				}
+
+				this.scrollTo(x, y, time, this.options.bounceEasing);
+
+				return true;
+			},
+
+			disable: function disable() {
+				this.enabled = false;
+			},
+
+			enable: function enable() {
+				this.enabled = true;
+			},
+
+			refresh: function refresh() {
+				var rf = this.wrapper.offsetHeight; // Force reflow
+
+				this.wrapperWidth = this.wrapper.clientWidth;
+				this.wrapperHeight = this.wrapper.clientHeight;
+
+				/* REPLACE START: refresh */
+
+				this.scrollerWidth = this.scroller.offsetWidth;
+				this.scrollerHeight = this.scroller.offsetHeight;
+
+				this.maxScrollX = this.wrapperWidth - this.scrollerWidth;
+				this.maxScrollY = this.wrapperHeight - this.scrollerHeight;
+
+				/* REPLACE END: refresh */
+
+				this.hasHorizontalScroll = this.options.scrollX && this.maxScrollX < 0;
+				this.hasVerticalScroll = this.options.scrollY && this.maxScrollY < 0;
+
+				if (!this.hasHorizontalScroll) {
+					this.maxScrollX = 0;
+					this.scrollerWidth = this.wrapperWidth;
+				}
+
+				if (!this.hasVerticalScroll) {
+					this.maxScrollY = 0;
+					this.scrollerHeight = this.wrapperHeight;
+				}
+
+				this.endTime = 0;
+				this.directionX = 0;
+				this.directionY = 0;
+
+				this.wrapperOffset = utils.offset(this.wrapper);
+
+				this._execEvent('refresh');
+
+				this.resetPosition();
+
+				// INSERT POINT: _refresh
+			},
+
+			on: function on(type, fn) {
+				if (!this._events[type]) {
+					this._events[type] = [];
+				}
+
+				this._events[type].push(fn);
+			},
+
+			off: function off(type, fn) {
+				if (!this._events[type]) {
+					return;
+				}
+
+				var index = this._events[type].indexOf(fn);
+
+				if (index > -1) {
+					this._events[type].splice(index, 1);
+				}
+			},
+
+			_execEvent: function _execEvent(type) {
+				if (!this._events[type]) {
+					return;
+				}
+
+				var i = 0,
+				    l = this._events[type].length;
+
+				if (!l) {
+					return;
+				}
+
+				for (; i < l; i++) {
+					this._events[type][i].apply(this, [].slice.call(arguments, 1));
+				}
+			},
+
+			scrollBy: function scrollBy(x, y, time, easing) {
+				x = this.x + x;
+				y = this.y + y;
+				time = time || 0;
+
+				this.scrollTo(x, y, time, easing);
+			},
+
+			scrollTo: function scrollTo(x, y, time, easing) {
+				easing = easing || utils.ease.circular;
+
+				this.isInTransition = this.options.useTransition && time > 0;
+				var transitionType = this.options.useTransition && easing.style;
+				if (!time || transitionType) {
+					if (transitionType) {
 						this._transitionTimingFunction(easing.style);
 						this._transitionTime(time);
 					}
-				this._translate(x, y);
-			} else {
-				this._animate(x, y, time, easing.fn);
-			}
-		},
-
-		scrollToElement: function (el, time, offsetX, offsetY, easing) {
-			el = el.nodeType ? el : this.scroller.querySelector(el);
-
-			if ( !el ) {
-				return;
-			}
-
-			var pos = utils.offset(el);
-
-			pos.left -= this.wrapperOffset.left;
-			pos.top  -= this.wrapperOffset.top;
-
-			// if offsetX/Y are true we center the element to the screen
-			if ( offsetX === true ) {
-				offsetX = Math.round(el.offsetWidth / 2 - this.wrapper.offsetWidth / 2);
-			}
-			if ( offsetY === true ) {
-				offsetY = Math.round(el.offsetHeight / 2 - this.wrapper.offsetHeight / 2);
-			}
-
-			pos.left -= offsetX || 0;
-			pos.top  -= offsetY || 0;
-
-			pos.left = pos.left > 0 ? 0 : pos.left < this.maxScrollX ? this.maxScrollX : pos.left;
-			pos.top  = pos.top  > 0 ? 0 : pos.top  < this.maxScrollY ? this.maxScrollY : pos.top;
-
-			time = time === undefined || time === null || time === 'auto' ? Math.max(Math.abs(this.x-pos.left), Math.abs(this.y-pos.top)) : time;
-
-			this.scrollTo(pos.left, pos.top, time, easing);
-		},
-
-		_transitionTime: function (time) {
-			time = time || 0;
-
-			var durationProp = utils.style.transitionDuration;
-			this.scrollerStyle[durationProp] = time + 'ms';
-
-			if ( !time && utils.isBadAndroid ) {
-				this.scrollerStyle[durationProp] = '0.0001ms';
-				// remove 0.0001ms
-				var self = this;
-				rAF(function() {
-					if(self.scrollerStyle[durationProp] === '0.0001ms') {
-						self.scrollerStyle[durationProp] = '0s';
-					}
-				});
-			}
-
-
-			if ( this.indicators ) {
-				for ( var i = this.indicators.length; i--; ) {
-					this.indicators[i].transitionTime(time);
-				}
-			}
-
-
-	// INSERT POINT: _transitionTime
-
-		},
-
-		_transitionTimingFunction: function (easing) {
-			this.scrollerStyle[utils.style.transitionTimingFunction] = easing;
-
-
-			if ( this.indicators ) {
-				for ( var i = this.indicators.length; i--; ) {
-					this.indicators[i].transitionTimingFunction(easing);
-				}
-			}
-
-
-	// INSERT POINT: _transitionTimingFunction
-
-		},
-
-		_translate: function (x, y) {
-			if ( this.options.useTransform ) {
-
-	/* REPLACE START: _translate */
-
-				this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
-
-	/* REPLACE END: _translate */
-
-			} else {
-				x = Math.round(x);
-				y = Math.round(y);
-				this.scrollerStyle.left = x + 'px';
-				this.scrollerStyle.top = y + 'px';
-			}
-
-			this.x = x;
-			this.y = y;
-
-
-		if ( this.indicators ) {
-			for ( var i = this.indicators.length; i--; ) {
-				this.indicators[i].updatePosition();
-			}
-		}
-
-
-	// INSERT POINT: _translate
-
-		},
-
-		_initEvents: function (remove) {
-			var eventType = remove ? utils.removeEvent : utils.addEvent,
-				target = this.options.bindToWrapper ? this.wrapper : window;
-
-			eventType(window, 'orientationchange', this);
-			eventType(window, 'resize', this);
-
-			if ( this.options.click ) {
-				eventType(this.wrapper, 'click', this, true);
-			}
-
-			if ( !this.options.disableMouse ) {
-				eventType(this.wrapper, 'mousedown', this);
-				eventType(target, 'mousemove', this);
-				eventType(target, 'mousecancel', this);
-				eventType(target, 'mouseup', this);
-			}
-
-			if ( utils.hasPointer && !this.options.disablePointer ) {
-				eventType(this.wrapper, utils.prefixPointerEvent('pointerdown'), this);
-				eventType(target, utils.prefixPointerEvent('pointermove'), this);
-				eventType(target, utils.prefixPointerEvent('pointercancel'), this);
-				eventType(target, utils.prefixPointerEvent('pointerup'), this);
-			}
-
-			if ( utils.hasTouch && !this.options.disableTouch ) {
-				eventType(this.wrapper, 'touchstart', this);
-				eventType(target, 'touchmove', this);
-				eventType(target, 'touchcancel', this);
-				eventType(target, 'touchend', this);
-			}
-
-			eventType(this.scroller, 'transitionend', this);
-			eventType(this.scroller, 'webkitTransitionEnd', this);
-			eventType(this.scroller, 'oTransitionEnd', this);
-			eventType(this.scroller, 'MSTransitionEnd', this);
-		},
-
-		getComputedPosition: function () {
-			var matrix = window.getComputedStyle(this.scroller, null),
-				x, y;
-
-			if ( this.options.useTransform ) {
-				matrix = matrix[utils.style.transform].split(')')[0].split(', ');
-				x = +(matrix[12] || matrix[4]);
-				y = +(matrix[13] || matrix[5]);
-			} else {
-				x = +matrix.left.replace(/[^-\d.]/g, '');
-				y = +matrix.top.replace(/[^-\d.]/g, '');
-			}
-
-			return { x: x, y: y };
-		},
-		_initIndicators: function () {
-			var interactive = this.options.interactiveScrollbars,
-				customStyle = typeof this.options.scrollbars != 'string',
-				indicators = [],
-				indicator;
-
-			var that = this;
-
-			this.indicators = [];
-
-			if ( this.options.scrollbars ) {
-				// Vertical scrollbar
-				if ( this.options.scrollY ) {
-					indicator = {
-						el: createDefaultScrollbar('v', interactive, this.options.scrollbars),
-						interactive: interactive,
-						defaultScrollbars: true,
-						customStyle: customStyle,
-						resize: this.options.resizeScrollbars,
-						shrink: this.options.shrinkScrollbars,
-						fade: this.options.fadeScrollbars,
-						listenX: false
-					};
-
-					this.wrapper.appendChild(indicator.el);
-					indicators.push(indicator);
-				}
-
-				// Horizontal scrollbar
-				if ( this.options.scrollX ) {
-					indicator = {
-						el: createDefaultScrollbar('h', interactive, this.options.scrollbars),
-						interactive: interactive,
-						defaultScrollbars: true,
-						customStyle: customStyle,
-						resize: this.options.resizeScrollbars,
-						shrink: this.options.shrinkScrollbars,
-						fade: this.options.fadeScrollbars,
-						listenY: false
-					};
-
-					this.wrapper.appendChild(indicator.el);
-					indicators.push(indicator);
-				}
-			}
-
-			if ( this.options.indicators ) {
-				// TODO: check concat compatibility
-				indicators = indicators.concat(this.options.indicators);
-			}
-
-			for ( var i = indicators.length; i--; ) {
-				this.indicators.push( new Indicator(this, indicators[i]) );
-			}
-
-			// TODO: check if we can use array.map (wide compatibility and performance issues)
-			function _indicatorsMap (fn) {
-				if (that.indicators) {
-					for ( var i = that.indicators.length; i--; ) {
-						fn.call(that.indicators[i]);
-					}
-				}
-			}
-
-			if ( this.options.fadeScrollbars ) {
-				this.on('scrollEnd', function () {
-					_indicatorsMap(function () {
-						this.fade();
-					});
-				});
-
-				this.on('scrollCancel', function () {
-					_indicatorsMap(function () {
-						this.fade();
-					});
-				});
-
-				this.on('scrollStart', function () {
-					_indicatorsMap(function () {
-						this.fade(1);
-					});
-				});
-
-				this.on('beforeScrollStart', function () {
-					_indicatorsMap(function () {
-						this.fade(1, true);
-					});
-				});
-			}
-
-
-			this.on('refresh', function () {
-				_indicatorsMap(function () {
-					this.refresh();
-				});
-			});
-
-			this.on('destroy', function () {
-				_indicatorsMap(function () {
-					this.destroy();
-				});
-
-				delete this.indicators;
-			});
-		},
-
-		_initWheel: function () {
-			utils.addEvent(this.wrapper, 'wheel', this);
-			utils.addEvent(this.wrapper, 'mousewheel', this);
-			utils.addEvent(this.wrapper, 'DOMMouseScroll', this);
-
-			this.on('destroy', function () {
-				clearTimeout(this.wheelTimeout);
-				this.wheelTimeout = null;
-				utils.removeEvent(this.wrapper, 'wheel', this);
-				utils.removeEvent(this.wrapper, 'mousewheel', this);
-				utils.removeEvent(this.wrapper, 'DOMMouseScroll', this);
-			});
-		},
-
-		_wheel: function (e) {
-			if ( !this.enabled ) {
-				return;
-			}
-
-			e.preventDefault();
-
-			var wheelDeltaX, wheelDeltaY,
-				newX, newY,
-				that = this;
-
-			if ( this.wheelTimeout === undefined ) {
-				that._execEvent('scrollStart');
-			}
-
-			// Execute the scrollEnd event after 400ms the wheel stopped scrolling
-			clearTimeout(this.wheelTimeout);
-			this.wheelTimeout = setTimeout(function () {
-				if(!that.options.snap) {
-					that._execEvent('scrollEnd');
-				}
-				that.wheelTimeout = undefined;
-			}, 400);
-
-			if ( 'deltaX' in e ) {
-				if (e.deltaMode === 1) {
-					wheelDeltaX = -e.deltaX * this.options.mouseWheelSpeed;
-					wheelDeltaY = -e.deltaY * this.options.mouseWheelSpeed;
+					this._translate(x, y);
 				} else {
-					wheelDeltaX = -e.deltaX;
-					wheelDeltaY = -e.deltaY;
+					this._animate(x, y, time, easing.fn);
 				}
-			} else if ( 'wheelDeltaX' in e ) {
-				wheelDeltaX = e.wheelDeltaX / 120 * this.options.mouseWheelSpeed;
-				wheelDeltaY = e.wheelDeltaY / 120 * this.options.mouseWheelSpeed;
-			} else if ( 'wheelDelta' in e ) {
-				wheelDeltaX = wheelDeltaY = e.wheelDelta / 120 * this.options.mouseWheelSpeed;
-			} else if ( 'detail' in e ) {
-				wheelDeltaX = wheelDeltaY = -e.detail / 3 * this.options.mouseWheelSpeed;
-			} else {
-				return;
-			}
+			},
 
-			wheelDeltaX *= this.options.invertWheelDirection;
-			wheelDeltaY *= this.options.invertWheelDirection;
+			scrollToElement: function scrollToElement(el, time, offsetX, offsetY, easing) {
+				el = el.nodeType ? el : this.scroller.querySelector(el);
 
-			if ( !this.hasVerticalScroll ) {
-				wheelDeltaX = wheelDeltaY;
-				wheelDeltaY = 0;
-			}
-
-			if ( this.options.snap ) {
-				newX = this.currentPage.pageX;
-				newY = this.currentPage.pageY;
-
-				if ( wheelDeltaX > 0 ) {
-					newX--;
-				} else if ( wheelDeltaX < 0 ) {
-					newX++;
-				}
-
-				if ( wheelDeltaY > 0 ) {
-					newY--;
-				} else if ( wheelDeltaY < 0 ) {
-					newY++;
-				}
-
-				this.goToPage(newX, newY);
-
-				return;
-			}
-
-			newX = this.x + Math.round(this.hasHorizontalScroll ? wheelDeltaX : 0);
-			newY = this.y + Math.round(this.hasVerticalScroll ? wheelDeltaY : 0);
-
-			this.directionX = wheelDeltaX > 0 ? -1 : wheelDeltaX < 0 ? 1 : 0;
-			this.directionY = wheelDeltaY > 0 ? -1 : wheelDeltaY < 0 ? 1 : 0;
-
-			if ( newX > 0 ) {
-				newX = 0;
-			} else if ( newX < this.maxScrollX ) {
-				newX = this.maxScrollX;
-			}
-
-			if ( newY > 0 ) {
-				newY = 0;
-			} else if ( newY < this.maxScrollY ) {
-				newY = this.maxScrollY;
-			}
-
-			this.scrollTo(newX, newY, 0);
-
-	// INSERT POINT: _wheel
-		},
-
-		_initSnap: function () {
-			this.currentPage = {};
-
-			if ( typeof this.options.snap == 'string' ) {
-				this.options.snap = this.scroller.querySelectorAll(this.options.snap);
-			}
-
-			this.on('refresh', function () {
-				var i = 0, l,
-					m = 0, n,
-					cx, cy,
-					x = 0, y,
-					stepX = this.options.snapStepX || this.wrapperWidth,
-					stepY = this.options.snapStepY || this.wrapperHeight,
-					el;
-
-				this.pages = [];
-
-				if ( !this.wrapperWidth || !this.wrapperHeight || !this.scrollerWidth || !this.scrollerHeight ) {
+				if (!el) {
 					return;
 				}
 
-				if ( this.options.snap === true ) {
-					cx = Math.round( stepX / 2 );
-					cy = Math.round( stepY / 2 );
+				var pos = utils.offset(el);
 
-					while ( x > -this.scrollerWidth ) {
-						this.pages[i] = [];
-						l = 0;
-						y = 0;
+				pos.left -= this.wrapperOffset.left;
+				pos.top -= this.wrapperOffset.top;
 
-						while ( y > -this.scrollerHeight ) {
-							this.pages[i][l] = {
-								x: Math.max(x, this.maxScrollX),
-								y: Math.max(y, this.maxScrollY),
-								width: stepX,
-								height: stepY,
-								cx: x - cx,
-								cy: y - cy
-							};
+				// if offsetX/Y are true we center the element to the screen
+				if (offsetX === true) {
+					offsetX = Math.round(el.offsetWidth / 2 - this.wrapper.offsetWidth / 2);
+				}
+				if (offsetY === true) {
+					offsetY = Math.round(el.offsetHeight / 2 - this.wrapper.offsetHeight / 2);
+				}
 
-							y -= stepY;
-							l++;
+				pos.left -= offsetX || 0;
+				pos.top -= offsetY || 0;
+
+				pos.left = pos.left > 0 ? 0 : pos.left < this.maxScrollX ? this.maxScrollX : pos.left;
+				pos.top = pos.top > 0 ? 0 : pos.top < this.maxScrollY ? this.maxScrollY : pos.top;
+
+				time = time === undefined || time === null || time === 'auto' ? Math.max(Math.abs(this.x - pos.left), Math.abs(this.y - pos.top)) : time;
+
+				this.scrollTo(pos.left, pos.top, time, easing);
+			},
+
+			_transitionTime: function _transitionTime(time) {
+				time = time || 0;
+
+				var durationProp = utils.style.transitionDuration;
+				this.scrollerStyle[durationProp] = time + 'ms';
+
+				if (!time && utils.isBadAndroid) {
+					this.scrollerStyle[durationProp] = '0.0001ms';
+					// remove 0.0001ms
+					var self = this;
+					rAF(function () {
+						if (self.scrollerStyle[durationProp] === '0.0001ms') {
+							self.scrollerStyle[durationProp] = '0s';
 						}
+					});
+				}
 
-						x -= stepX;
-						i++;
+				if (this.indicators) {
+					for (var i = this.indicators.length; i--;) {
+						this.indicators[i].transitionTime(time);
 					}
+				}
+
+				// INSERT POINT: _transitionTime
+			},
+
+			_transitionTimingFunction: function _transitionTimingFunction(easing) {
+				this.scrollerStyle[utils.style.transitionTimingFunction] = easing;
+
+				if (this.indicators) {
+					for (var i = this.indicators.length; i--;) {
+						this.indicators[i].transitionTimingFunction(easing);
+					}
+				}
+
+				// INSERT POINT: _transitionTimingFunction
+			},
+
+			_translate: function _translate(x, y) {
+				if (this.options.useTransform) {
+
+					/* REPLACE START: _translate */
+
+					this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
+
+					/* REPLACE END: _translate */
 				} else {
-					el = this.options.snap;
-					l = el.length;
-					n = -1;
+						x = Math.round(x);
+						y = Math.round(y);
+						this.scrollerStyle.left = x + 'px';
+						this.scrollerStyle.top = y + 'px';
+					}
 
-					for ( ; i < l; i++ ) {
-						if ( i === 0 || el[i].offsetLeft <= el[i-1].offsetLeft ) {
-							m = 0;
-							n++;
-						}
+				this.x = x;
+				this.y = y;
 
-						if ( !this.pages[m] ) {
-							this.pages[m] = [];
-						}
+				if (this.indicators) {
+					for (var i = this.indicators.length; i--;) {
+						this.indicators[i].updatePosition();
+					}
+				}
 
-						x = Math.max(-el[i].offsetLeft, this.maxScrollX);
-						y = Math.max(-el[i].offsetTop, this.maxScrollY);
-						cx = x - Math.round(el[i].offsetWidth / 2);
-						cy = y - Math.round(el[i].offsetHeight / 2);
+				// INSERT POINT: _translate
+			},
 
-						this.pages[m][n] = {
-							x: x,
-							y: y,
-							width: el[i].offsetWidth,
-							height: el[i].offsetHeight,
-							cx: cx,
-							cy: cy
+			_initEvents: function _initEvents(remove) {
+				var eventType = remove ? utils.removeEvent : utils.addEvent,
+				    target = this.options.bindToWrapper ? this.wrapper : window;
+
+				eventType(window, 'orientationchange', this);
+				eventType(window, 'resize', this);
+
+				if (this.options.click) {
+					eventType(this.wrapper, 'click', this, true);
+				}
+
+				if (!this.options.disableMouse) {
+					eventType(this.wrapper, 'mousedown', this);
+					eventType(target, 'mousemove', this);
+					eventType(target, 'mousecancel', this);
+					eventType(target, 'mouseup', this);
+				}
+
+				if (utils.hasPointer && !this.options.disablePointer) {
+					eventType(this.wrapper, utils.prefixPointerEvent('pointerdown'), this);
+					eventType(target, utils.prefixPointerEvent('pointermove'), this);
+					eventType(target, utils.prefixPointerEvent('pointercancel'), this);
+					eventType(target, utils.prefixPointerEvent('pointerup'), this);
+				}
+
+				if (utils.hasTouch && !this.options.disableTouch) {
+					eventType(this.wrapper, 'touchstart', this);
+					eventType(target, 'touchmove', this);
+					eventType(target, 'touchcancel', this);
+					eventType(target, 'touchend', this);
+				}
+
+				eventType(this.scroller, 'transitionend', this);
+				eventType(this.scroller, 'webkitTransitionEnd', this);
+				eventType(this.scroller, 'oTransitionEnd', this);
+				eventType(this.scroller, 'MSTransitionEnd', this);
+			},
+
+			getComputedPosition: function getComputedPosition() {
+				var matrix = window.getComputedStyle(this.scroller, null),
+				    x,
+				    y;
+
+				if (this.options.useTransform) {
+					matrix = matrix[utils.style.transform].split(')')[0].split(', ');
+					x = +(matrix[12] || matrix[4]);
+					y = +(matrix[13] || matrix[5]);
+				} else {
+					x = +matrix.left.replace(/[^-\d.]/g, '');
+					y = +matrix.top.replace(/[^-\d.]/g, '');
+				}
+
+				return {
+					x: x,
+					y: y
+				};
+			},
+			_initIndicators: function _initIndicators() {
+				var interactive = this.options.interactiveScrollbars,
+				    customStyle = typeof this.options.scrollbars != 'string',
+				    indicators = [],
+				    indicator;
+
+				var that = this;
+
+				this.indicators = [];
+
+				if (this.options.scrollbars) {
+					// Vertical scrollbar
+					if (this.options.scrollY) {
+						indicator = {
+							el: createDefaultScrollbar('v', interactive, this.options.scrollbars),
+							interactive: interactive,
+							defaultScrollbars: true,
+							customStyle: customStyle,
+							resize: this.options.resizeScrollbars,
+							shrink: this.options.shrinkScrollbars,
+							fade: this.options.fadeScrollbars,
+							listenX: false
 						};
 
-						if ( x > this.maxScrollX ) {
-							m++;
+						this.wrapper.appendChild(indicator.el);
+						indicators.push(indicator);
+					}
+
+					// Horizontal scrollbar
+					if (this.options.scrollX) {
+						indicator = {
+							el: createDefaultScrollbar('h', interactive, this.options.scrollbars),
+							interactive: interactive,
+							defaultScrollbars: true,
+							customStyle: customStyle,
+							resize: this.options.resizeScrollbars,
+							shrink: this.options.shrinkScrollbars,
+							fade: this.options.fadeScrollbars,
+							listenY: false
+						};
+
+						this.wrapper.appendChild(indicator.el);
+						indicators.push(indicator);
+					}
+				}
+
+				if (this.options.indicators) {
+					// TODO: check concat compatibility
+					indicators = indicators.concat(this.options.indicators);
+				}
+
+				for (var i = indicators.length; i--;) {
+					this.indicators.push(new Indicator(this, indicators[i]));
+				}
+
+				// TODO: check if we can use array.map (wide compatibility and performance issues)
+				function _indicatorsMap(fn) {
+					if (that.indicators) {
+						for (var i = that.indicators.length; i--;) {
+							fn.call(that.indicators[i]);
 						}
 					}
 				}
 
-				this.goToPage(this.currentPage.pageX || 0, this.currentPage.pageY || 0, 0);
+				if (this.options.fadeScrollbars) {
+					this.on('scrollEnd', function () {
+						_indicatorsMap(function () {
+							this.fade();
+						});
+					});
 
-				// Update snap threshold if needed
-				if ( this.options.snapThreshold % 1 === 0 ) {
-					this.snapThresholdX = this.options.snapThreshold;
-					this.snapThresholdY = this.options.snapThreshold;
-				} else {
-					this.snapThresholdX = Math.round(this.pages[this.currentPage.pageX][this.currentPage.pageY].width * this.options.snapThreshold);
-					this.snapThresholdY = Math.round(this.pages[this.currentPage.pageX][this.currentPage.pageY].height * this.options.snapThreshold);
-				}
-			});
+					this.on('scrollCancel', function () {
+						_indicatorsMap(function () {
+							this.fade();
+						});
+					});
 
-			this.on('flick', function () {
-				var time = this.options.snapSpeed || Math.max(
-						Math.max(
-							Math.min(Math.abs(this.x - this.startX), 1000),
-							Math.min(Math.abs(this.y - this.startY), 1000)
-						), 300);
+					this.on('scrollStart', function () {
+						_indicatorsMap(function () {
+							this.fade(1);
+						});
+					});
 
-				this.goToPage(
-					this.currentPage.pageX + this.directionX,
-					this.currentPage.pageY + this.directionY,
-					time
-				);
-			});
-		},
-
-		_nearestSnap: function (x, y) {
-			if ( !this.pages.length ) {
-				return { x: 0, y: 0, pageX: 0, pageY: 0 };
-			}
-
-			var i = 0,
-				l = this.pages.length,
-				m = 0;
-
-			// Check if we exceeded the snap threshold
-			if ( Math.abs(x - this.absStartX) < this.snapThresholdX &&
-				Math.abs(y - this.absStartY) < this.snapThresholdY ) {
-				return this.currentPage;
-			}
-
-			if ( x > 0 ) {
-				x = 0;
-			} else if ( x < this.maxScrollX ) {
-				x = this.maxScrollX;
-			}
-
-			if ( y > 0 ) {
-				y = 0;
-			} else if ( y < this.maxScrollY ) {
-				y = this.maxScrollY;
-			}
-
-			for ( ; i < l; i++ ) {
-				if ( x >= this.pages[i][0].cx ) {
-					x = this.pages[i][0].x;
-					break;
-				}
-			}
-
-			l = this.pages[i].length;
-
-			for ( ; m < l; m++ ) {
-				if ( y >= this.pages[0][m].cy ) {
-					y = this.pages[0][m].y;
-					break;
-				}
-			}
-
-			if ( i == this.currentPage.pageX ) {
-				i += this.directionX;
-
-				if ( i < 0 ) {
-					i = 0;
-				} else if ( i >= this.pages.length ) {
-					i = this.pages.length - 1;
+					this.on('beforeScrollStart', function () {
+						_indicatorsMap(function () {
+							this.fade(1, true);
+						});
+					});
 				}
 
-				x = this.pages[i][0].x;
-			}
+				this.on('refresh', function () {
+					_indicatorsMap(function () {
+						this.refresh();
+					});
+				});
 
-			if ( m == this.currentPage.pageY ) {
-				m += this.directionY;
+				this.on('destroy', function () {
+					_indicatorsMap(function () {
+						this.destroy();
+					});
 
-				if ( m < 0 ) {
-					m = 0;
-				} else if ( m >= this.pages[0].length ) {
-					m = this.pages[0].length - 1;
-				}
+					delete this.indicators;
+				});
+			},
 
-				y = this.pages[0][m].y;
-			}
+			_initWheel: function _initWheel() {
+				utils.addEvent(this.wrapper, 'wheel', this);
+				utils.addEvent(this.wrapper, 'mousewheel', this);
+				utils.addEvent(this.wrapper, 'DOMMouseScroll', this);
 
-			return {
-				x: x,
-				y: y,
-				pageX: i,
-				pageY: m
-			};
-		},
+				this.on('destroy', function () {
+					clearTimeout(this.wheelTimeout);
+					this.wheelTimeout = null;
+					utils.removeEvent(this.wrapper, 'wheel', this);
+					utils.removeEvent(this.wrapper, 'mousewheel', this);
+					utils.removeEvent(this.wrapper, 'DOMMouseScroll', this);
+				});
+			},
 
-		goToPage: function (x, y, time, easing) {
-			easing = easing || this.options.bounceEasing;
-
-			if ( x >= this.pages.length ) {
-				x = this.pages.length - 1;
-			} else if ( x < 0 ) {
-				x = 0;
-			}
-
-			if ( y >= this.pages[x].length ) {
-				y = this.pages[x].length - 1;
-			} else if ( y < 0 ) {
-				y = 0;
-			}
-
-			var posX = this.pages[x][y].x,
-				posY = this.pages[x][y].y;
-
-			time = time === undefined ? this.options.snapSpeed || Math.max(
-				Math.max(
-					Math.min(Math.abs(posX - this.x), 1000),
-					Math.min(Math.abs(posY - this.y), 1000)
-				), 300) : time;
-
-			this.currentPage = {
-				x: posX,
-				y: posY,
-				pageX: x,
-				pageY: y
-			};
-
-			this.scrollTo(posX, posY, time, easing);
-		},
-
-		next: function (time, easing) {
-			var x = this.currentPage.pageX,
-				y = this.currentPage.pageY;
-
-			x++;
-
-			if ( x >= this.pages.length && this.hasVerticalScroll ) {
-				x = 0;
-				y++;
-			}
-
-			this.goToPage(x, y, time, easing);
-		},
-
-		prev: function (time, easing) {
-			var x = this.currentPage.pageX,
-				y = this.currentPage.pageY;
-
-			x--;
-
-			if ( x < 0 && this.hasVerticalScroll ) {
-				x = 0;
-				y--;
-			}
-
-			this.goToPage(x, y, time, easing);
-		},
-
-		_initKeys: function (e) {
-			// default key bindings
-			var keys = {
-				pageUp: 33,
-				pageDown: 34,
-				end: 35,
-				home: 36,
-				left: 37,
-				up: 38,
-				right: 39,
-				down: 40
-			};
-			var i;
-
-			// if you give me characters I give you keycode
-			if ( typeof this.options.keyBindings == 'object' ) {
-				for ( i in this.options.keyBindings ) {
-					if ( typeof this.options.keyBindings[i] == 'string' ) {
-						this.options.keyBindings[i] = this.options.keyBindings[i].toUpperCase().charCodeAt(0);
-					}
-				}
-			} else {
-				this.options.keyBindings = {};
-			}
-
-			for ( i in keys ) {
-				this.options.keyBindings[i] = this.options.keyBindings[i] || keys[i];
-			}
-
-			utils.addEvent(window, 'keydown', this);
-
-			this.on('destroy', function () {
-				utils.removeEvent(window, 'keydown', this);
-			});
-		},
-
-		_key: function (e) {
-			if ( !this.enabled ) {
-				return;
-			}
-
-			var snap = this.options.snap,	// we are using this alot, better to cache it
-				newX = snap ? this.currentPage.pageX : this.x,
-				newY = snap ? this.currentPage.pageY : this.y,
-				now = utils.getTime(),
-				prevTime = this.keyTime || 0,
-				acceleration = 0.250,
-				pos;
-
-			if ( this.options.useTransition && this.isInTransition ) {
-				pos = this.getComputedPosition();
-
-				this._translate(Math.round(pos.x), Math.round(pos.y));
-				this.isInTransition = false;
-			}
-
-			this.keyAcceleration = now - prevTime < 200 ? Math.min(this.keyAcceleration + acceleration, 50) : 0;
-
-			switch ( e.keyCode ) {
-				case this.options.keyBindings.pageUp:
-					if ( this.hasHorizontalScroll && !this.hasVerticalScroll ) {
-						newX += snap ? 1 : this.wrapperWidth;
-					} else {
-						newY += snap ? 1 : this.wrapperHeight;
-					}
-					break;
-				case this.options.keyBindings.pageDown:
-					if ( this.hasHorizontalScroll && !this.hasVerticalScroll ) {
-						newX -= snap ? 1 : this.wrapperWidth;
-					} else {
-						newY -= snap ? 1 : this.wrapperHeight;
-					}
-					break;
-				case this.options.keyBindings.end:
-					newX = snap ? this.pages.length-1 : this.maxScrollX;
-					newY = snap ? this.pages[0].length-1 : this.maxScrollY;
-					break;
-				case this.options.keyBindings.home:
-					newX = 0;
-					newY = 0;
-					break;
-				case this.options.keyBindings.left:
-					newX += snap ? -1 : 5 + this.keyAcceleration>>0;
-					break;
-				case this.options.keyBindings.up:
-					newY += snap ? 1 : 5 + this.keyAcceleration>>0;
-					break;
-				case this.options.keyBindings.right:
-					newX -= snap ? -1 : 5 + this.keyAcceleration>>0;
-					break;
-				case this.options.keyBindings.down:
-					newY -= snap ? 1 : 5 + this.keyAcceleration>>0;
-					break;
-				default:
+			_wheel: function _wheel(e) {
+				if (!this.enabled) {
 					return;
-			}
+				}
 
-			if ( snap ) {
-				this.goToPage(newX, newY);
-				return;
-			}
+				e.preventDefault();
 
-			if ( newX > 0 ) {
-				newX = 0;
-				this.keyAcceleration = 0;
-			} else if ( newX < this.maxScrollX ) {
-				newX = this.maxScrollX;
-				this.keyAcceleration = 0;
-			}
+				var wheelDeltaX,
+				    wheelDeltaY,
+				    newX,
+				    newY,
+				    that = this;
 
-			if ( newY > 0 ) {
-				newY = 0;
-				this.keyAcceleration = 0;
-			} else if ( newY < this.maxScrollY ) {
-				newY = this.maxScrollY;
-				this.keyAcceleration = 0;
-			}
+				if (this.wheelTimeout === undefined) {
+					that._execEvent('scrollStart');
+				}
 
-			this.scrollTo(newX, newY, 0);
-
-			this.keyTime = now;
-		},
-
-		_animate: function (destX, destY, duration, easingFn) {
-			var that = this,
-				startX = this.x,
-				startY = this.y,
-				startTime = utils.getTime(),
-				destTime = startTime + duration;
-
-			function step () {
-				var now = utils.getTime(),
-					newX, newY,
-					easing;
-
-				if ( now >= destTime ) {
-					that.isAnimating = false;
-					that._translate(destX, destY);
-
-					if ( !that.resetPosition(that.options.bounceTime) ) {
+				// Execute the scrollEnd event after 400ms the wheel stopped scrolling
+				clearTimeout(this.wheelTimeout);
+				this.wheelTimeout = setTimeout(function () {
+					if (!that.options.snap) {
 						that._execEvent('scrollEnd');
 					}
+					that.wheelTimeout = undefined;
+				}, 400);
+
+				if ('deltaX' in e) {
+					if (e.deltaMode === 1) {
+						wheelDeltaX = -e.deltaX * this.options.mouseWheelSpeed;
+						wheelDeltaY = -e.deltaY * this.options.mouseWheelSpeed;
+					} else {
+						wheelDeltaX = -e.deltaX;
+						wheelDeltaY = -e.deltaY;
+					}
+				} else if ('wheelDeltaX' in e) {
+					wheelDeltaX = e.wheelDeltaX / 120 * this.options.mouseWheelSpeed;
+					wheelDeltaY = e.wheelDeltaY / 120 * this.options.mouseWheelSpeed;
+				} else if ('wheelDelta' in e) {
+					wheelDeltaX = wheelDeltaY = e.wheelDelta / 120 * this.options.mouseWheelSpeed;
+				} else if ('detail' in e) {
+					wheelDeltaX = wheelDeltaY = -e.detail / 3 * this.options.mouseWheelSpeed;
+				} else {
+					return;
+				}
+
+				wheelDeltaX *= this.options.invertWheelDirection;
+				wheelDeltaY *= this.options.invertWheelDirection;
+
+				if (!this.hasVerticalScroll) {
+					wheelDeltaX = wheelDeltaY;
+					wheelDeltaY = 0;
+				}
+
+				if (this.options.snap) {
+					newX = this.currentPage.pageX;
+					newY = this.currentPage.pageY;
+
+					if (wheelDeltaX > 0) {
+						newX--;
+					} else if (wheelDeltaX < 0) {
+						newX++;
+					}
+
+					if (wheelDeltaY > 0) {
+						newY--;
+					} else if (wheelDeltaY < 0) {
+						newY++;
+					}
+
+					this.goToPage(newX, newY);
 
 					return;
 				}
 
-				now = ( now - startTime ) / duration;
-				easing = easingFn(now);
-				newX = ( destX - startX ) * easing + startX;
-				newY = ( destY - startY ) * easing + startY;
-				that._translate(newX, newY);
+				newX = this.x + Math.round(this.hasHorizontalScroll ? wheelDeltaX : 0);
+				newY = this.y + Math.round(this.hasVerticalScroll ? wheelDeltaY : 0);
 
-				if ( that.isAnimating ) {
-					rAF(step);
+				this.directionX = wheelDeltaX > 0 ? -1 : wheelDeltaX < 0 ? 1 : 0;
+				this.directionY = wheelDeltaY > 0 ? -1 : wheelDeltaY < 0 ? 1 : 0;
+
+				if (newX > 0) {
+					newX = 0;
+				} else if (newX < this.maxScrollX) {
+					newX = this.maxScrollX;
+				}
+
+				if (newY > 0) {
+					newY = 0;
+				} else if (newY < this.maxScrollY) {
+					newY = this.maxScrollY;
+				}
+
+				this.scrollTo(newX, newY, 0);
+
+				// INSERT POINT: _wheel
+			},
+
+			_initSnap: function _initSnap() {
+				this.currentPage = {};
+
+				if (typeof this.options.snap == 'string') {
+					this.options.snap = this.scroller.querySelectorAll(this.options.snap);
+				}
+
+				this.on('refresh', function () {
+					var i = 0,
+					    l,
+					    m = 0,
+					    n,
+					    cx,
+					    cy,
+					    x = 0,
+					    y,
+					    stepX = this.options.snapStepX || this.wrapperWidth,
+					    stepY = this.options.snapStepY || this.wrapperHeight,
+					    el;
+
+					this.pages = [];
+
+					if (!this.wrapperWidth || !this.wrapperHeight || !this.scrollerWidth || !this.scrollerHeight) {
+						return;
+					}
+
+					if (this.options.snap === true) {
+						cx = Math.round(stepX / 2);
+						cy = Math.round(stepY / 2);
+
+						while (x > -this.scrollerWidth) {
+							this.pages[i] = [];
+							l = 0;
+							y = 0;
+
+							while (y > -this.scrollerHeight) {
+								this.pages[i][l] = {
+									x: Math.max(x, this.maxScrollX),
+									y: Math.max(y, this.maxScrollY),
+									width: stepX,
+									height: stepY,
+									cx: x - cx,
+									cy: y - cy
+								};
+
+								y -= stepY;
+								l++;
+							}
+
+							x -= stepX;
+							i++;
+						}
+					} else {
+						el = this.options.snap;
+						l = el.length;
+						n = -1;
+
+						for (; i < l; i++) {
+							if (i === 0 || el[i].offsetLeft <= el[i - 1].offsetLeft) {
+								m = 0;
+								n++;
+							}
+
+							if (!this.pages[m]) {
+								this.pages[m] = [];
+							}
+
+							x = Math.max(-el[i].offsetLeft, this.maxScrollX);
+							y = Math.max(-el[i].offsetTop, this.maxScrollY);
+							cx = x - Math.round(el[i].offsetWidth / 2);
+							cy = y - Math.round(el[i].offsetHeight / 2);
+
+							this.pages[m][n] = {
+								x: x,
+								y: y,
+								width: el[i].offsetWidth,
+								height: el[i].offsetHeight,
+								cx: cx,
+								cy: cy
+							};
+
+							if (x > this.maxScrollX) {
+								m++;
+							}
+						}
+					}
+
+					this.goToPage(this.currentPage.pageX || 0, this.currentPage.pageY || 0, 0);
+
+					// Update snap threshold if needed
+					if (this.options.snapThreshold % 1 === 0) {
+						this.snapThresholdX = this.options.snapThreshold;
+						this.snapThresholdY = this.options.snapThreshold;
+					} else {
+						this.snapThresholdX = Math.round(this.pages[this.currentPage.pageX][this.currentPage.pageY].width * this.options.snapThreshold);
+						this.snapThresholdY = Math.round(this.pages[this.currentPage.pageX][this.currentPage.pageY].height * this.options.snapThreshold);
+					}
+				});
+
+				this.on('flick', function () {
+					var time = this.options.snapSpeed || Math.max(Math.max(Math.min(Math.abs(this.x - this.startX), 1000), Math.min(Math.abs(this.y - this.startY), 1000)), 300);
+
+					this.goToPage(this.currentPage.pageX + this.directionX, this.currentPage.pageY + this.directionY, time);
+				});
+			},
+
+			_nearestSnap: function _nearestSnap(x, y) {
+				if (!this.pages.length) {
+					return {
+						x: 0,
+						y: 0,
+						pageX: 0,
+						pageY: 0
+					};
+				}
+
+				var i = 0,
+				    l = this.pages.length,
+				    m = 0;
+
+				// Check if we exceeded the snap threshold
+				if (Math.abs(x - this.absStartX) < this.snapThresholdX && Math.abs(y - this.absStartY) < this.snapThresholdY) {
+					return this.currentPage;
+				}
+
+				if (x > 0) {
+					x = 0;
+				} else if (x < this.maxScrollX) {
+					x = this.maxScrollX;
+				}
+
+				if (y > 0) {
+					y = 0;
+				} else if (y < this.maxScrollY) {
+					y = this.maxScrollY;
+				}
+
+				for (; i < l; i++) {
+					if (x >= this.pages[i][0].cx) {
+						x = this.pages[i][0].x;
+						break;
+					}
+				}
+
+				l = this.pages[i].length;
+
+				for (; m < l; m++) {
+					if (y >= this.pages[0][m].cy) {
+						y = this.pages[0][m].y;
+						break;
+					}
+				}
+
+				if (i == this.currentPage.pageX) {
+					i += this.directionX;
+
+					if (i < 0) {
+						i = 0;
+					} else if (i >= this.pages.length) {
+						i = this.pages.length - 1;
+					}
+
+					x = this.pages[i][0].x;
+				}
+
+				if (m == this.currentPage.pageY) {
+					m += this.directionY;
+
+					if (m < 0) {
+						m = 0;
+					} else if (m >= this.pages[0].length) {
+						m = this.pages[0].length - 1;
+					}
+
+					y = this.pages[0][m].y;
+				}
+
+				return {
+					x: x,
+					y: y,
+					pageX: i,
+					pageY: m
+				};
+			},
+
+			goToPage: function goToPage(x, y, time, easing) {
+				easing = easing || this.options.bounceEasing;
+
+				if (x >= this.pages.length) {
+					x = this.pages.length - 1;
+				} else if (x < 0) {
+					x = 0;
+				}
+
+				if (y >= this.pages[x].length) {
+					y = this.pages[x].length - 1;
+				} else if (y < 0) {
+					y = 0;
+				}
+
+				var posX = this.pages[x][y].x,
+				    posY = this.pages[x][y].y;
+
+				time = time === undefined ? this.options.snapSpeed || Math.max(Math.max(Math.min(Math.abs(posX - this.x), 1000), Math.min(Math.abs(posY - this.y), 1000)), 300) : time;
+
+				this.currentPage = {
+					x: posX,
+					y: posY,
+					pageX: x,
+					pageY: y
+				};
+
+				this.scrollTo(posX, posY, time, easing);
+			},
+
+			next: function next(time, easing) {
+				var x = this.currentPage.pageX,
+				    y = this.currentPage.pageY;
+
+				x++;
+
+				if (x >= this.pages.length && this.hasVerticalScroll) {
+					x = 0;
+					y++;
+				}
+
+				this.goToPage(x, y, time, easing);
+			},
+
+			prev: function prev(time, easing) {
+				var x = this.currentPage.pageX,
+				    y = this.currentPage.pageY;
+
+				x--;
+
+				if (x < 0 && this.hasVerticalScroll) {
+					x = 0;
+					y--;
+				}
+
+				this.goToPage(x, y, time, easing);
+			},
+
+			_initKeys: function _initKeys(e) {
+				// default key bindings
+				var keys = {
+					pageUp: 33,
+					pageDown: 34,
+					end: 35,
+					home: 36,
+					left: 37,
+					up: 38,
+					right: 39,
+					down: 40
+				};
+				var i;
+
+				// if you give me characters I give you keycode
+				if (typeof this.options.keyBindings == 'object') {
+					for (i in this.options.keyBindings) {
+						if (typeof this.options.keyBindings[i] == 'string') {
+							this.options.keyBindings[i] = this.options.keyBindings[i].toUpperCase().charCodeAt(0);
+						}
+					}
+				} else {
+					this.options.keyBindings = {};
+				}
+
+				for (i in keys) {
+					this.options.keyBindings[i] = this.options.keyBindings[i] || keys[i];
+				}
+
+				utils.addEvent(window, 'keydown', this);
+
+				this.on('destroy', function () {
+					utils.removeEvent(window, 'keydown', this);
+				});
+			},
+
+			_key: function _key(e) {
+				if (!this.enabled) {
+					return;
+				}
+
+				var snap = this.options.snap,
+				    // we are using this alot, better to cache it
+				newX = snap ? this.currentPage.pageX : this.x,
+				    newY = snap ? this.currentPage.pageY : this.y,
+				    now = utils.getTime(),
+				    prevTime = this.keyTime || 0,
+				    acceleration = 0.250,
+				    pos;
+
+				if (this.options.useTransition && this.isInTransition) {
+					pos = this.getComputedPosition();
+
+					this._translate(Math.round(pos.x), Math.round(pos.y));
+					this.isInTransition = false;
+				}
+
+				this.keyAcceleration = now - prevTime < 200 ? Math.min(this.keyAcceleration + acceleration, 50) : 0;
+
+				switch (e.keyCode) {
+					case this.options.keyBindings.pageUp:
+						if (this.hasHorizontalScroll && !this.hasVerticalScroll) {
+							newX += snap ? 1 : this.wrapperWidth;
+						} else {
+							newY += snap ? 1 : this.wrapperHeight;
+						}
+						break;
+					case this.options.keyBindings.pageDown:
+						if (this.hasHorizontalScroll && !this.hasVerticalScroll) {
+							newX -= snap ? 1 : this.wrapperWidth;
+						} else {
+							newY -= snap ? 1 : this.wrapperHeight;
+						}
+						break;
+					case this.options.keyBindings.end:
+						newX = snap ? this.pages.length - 1 : this.maxScrollX;
+						newY = snap ? this.pages[0].length - 1 : this.maxScrollY;
+						break;
+					case this.options.keyBindings.home:
+						newX = 0;
+						newY = 0;
+						break;
+					case this.options.keyBindings.left:
+						newX += snap ? -1 : 5 + this.keyAcceleration >> 0;
+						break;
+					case this.options.keyBindings.up:
+						newY += snap ? 1 : 5 + this.keyAcceleration >> 0;
+						break;
+					case this.options.keyBindings.right:
+						newX -= snap ? -1 : 5 + this.keyAcceleration >> 0;
+						break;
+					case this.options.keyBindings.down:
+						newY -= snap ? 1 : 5 + this.keyAcceleration >> 0;
+						break;
+					default:
+						return;
+				}
+
+				if (snap) {
+					this.goToPage(newX, newY);
+					return;
+				}
+
+				if (newX > 0) {
+					newX = 0;
+					this.keyAcceleration = 0;
+				} else if (newX < this.maxScrollX) {
+					newX = this.maxScrollX;
+					this.keyAcceleration = 0;
+				}
+
+				if (newY > 0) {
+					newY = 0;
+					this.keyAcceleration = 0;
+				} else if (newY < this.maxScrollY) {
+					newY = this.maxScrollY;
+					this.keyAcceleration = 0;
+				}
+
+				this.scrollTo(newX, newY, 0);
+
+				this.keyTime = now;
+			},
+
+			_animate: function _animate(destX, destY, duration, easingFn) {
+				var that = this,
+				    startX = this.x,
+				    startY = this.y,
+				    startTime = utils.getTime(),
+				    destTime = startTime + duration;
+
+				function step() {
+					var now = utils.getTime(),
+					    newX,
+					    newY,
+					    easing;
+
+					if (now >= destTime) {
+						that.isAnimating = false;
+						that._translate(destX, destY);
+
+						if (!that.resetPosition(that.options.bounceTime)) {
+							that._execEvent('scrollEnd');
+						}
+
+						return;
+					}
+
+					now = (now - startTime) / duration;
+					easing = easingFn(now);
+					newX = (destX - startX) * easing + startX;
+					newY = (destY - startY) * easing + startY;
+					that._translate(newX, newY);
+
+					if (that.isAnimating) {
+						rAF(step);
+					}
+				}
+
+				this.isAnimating = true;
+				step();
+			},
+			handleEvent: function handleEvent(e) {
+				switch (e.type) {
+					case 'touchstart':
+					case 'pointerdown':
+					case 'MSPointerDown':
+					case 'mousedown':
+						this._start(e);
+						break;
+					case 'touchmove':
+					case 'pointermove':
+					case 'MSPointerMove':
+					case 'mousemove':
+						this._move(e);
+						break;
+					case 'touchend':
+					case 'pointerup':
+					case 'MSPointerUp':
+					case 'mouseup':
+					case 'touchcancel':
+					case 'pointercancel':
+					case 'MSPointerCancel':
+					case 'mousecancel':
+						this._end(e);
+						break;
+					case 'orientationchange':
+					case 'resize':
+						this._resize();
+						break;
+					case 'transitionend':
+					case 'webkitTransitionEnd':
+					case 'oTransitionEnd':
+					case 'MSTransitionEnd':
+						this._transitionEnd(e);
+						break;
+					case 'wheel':
+					case 'DOMMouseScroll':
+					case 'mousewheel':
+						this._wheel(e);
+						break;
+					case 'keydown':
+						this._key(e);
+						break;
+					case 'click':
+						if (this.enabled && !e._constructed) {
+							e.preventDefault();
+							e.stopPropagation();
+						}
+						break;
+				}
+			}
+		};
+
+		function createDefaultScrollbar(direction, interactive, type) {
+			var scrollbar = document.createElement('div'),
+			    indicator = document.createElement('div');
+
+			if (type === true) {
+				scrollbar.style.cssText = 'position:absolute;z-index:9999';
+				indicator.style.cssText = '-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:absolute;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);border-radius:3px';
+			}
+
+			indicator.className = 'iScrollIndicator';
+
+			if (direction == 'h') {
+				if (type === true) {
+					scrollbar.style.cssText += ';height:7px;left:2px;right:2px;bottom:0';
+					indicator.style.height = '100%';
+				}
+				scrollbar.className = 'iScrollHorizontalScrollbar';
+			} else {
+				if (type === true) {
+					scrollbar.style.cssText += ';width:7px;bottom:2px;top:2px;right:1px';
+					indicator.style.width = '100%';
+				}
+				scrollbar.className = 'iScrollVerticalScrollbar';
+			}
+
+			scrollbar.style.cssText += ';overflow:hidden';
+
+			if (!interactive) {
+				scrollbar.style.pointerEvents = 'none';
+			}
+
+			scrollbar.appendChild(indicator);
+
+			return scrollbar;
+		}
+
+		function Indicator(scroller, options) {
+			this.wrapper = typeof options.el == 'string' ? document.querySelector(options.el) : options.el;
+			this.wrapperStyle = this.wrapper.style;
+			this.indicator = this.wrapper.children[0];
+			this.indicatorStyle = this.indicator.style;
+			this.scroller = scroller;
+
+			this.options = {
+				listenX: true,
+				listenY: true,
+				interactive: false,
+				resize: true,
+				defaultScrollbars: false,
+				shrink: false,
+				fade: false,
+				speedRatioX: 0,
+				speedRatioY: 0
+			};
+
+			for (var i in options) {
+				this.options[i] = options[i];
+			}
+
+			this.sizeRatioX = 1;
+			this.sizeRatioY = 1;
+			this.maxPosX = 0;
+			this.maxPosY = 0;
+
+			if (this.options.interactive) {
+				if (!this.options.disableTouch) {
+					utils.addEvent(this.indicator, 'touchstart', this);
+					utils.addEvent(window, 'touchend', this);
+				}
+				if (!this.options.disablePointer) {
+					utils.addEvent(this.indicator, utils.prefixPointerEvent('pointerdown'), this);
+					utils.addEvent(window, utils.prefixPointerEvent('pointerup'), this);
+				}
+				if (!this.options.disableMouse) {
+					utils.addEvent(this.indicator, 'mousedown', this);
+					utils.addEvent(window, 'mouseup', this);
 				}
 			}
 
-			this.isAnimating = true;
-			step();
-		},
-		handleEvent: function (e) {
-			switch ( e.type ) {
-				case 'touchstart':
-				case 'pointerdown':
-				case 'MSPointerDown':
-				case 'mousedown':
-					this._start(e);
-					break;
-				case 'touchmove':
-				case 'pointermove':
-				case 'MSPointerMove':
-				case 'mousemove':
-					this._move(e);
-					break;
-				case 'touchend':
-				case 'pointerup':
-				case 'MSPointerUp':
-				case 'mouseup':
-				case 'touchcancel':
-				case 'pointercancel':
-				case 'MSPointerCancel':
-				case 'mousecancel':
-					this._end(e);
-					break;
-				case 'orientationchange':
-				case 'resize':
-					this._resize();
-					break;
-				case 'transitionend':
-				case 'webkitTransitionEnd':
-				case 'oTransitionEnd':
-				case 'MSTransitionEnd':
-					this._transitionEnd(e);
-					break;
-				case 'wheel':
-				case 'DOMMouseScroll':
-				case 'mousewheel':
-					this._wheel(e);
-					break;
-				case 'keydown':
-					this._key(e);
-					break;
-				case 'click':
-					if ( this.enabled && !e._constructed ) {
-						e.preventDefault();
-						e.stopPropagation();
-					}
-					break;
-			}
-		}
-	};
-	function createDefaultScrollbar (direction, interactive, type) {
-		var scrollbar = document.createElement('div'),
-			indicator = document.createElement('div');
-
-		if ( type === true ) {
-			scrollbar.style.cssText = 'position:absolute;z-index:9999';
-			indicator.style.cssText = '-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:absolute;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);border-radius:3px';
-		}
-
-		indicator.className = 'iScrollIndicator';
-
-		if ( direction == 'h' ) {
-			if ( type === true ) {
-				scrollbar.style.cssText += ';height:7px;left:2px;right:2px;bottom:0';
-				indicator.style.height = '100%';
-			}
-			scrollbar.className = 'iScrollHorizontalScrollbar';
-		} else {
-			if ( type === true ) {
-				scrollbar.style.cssText += ';width:7px;bottom:2px;top:2px;right:1px';
-				indicator.style.width = '100%';
-			}
-			scrollbar.className = 'iScrollVerticalScrollbar';
-		}
-
-		scrollbar.style.cssText += ';overflow:hidden';
-
-		if ( !interactive ) {
-			scrollbar.style.pointerEvents = 'none';
-		}
-
-		scrollbar.appendChild(indicator);
-
-		return scrollbar;
-	}
-
-	function Indicator (scroller, options) {
-		this.wrapper = typeof options.el == 'string' ? document.querySelector(options.el) : options.el;
-		this.wrapperStyle = this.wrapper.style;
-		this.indicator = this.wrapper.children[0];
-		this.indicatorStyle = this.indicator.style;
-		this.scroller = scroller;
-
-		this.options = {
-			listenX: true,
-			listenY: true,
-			interactive: false,
-			resize: true,
-			defaultScrollbars: false,
-			shrink: false,
-			fade: false,
-			speedRatioX: 0,
-			speedRatioY: 0
-		};
-
-		for ( var i in options ) {
-			this.options[i] = options[i];
-		}
-
-		this.sizeRatioX = 1;
-		this.sizeRatioY = 1;
-		this.maxPosX = 0;
-		this.maxPosY = 0;
-
-		if ( this.options.interactive ) {
-			if ( !this.options.disableTouch ) {
-				utils.addEvent(this.indicator, 'touchstart', this);
-				utils.addEvent(window, 'touchend', this);
-			}
-			if ( !this.options.disablePointer ) {
-				utils.addEvent(this.indicator, utils.prefixPointerEvent('pointerdown'), this);
-				utils.addEvent(window, utils.prefixPointerEvent('pointerup'), this);
-			}
-			if ( !this.options.disableMouse ) {
-				utils.addEvent(this.indicator, 'mousedown', this);
-				utils.addEvent(window, 'mouseup', this);
+			if (this.options.fade) {
+				this.wrapperStyle[utils.style.transform] = this.scroller.translateZ;
+				var durationProp = utils.style.transitionDuration;
+				this.wrapperStyle[durationProp] = utils.isBadAndroid ? '0.0001ms' : '0ms';
+				// remove 0.0001ms
+				var self = this;
+				if (utils.isBadAndroid) {
+					rAF(function () {
+						if (self.wrapperStyle[durationProp] === '0.0001ms') {
+							self.wrapperStyle[durationProp] = '0s';
+						}
+					});
+				}
+				this.wrapperStyle.opacity = '0';
 			}
 		}
 
-		if ( this.options.fade ) {
-			this.wrapperStyle[utils.style.transform] = this.scroller.translateZ;
-			var durationProp = utils.style.transitionDuration;
-			this.wrapperStyle[durationProp] = utils.isBadAndroid ? '0.0001ms' : '0ms';
-			// remove 0.0001ms
-			var self = this;
-			if(utils.isBadAndroid) {
-				rAF(function() {
-					if(self.wrapperStyle[durationProp] === '0.0001ms') {
-						self.wrapperStyle[durationProp] = '0s';
-					}
-				});
-			}
-			this.wrapperStyle.opacity = '0';
-		}
-	}
+		Indicator.prototype = {
+			handleEvent: function handleEvent(e) {
+				switch (e.type) {
+					case 'touchstart':
+					case 'pointerdown':
+					case 'MSPointerDown':
+					case 'mousedown':
+						this._start(e);
+						break;
+					case 'touchmove':
+					case 'pointermove':
+					case 'MSPointerMove':
+					case 'mousemove':
+						this._move(e);
+						break;
+					case 'touchend':
+					case 'pointerup':
+					case 'MSPointerUp':
+					case 'mouseup':
+					case 'touchcancel':
+					case 'pointercancel':
+					case 'MSPointerCancel':
+					case 'mousecancel':
+						this._end(e);
+						break;
+				}
+			},
 
-	Indicator.prototype = {
-		handleEvent: function (e) {
-			switch ( e.type ) {
-				case 'touchstart':
-				case 'pointerdown':
-				case 'MSPointerDown':
-				case 'mousedown':
-					this._start(e);
-					break;
-				case 'touchmove':
-				case 'pointermove':
-				case 'MSPointerMove':
-				case 'mousemove':
-					this._move(e);
-					break;
-				case 'touchend':
-				case 'pointerup':
-				case 'MSPointerUp':
-				case 'mouseup':
-				case 'touchcancel':
-				case 'pointercancel':
-				case 'MSPointerCancel':
-				case 'mousecancel':
-					this._end(e);
-					break;
-			}
-		},
+			destroy: function destroy() {
+				if (this.options.fadeScrollbars) {
+					clearTimeout(this.fadeTimeout);
+					this.fadeTimeout = null;
+				}
+				if (this.options.interactive) {
+					utils.removeEvent(this.indicator, 'touchstart', this);
+					utils.removeEvent(this.indicator, utils.prefixPointerEvent('pointerdown'), this);
+					utils.removeEvent(this.indicator, 'mousedown', this);
 
-		destroy: function () {
-			if ( this.options.fadeScrollbars ) {
-				clearTimeout(this.fadeTimeout);
-				this.fadeTimeout = null;
-			}
-			if ( this.options.interactive ) {
-				utils.removeEvent(this.indicator, 'touchstart', this);
-				utils.removeEvent(this.indicator, utils.prefixPointerEvent('pointerdown'), this);
-				utils.removeEvent(this.indicator, 'mousedown', this);
+					utils.removeEvent(window, 'touchmove', this);
+					utils.removeEvent(window, utils.prefixPointerEvent('pointermove'), this);
+					utils.removeEvent(window, 'mousemove', this);
+
+					utils.removeEvent(window, 'touchend', this);
+					utils.removeEvent(window, utils.prefixPointerEvent('pointerup'), this);
+					utils.removeEvent(window, 'mouseup', this);
+				}
+
+				if (this.options.defaultScrollbars) {
+					this.wrapper.parentNode.removeChild(this.wrapper);
+				}
+			},
+
+			_start: function _start(e) {
+				var point = e.touches ? e.touches[0] : e;
+
+				e.preventDefault();
+				e.stopPropagation();
+
+				this.transitionTime();
+
+				this.initiated = true;
+				this.moved = false;
+				this.lastPointX = point.pageX;
+				this.lastPointY = point.pageY;
+
+				this.startTime = utils.getTime();
+
+				if (!this.options.disableTouch) {
+					utils.addEvent(window, 'touchmove', this);
+				}
+				if (!this.options.disablePointer) {
+					utils.addEvent(window, utils.prefixPointerEvent('pointermove'), this);
+				}
+				if (!this.options.disableMouse) {
+					utils.addEvent(window, 'mousemove', this);
+				}
+
+				this.scroller._execEvent('beforeScrollStart');
+			},
+
+			_move: function _move(e) {
+
+				var point = e.touches ? e.touches[0] : e,
+				    deltaX,
+				    deltaY,
+				    newX,
+				    newY,
+				    timestamp = utils.getTime();
+
+				if (!this.moved) {
+					this.scroller._execEvent('scrollStart');
+				}
+
+				this.moved = true;
+
+				deltaX = point.pageX - this.lastPointX;
+				this.lastPointX = point.pageX;
+
+				deltaY = point.pageY - this.lastPointY;
+				this.lastPointY = point.pageY;
+
+				newX = this.x + deltaX;
+				newY = this.y + deltaY;
+
+				this._pos(newX, newY);
+
+				// INSERT POINT: indicator._move
+
+				e.preventDefault();
+				e.stopPropagation();
+			},
+
+			_end: function _end(e) {
+				if (!this.initiated) {
+					return;
+				}
+
+				this.initiated = false;
+
+				e.preventDefault();
+				e.stopPropagation();
 
 				utils.removeEvent(window, 'touchmove', this);
 				utils.removeEvent(window, utils.prefixPointerEvent('pointermove'), this);
 				utils.removeEvent(window, 'mousemove', this);
 
-				utils.removeEvent(window, 'touchend', this);
-				utils.removeEvent(window, utils.prefixPointerEvent('pointerup'), this);
-				utils.removeEvent(window, 'mouseup', this);
-			}
+				if (this.scroller.options.snap) {
+					var snap = this.scroller._nearestSnap(this.scroller.x, this.scroller.y);
 
-			if ( this.options.defaultScrollbars ) {
-				this.wrapper.parentNode.removeChild(this.wrapper);
-			}
-		},
+					var time = this.options.snapSpeed || Math.max(Math.max(Math.min(Math.abs(this.scroller.x - snap.x), 1000), Math.min(Math.abs(this.scroller.y - snap.y), 1000)), 300);
 
-		_start: function (e) {
-			var point = e.touches ? e.touches[0] : e;
-
-			e.preventDefault();
-			e.stopPropagation();
-
-			this.transitionTime();
-
-			this.initiated = true;
-			this.moved = false;
-			this.lastPointX	= point.pageX;
-			this.lastPointY	= point.pageY;
-
-			this.startTime	= utils.getTime();
-
-			if ( !this.options.disableTouch ) {
-				utils.addEvent(window, 'touchmove', this);
-			}
-			if ( !this.options.disablePointer ) {
-				utils.addEvent(window, utils.prefixPointerEvent('pointermove'), this);
-			}
-			if ( !this.options.disableMouse ) {
-				utils.addEvent(window, 'mousemove', this);
-			}
-
-			this.scroller._execEvent('beforeScrollStart');
-		},
-
-		_move: function (e) {
-			var point = e.touches ? e.touches[0] : e,
-				deltaX, deltaY,
-				newX, newY,
-				timestamp = utils.getTime();
-
-			if ( !this.moved ) {
-				this.scroller._execEvent('scrollStart');
-			}
-
-			this.moved = true;
-
-			deltaX = point.pageX - this.lastPointX;
-			this.lastPointX = point.pageX;
-
-			deltaY = point.pageY - this.lastPointY;
-			this.lastPointY = point.pageY;
-
-			newX = this.x + deltaX;
-			newY = this.y + deltaY;
-
-			this._pos(newX, newY);
-
-	// INSERT POINT: indicator._move
-
-			e.preventDefault();
-			e.stopPropagation();
-		},
-
-		_end: function (e) {
-			if ( !this.initiated ) {
-				return;
-			}
-
-			this.initiated = false;
-
-			e.preventDefault();
-			e.stopPropagation();
-
-			utils.removeEvent(window, 'touchmove', this);
-			utils.removeEvent(window, utils.prefixPointerEvent('pointermove'), this);
-			utils.removeEvent(window, 'mousemove', this);
-
-			if ( this.scroller.options.snap ) {
-				var snap = this.scroller._nearestSnap(this.scroller.x, this.scroller.y);
-
-				var time = this.options.snapSpeed || Math.max(
-						Math.max(
-							Math.min(Math.abs(this.scroller.x - snap.x), 1000),
-							Math.min(Math.abs(this.scroller.y - snap.y), 1000)
-						), 300);
-
-				if ( this.scroller.x != snap.x || this.scroller.y != snap.y ) {
-					this.scroller.directionX = 0;
-					this.scroller.directionY = 0;
-					this.scroller.currentPage = snap;
-					this.scroller.scrollTo(snap.x, snap.y, time, this.scroller.options.bounceEasing);
-				}
-			}
-
-			if ( this.moved ) {
-				this.scroller._execEvent('scrollEnd');
-			}
-		},
-
-		transitionTime: function (time) {
-			time = time || 0;
-			var durationProp = utils.style.transitionDuration;
-			this.indicatorStyle[durationProp] = time + 'ms';
-
-			if ( !time && utils.isBadAndroid ) {
-				this.indicatorStyle[durationProp] = '0.0001ms';
-				// remove 0.0001ms
-				var self = this;
-				rAF(function() {
-					if(self.indicatorStyle[durationProp] === '0.0001ms') {
-						self.indicatorStyle[durationProp] = '0s';
+					if (this.scroller.x != snap.x || this.scroller.y != snap.y) {
+						this.scroller.directionX = 0;
+						this.scroller.directionY = 0;
+						this.scroller.currentPage = snap;
+						this.scroller.scrollTo(snap.x, snap.y, time, this.scroller.options.bounceEasing);
 					}
-				});
-			}
-		},
+				}
 
-		transitionTimingFunction: function (easing) {
-			this.indicatorStyle[utils.style.transitionTimingFunction] = easing;
-		},
+				if (this.moved) {
+					this.scroller._execEvent('scrollEnd');
+				}
+			},
 
-		refresh: function () {
-			this.transitionTime();
+			transitionTime: function transitionTime(time) {
+				time = time || 0;
+				var durationProp = utils.style.transitionDuration;
+				this.indicatorStyle[durationProp] = time + 'ms';
 
-			if ( this.options.listenX && !this.options.listenY ) {
-				this.indicatorStyle.display = this.scroller.hasHorizontalScroll ? 'block' : 'none';
-			} else if ( this.options.listenY && !this.options.listenX ) {
-				this.indicatorStyle.display = this.scroller.hasVerticalScroll ? 'block' : 'none';
-			} else {
-				this.indicatorStyle.display = this.scroller.hasHorizontalScroll || this.scroller.hasVerticalScroll ? 'block' : 'none';
-			}
+				if (!time && utils.isBadAndroid) {
+					this.indicatorStyle[durationProp] = '0.0001ms';
+					// remove 0.0001ms
+					var self = this;
+					rAF(function () {
+						if (self.indicatorStyle[durationProp] === '0.0001ms') {
+							self.indicatorStyle[durationProp] = '0s';
+						}
+					});
+				}
+			},
 
-			if ( this.scroller.hasHorizontalScroll && this.scroller.hasVerticalScroll ) {
-				utils.addClass(this.wrapper, 'iScrollBothScrollbars');
-				utils.removeClass(this.wrapper, 'iScrollLoneScrollbar');
+			transitionTimingFunction: function transitionTimingFunction(easing) {
+				this.indicatorStyle[utils.style.transitionTimingFunction] = easing;
+			},
 
-				if ( this.options.defaultScrollbars && this.options.customStyle ) {
-					if ( this.options.listenX ) {
-						this.wrapper.style.right = '8px';
+			refresh: function refresh() {
+				this.transitionTime();
+
+				if (this.options.listenX && !this.options.listenY) {
+					this.indicatorStyle.display = this.scroller.hasHorizontalScroll ? 'block' : 'none';
+				} else if (this.options.listenY && !this.options.listenX) {
+					this.indicatorStyle.display = this.scroller.hasVerticalScroll ? 'block' : 'none';
+				} else {
+					this.indicatorStyle.display = this.scroller.hasHorizontalScroll || this.scroller.hasVerticalScroll ? 'block' : 'none';
+				}
+
+				if (this.scroller.hasHorizontalScroll && this.scroller.hasVerticalScroll) {
+					utils.addClass(this.wrapper, 'iScrollBothScrollbars');
+					utils.removeClass(this.wrapper, 'iScrollLoneScrollbar');
+
+					if (this.options.defaultScrollbars && this.options.customStyle) {
+						if (this.options.listenX) {
+							this.wrapper.style.right = '8px';
+						} else {
+							this.wrapper.style.bottom = '8px';
+						}
+					}
+				} else {
+					utils.removeClass(this.wrapper, 'iScrollBothScrollbars');
+					utils.addClass(this.wrapper, 'iScrollLoneScrollbar');
+
+					if (this.options.defaultScrollbars && this.options.customStyle) {
+						if (this.options.listenX) {
+							this.wrapper.style.right = '2px';
+						} else {
+							this.wrapper.style.bottom = '2px';
+						}
+					}
+				}
+
+				var r = this.wrapper.offsetHeight; // force refresh
+
+				if (this.options.listenX) {
+					this.wrapperWidth = this.wrapper.clientWidth;
+					if (this.options.resize) {
+						this.indicatorWidth = Math.max(Math.round(this.wrapperWidth * this.wrapperWidth / (this.scroller.scrollerWidth || this.wrapperWidth || 1)), 8);
+						this.indicatorStyle.width = this.indicatorWidth + 'px';
 					} else {
-						this.wrapper.style.bottom = '8px';
+						this.indicatorWidth = this.indicator.clientWidth;
 					}
-				}
-			} else {
-				utils.removeClass(this.wrapper, 'iScrollBothScrollbars');
-				utils.addClass(this.wrapper, 'iScrollLoneScrollbar');
 
-				if ( this.options.defaultScrollbars && this.options.customStyle ) {
-					if ( this.options.listenX ) {
-						this.wrapper.style.right = '2px';
+					this.maxPosX = this.wrapperWidth - this.indicatorWidth;
+
+					if (this.options.shrink == 'clip') {
+						this.minBoundaryX = -this.indicatorWidth + 8;
+						this.maxBoundaryX = this.wrapperWidth - 8;
 					} else {
-						this.wrapper.style.bottom = '2px';
+						this.minBoundaryX = 0;
+						this.maxBoundaryX = this.maxPosX;
 					}
-				}
-			}
 
-			var r = this.wrapper.offsetHeight;	// force refresh
-
-			if ( this.options.listenX ) {
-				this.wrapperWidth = this.wrapper.clientWidth;
-				if ( this.options.resize ) {
-					this.indicatorWidth = Math.max(Math.round(this.wrapperWidth * this.wrapperWidth / (this.scroller.scrollerWidth || this.wrapperWidth || 1)), 8);
-					this.indicatorStyle.width = this.indicatorWidth + 'px';
-				} else {
-					this.indicatorWidth = this.indicator.clientWidth;
+					this.sizeRatioX = this.options.speedRatioX || this.scroller.maxScrollX && this.maxPosX / this.scroller.maxScrollX;
 				}
 
-				this.maxPosX = this.wrapperWidth - this.indicatorWidth;
+				if (this.options.listenY) {
+					this.wrapperHeight = this.wrapper.clientHeight;
+					if (this.options.resize) {
+						this.indicatorHeight = Math.max(Math.round(this.wrapperHeight * this.wrapperHeight / (this.scroller.scrollerHeight || this.wrapperHeight || 1)), 8);
+						this.indicatorStyle.height = this.indicatorHeight + 'px';
+					} else {
+						this.indicatorHeight = this.indicator.clientHeight;
+					}
 
-				if ( this.options.shrink == 'clip' ) {
-					this.minBoundaryX = -this.indicatorWidth + 8;
-					this.maxBoundaryX = this.wrapperWidth - 8;
-				} else {
-					this.minBoundaryX = 0;
-					this.maxBoundaryX = this.maxPosX;
+					this.maxPosY = this.wrapperHeight - this.indicatorHeight;
+
+					if (this.options.shrink == 'clip') {
+						this.minBoundaryY = -this.indicatorHeight + 8;
+						this.maxBoundaryY = this.wrapperHeight - 8;
+					} else {
+						this.minBoundaryY = 0;
+						this.maxBoundaryY = this.maxPosY;
+					}
+
+					this.maxPosY = this.wrapperHeight - this.indicatorHeight;
+					this.sizeRatioY = this.options.speedRatioY || this.scroller.maxScrollY && this.maxPosY / this.scroller.maxScrollY;
 				}
 
-				this.sizeRatioX = this.options.speedRatioX || (this.scroller.maxScrollX && (this.maxPosX / this.scroller.maxScrollX));
-			}
+				this.updatePosition();
+			},
 
-			if ( this.options.listenY ) {
-				this.wrapperHeight = this.wrapper.clientHeight;
-				if ( this.options.resize ) {
-					this.indicatorHeight = Math.max(Math.round(this.wrapperHeight * this.wrapperHeight / (this.scroller.scrollerHeight || this.wrapperHeight || 1)), 8);
-					this.indicatorStyle.height = this.indicatorHeight + 'px';
-				} else {
-					this.indicatorHeight = this.indicator.clientHeight;
-				}
+			updatePosition: function updatePosition() {
+				var x = this.options.listenX && Math.round(this.sizeRatioX * this.scroller.x) || 0,
+				    y = this.options.listenY && Math.round(this.sizeRatioY * this.scroller.y) || 0;
 
-				this.maxPosY = this.wrapperHeight - this.indicatorHeight;
-
-				if ( this.options.shrink == 'clip' ) {
-					this.minBoundaryY = -this.indicatorHeight + 8;
-					this.maxBoundaryY = this.wrapperHeight - 8;
-				} else {
-					this.minBoundaryY = 0;
-					this.maxBoundaryY = this.maxPosY;
-				}
-
-				this.maxPosY = this.wrapperHeight - this.indicatorHeight;
-				this.sizeRatioY = this.options.speedRatioY || (this.scroller.maxScrollY && (this.maxPosY / this.scroller.maxScrollY));
-			}
-
-			this.updatePosition();
-		},
-
-		updatePosition: function () {
-			var x = this.options.listenX && Math.round(this.sizeRatioX * this.scroller.x) || 0,
-				y = this.options.listenY && Math.round(this.sizeRatioY * this.scroller.y) || 0;
-
-			if ( !this.options.ignoreBoundaries ) {
-				if ( x < this.minBoundaryX ) {
-					if ( this.options.shrink == 'scale' ) {
-						this.width = Math.max(this.indicatorWidth + x, 8);
+				if (!this.options.ignoreBoundaries) {
+					if (x < this.minBoundaryX) {
+						if (this.options.shrink == 'scale') {
+							this.width = Math.max(this.indicatorWidth + x, 8);
+							this.indicatorStyle.width = this.width + 'px';
+						}
+						x = this.minBoundaryX;
+					} else if (x > this.maxBoundaryX) {
+						if (this.options.shrink == 'scale') {
+							this.width = Math.max(this.indicatorWidth - (x - this.maxPosX), 8);
+							this.indicatorStyle.width = this.width + 'px';
+							x = this.maxPosX + this.indicatorWidth - this.width;
+						} else {
+							x = this.maxBoundaryX;
+						}
+					} else if (this.options.shrink == 'scale' && this.width != this.indicatorWidth) {
+						this.width = this.indicatorWidth;
 						this.indicatorStyle.width = this.width + 'px';
 					}
-					x = this.minBoundaryX;
-				} else if ( x > this.maxBoundaryX ) {
-					if ( this.options.shrink == 'scale' ) {
-						this.width = Math.max(this.indicatorWidth - (x - this.maxPosX), 8);
-						this.indicatorStyle.width = this.width + 'px';
-						x = this.maxPosX + this.indicatorWidth - this.width;
-					} else {
-						x = this.maxBoundaryX;
-					}
-				} else if ( this.options.shrink == 'scale' && this.width != this.indicatorWidth ) {
-					this.width = this.indicatorWidth;
-					this.indicatorStyle.width = this.width + 'px';
-				}
 
-				if ( y < this.minBoundaryY ) {
-					if ( this.options.shrink == 'scale' ) {
-						this.height = Math.max(this.indicatorHeight + y * 3, 8);
+					if (y < this.minBoundaryY) {
+						if (this.options.shrink == 'scale') {
+							this.height = Math.max(this.indicatorHeight + y * 3, 8);
+							this.indicatorStyle.height = this.height + 'px';
+						}
+						y = this.minBoundaryY;
+					} else if (y > this.maxBoundaryY) {
+						if (this.options.shrink == 'scale') {
+							this.height = Math.max(this.indicatorHeight - (y - this.maxPosY) * 3, 8);
+							this.indicatorStyle.height = this.height + 'px';
+							y = this.maxPosY + this.indicatorHeight - this.height;
+						} else {
+							y = this.maxBoundaryY;
+						}
+					} else if (this.options.shrink == 'scale' && this.height != this.indicatorHeight) {
+						this.height = this.indicatorHeight;
 						this.indicatorStyle.height = this.height + 'px';
 					}
-					y = this.minBoundaryY;
-				} else if ( y > this.maxBoundaryY ) {
-					if ( this.options.shrink == 'scale' ) {
-						this.height = Math.max(this.indicatorHeight - (y - this.maxPosY) * 3, 8);
-						this.indicatorStyle.height = this.height + 'px';
-						y = this.maxPosY + this.indicatorHeight - this.height;
-					} else {
-						y = this.maxBoundaryY;
-					}
-				} else if ( this.options.shrink == 'scale' && this.height != this.indicatorHeight ) {
-					this.height = this.indicatorHeight;
-					this.indicatorStyle.height = this.height + 'px';
 				}
+
+				this.x = x;
+				this.y = y;
+
+				if (this.scroller.options.useTransform) {
+					this.indicatorStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.scroller.translateZ;
+				} else {
+					this.indicatorStyle.left = x + 'px';
+					this.indicatorStyle.top = y + 'px';
+				}
+			},
+
+			_pos: function _pos(x, y) {
+				if (x < 0) {
+					x = 0;
+				} else if (x > this.maxPosX) {
+					x = this.maxPosX;
+				}
+
+				if (y < 0) {
+					y = 0;
+				} else if (y > this.maxPosY) {
+					y = this.maxPosY;
+				}
+
+				x = this.options.listenX ? Math.round(x / this.sizeRatioX) : this.scroller.x;
+				y = this.options.listenY ? Math.round(y / this.sizeRatioY) : this.scroller.y;
+
+				this.scroller.scrollTo(x, y);
+			},
+
+			fade: function fade(val, hold) {
+				if (hold && !this.visible) {
+					return;
+				}
+
+				clearTimeout(this.fadeTimeout);
+				this.fadeTimeout = null;
+
+				var time = val ? 250 : 500,
+				    delay = val ? 0 : 300;
+
+				val = val ? '1' : '0';
+
+				this.wrapperStyle[utils.style.transitionDuration] = time + 'ms';
+
+				this.fadeTimeout = setTimeout((function (val) {
+					this.wrapperStyle.opacity = val;
+					this.visible = +val;
+				}).bind(this, val), delay);
 			}
+		};
 
-			this.x = x;
-			this.y = y;
+		IScroll.utils = utils;
 
-			if ( this.scroller.options.useTransform ) {
-				this.indicatorStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.scroller.translateZ;
-			} else {
-				this.indicatorStyle.left = x + 'px';
-				this.indicatorStyle.top = y + 'px';
-			}
-		},
-
-		_pos: function (x, y) {
-			if ( x < 0 ) {
-				x = 0;
-			} else if ( x > this.maxPosX ) {
-				x = this.maxPosX;
-			}
-
-			if ( y < 0 ) {
-				y = 0;
-			} else if ( y > this.maxPosY ) {
-				y = this.maxPosY;
-			}
-
-			x = this.options.listenX ? Math.round(x / this.sizeRatioX) : this.scroller.x;
-			y = this.options.listenY ? Math.round(y / this.sizeRatioY) : this.scroller.y;
-
-			this.scroller.scrollTo(x, y);
-		},
-
-		fade: function (val, hold) {
-			if ( hold && !this.visible ) {
-				return;
-			}
-
-			clearTimeout(this.fadeTimeout);
-			this.fadeTimeout = null;
-
-			var time = val ? 250 : 500,
-				delay = val ? 0 : 300;
-
-			val = val ? '1' : '0';
-
-			this.wrapperStyle[utils.style.transitionDuration] = time + 'ms';
-
-			this.fadeTimeout = setTimeout((function (val) {
-				this.wrapperStyle.opacity = val;
-				this.visible = +val;
-			}).bind(this, val), delay);
+		if (typeof module != 'undefined' && module.exports) {
+			module.exports = IScroll;
+		} else if (true) {
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return IScroll;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.IScroll = IScroll;
 		}
-	};
-
-	IScroll.utils = utils;
-
-	if ( typeof module != 'undefined' && module.exports ) {
-		module.exports = IScroll;
-	} else if ( true ) {
-	        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () { return IScroll; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.IScroll = IScroll;
-	}
-
 	})(window, document, Math);
-
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-	module.exports = "\r\n\t<transition name='main'>\r\n\t\r\n\t\t<div class=\"lt-full zmiti-signin-main-ui \" :class=\"{'show':show}\"  ref='page'>\r\n\t\t\t<div>\r\n\t\t\t\t<img :src=\"imgs.qd\" alt=\"\">\r\n\t\t\t</div>\r\n\r\n\t\t\t<div v-tap='[signin]' class=\"zmiti-qd-btn\" @touchstart='isPress = true' @touchend='isPress = false' :class=\"{'active':isPress}\">\r\n\t\t\t\t点击签到\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"lt-full zmiti-signin-success\" v-if='showQdSuccess'>\r\n\t\t\t\t<div>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<img :src=\"imgs.success\" alt=\"\">\r\n\t\t\t\t\t\t<div style=\"height:30px;\"></div>\r\n\t\t\t\t\t\t<div>签到成功</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"zmiti-btn\" v-tap='[back]'>\r\n\t\t\t\t\t\t返回\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<Toast :msg='msg'></Toast>\r\n\t\t</div>\r\n\t\r\n\t</transition>\r\n";
+	module.exports = "\r\n\t<div class='zmiti-game-main-ui lt-full' :style=\"{background:'url('+imgs.gameBg+') no-repeat center center',backgroundSize:'cover'}\" :class=\"{'show':show}\">\r\n\t\t<div class='wm-game-main-content'>\r\n\t\t\t<div class='wm-game-reel'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-area'>\r\n\t\t\t\t<div class='wm-game-wrap' :style=\"{height:viewH-100+'px'}\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class='wm-game-Q'>\r\n\t\t\t\t\t\t<section  v-if='culturalRelicsList[current]'>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-title' >\r\n\t\t\t\t\t\t\t\t<div ref='text'>\r\n\t\t\t\t\t\t\t\t\t<div >\r\n\t\t\t\t\t\t\t\t\t\t<h1>{{culturalRelicsList[current].title}}</h1>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<section v-for='(text,i) in culturalRelicsList[current].content.split(\"|\")' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t{{text}}\r\n\t\t\t\t\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<h3 style=\"height:50px;\"></h3>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-pic'>\r\n\t\t\t\t\t\t\t\t<img :src=\"culturalRelicsList[current].image\" alt=\"\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</section>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class='wm-game-Q-content'>\r\n\t\t\t\t\t\t<div class='wm-game-Q-C'>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div v-if='resultArr.length<=questionLen.length' class='wm-game-result-C' ref='result'>\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li v-for='(item,i) in questionLen' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t<img :src=\"imgs.resultBg\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === true' class='wm-game-cultural-pic' :src=\"culturalRelicsList[i].image\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === false' class='wm-game-cultural-pic wrong' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li style=\"height:10px;\"></li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='resultArr.length<=questionLen.length' class='wm-game-main-place' ref='game'>\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='resultArr.length<=questionLen.length && culturalRelicsList[current]' class='wm-game-time' >\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>{{(current+1)+\" / \"+ questionLen.length}}</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div ref='send'>\r\n\t\t\t\t\t\t\t\t\t<div :style=\"{height:100+'px',width:width+'px'}\" class='zmiti-text-overflow'>\r\n\t\t\t\t\t\t\t\t\t\t<span>{{culturalRelicsList[current].title}}</span> 派送中... <img :src=\"imgs.send\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t{{time}} s\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<section v-if='resultArr.length>questionLen.length' class='wm-result-page'>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-person'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.person\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t60秒正确投送了{{rightCount}}个博物馆\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>您是知识达人！</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-btns'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.wxBtn\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<a :href=\"href\"><img :src=\"imgs.restartBtn\" alt=\"\"></a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-share'>\r\n\t\t\t\t\t\t\t\t\t<span v-tap='[showShare]'>分享成绩</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-reel wm-game-reel1'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-game-loading lt-full\" v-if='showTip' v-tap='[clearTip]'>\r\n\t\t\t<span v-if='countdown>=0'>{{countdown}}</span>\r\n\t\t\t<div v-else><img :src=\"imgs.tip\" alt=\"\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-mask lt-full\" v-if='showMask' v-tap='[showShare,false]'>\r\n\t\t\t<img :src=\"imgs.arrow\" alt=\"\">\r\n\t\t</div>\r\n\t</div>\r\n";
 
 /***/ }),
 /* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(34)
-	__vue_template__ = __webpack_require__(37)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "F:\\xuchang2018\\project\\signup\\components\\search\\index.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// <template>
-	// 	<transition name="team">
-	// 		<div class="lt-full zmiti-search-main-ui" :class="{'show':show}">
-	// 			<div class="zmiti-search-result-C">
-	// 				<header class="zmiti-search-header" v-if='showHeader'>
-	// 					<div>
-	// 						<span>{{where===0?'姓名':where===1?'省份':'责任人'}}</span>
-	// 						<select class="zmiti-where" v-model="where">
-	// 							<option :value="0">姓名</option>
-	// 							<option :value="1">省份</option>
-	// 							<option :value="2">责任人</option>
-	// 						</select>
-	// 					</div>
-	// 					<div>
-	//
-	// 						<input ref='keyword' type="text" placeholder="搜索"  v-model="keyword" />
-	// 					</div>
-	// 					<div>
-	// 						<div v-tap='[search]' :class="{'active':isPress}" @touchstart='isPress = true' @touchend='isPress = false'>搜 索</div>
-	// 					</div>
-	// 				</header>
-	// 				<div class="zmiti-search-list" ref='list'>
-	// 					<ul>
-	// 						<li v-for='(user,i) in userList' :key="i">
-	// 							<header v-tap='[toggleUser,user]'>
-	// 								<div>{{user.username}} <span>{{user.provicename}}</span>	 </div>
-	// 								<div :class="{'active':user.isdetail}">{{user.isdetail ? "收起":"查看详情"}}</div>
-	// 							</header>
-	// 							<section :style="{minHeight:user.isdetail?'700px':0,height:user.isdetail?'700px':0}">
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">姓名 ：</label><span>{{user.username}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">性别 ：</label><span>{{user.sex === 1 ? '男' :'女'}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">民族 ：</label><span>{{user.nation}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">职务 ：</label><span>{{user.job}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">座机号 ：</label><span>{{user.telphone}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">邮箱 ：</label><span>{{user.email}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">省份 ：</label><span>{{user.provicename}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">手机 ：</label><span>{{user.mobile}}</span>
-	// 								</div>
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">房间 ：</label><span>{{user.roomnumber}}</span>
-	// 								</div>
-	//
-	// 								<div class='zmiti-user-item'>
-	// 									<label for="">座位 ：</label><span>{{user.seatnumber}}</span>
-	// 								</div>
-	// 							</section>
-	// 						</li>
-	// 						<li style="height:50px;"></li>
-	// 					</ul>
-	// 				</div>
-	// 			</div>
-	// 			<div class="zmiti-search-footer" v-tap='[back]'>返回</div>
-	// 		</div>
-	// 	</transition>
-	// </template>
-	//
-	// <script>
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	__webpack_require__(35);
-
-	var _libAssetsJs = __webpack_require__(13);
-
-	var _libUtil = __webpack_require__(14);
-
-	var _libUtil2 = _interopRequireDefault(_libUtil);
-
-	var _jquery = __webpack_require__(15);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _iscroll = __webpack_require__(31);
-
-	var _iscroll2 = _interopRequireDefault(_iscroll);
-
-	exports['default'] = {
-		props: ['obserable'],
-		name: 'zmitiindex',
-		data: function data() {
-			return {
-				imgs: _libAssetsJs.imgs,
-				showHeader: true,
-				searchtype: false,
-				isPress: false,
-				show: false,
-				where: 0,
-				showTeam: false,
-				keyword: '',
-				userList: []
-			};
-		},
-		components: {},
-
-		methods: {
-
-			toggleUser: function toggleUser(user) {
-				var s = this;
-				user.isdetail = !user.isdetail;
-				this.userList = this.userList.filter(function () {
-					return 1;
-				});
-				setTimeout(function () {
-					s.scroll.refresh();
-				}, 650);
-			},
-			imgStart: function imgStart(e) {
-				e.preventDefault();
-			},
-			hideTeam: function hideTeam() {
-				this.showTeam = false;
-			},
-			back: function back() {
-				this.show = false;
-				if (this.showHeader) {
-					this.userList.length = 0;
-				}
-			},
-			search: function search() {
-				var s = this;
-
-				this.$refs['keyword'].blur();
-				var type = s.where === 0 || s.where === 2 ? 1 : 2;
-				_jquery2['default'].ajax({
-					url: window.baseUrl + '/wenming/getsignuplist/',
-					type: 'post',
-					data: {
-						type: type,
-						name: s.keyword,
-						status: 1,
-						pnumber: window.pNumber
-					},
-					success: function success(data) {
-						if (data.getret === 0) {
-							s.userList = data.list;
-							if (s.where === 2) {
-								//责任人查询
-								s.userList = s.userList.filter(function (user) {
-									return user.username.indexOf('*') > -1;
-								});
-							}
-							setTimeout(function () {
-								s.scroll.refresh();
-							}, 10);
-						}
-					}
-				});
-			}
-
-		},
-		watch: {
-			where: function where(val) {
-				this.search();
-			}
-		},
-		mounted: function mounted() {
-			var _this = this;
-
-			var s = this;
-			this.obserable.on('showSearch', function (data) {
-				_this.show = true;
-				if (data) {
-					_this.userList = window.leaders.concat([]);
-					_this.showHeader = false;
-				} else {
-					//this.userList.length = 0;
-					_this.showHeader = true;
-
-					_jquery2['default'].ajax({
-						url: window.baseUrl + '/wenming/getsignuplist/',
-						type: 'post',
-						data: {
-							status: 1,
-							pnumber: window.pNumber
-						},
-						success: function success(data) {
-
-							if (data.getret === 0) {
-								s.userList = data.list;
-								setTimeout(function () {
-									s.scroll.refresh();
-								}, 10);
-							}
-						}
-					});
-				}
-			});
-
-			this.scroll = new _iscroll2['default'](this.$refs['list'], {
-				scrollbars: true
-			});
-		}
-	};
-
-	// </script>
-	module.exports = exports['default'];
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(36);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!./index.css", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!./index.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(7)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.zmiti-search-main-ui {\n  background: #fff;\n  opacity: 0;\n  z-index: -1;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.zmiti-search-main-ui .zmiti-search-result-C {\n  -webkit-box-flex: 1;\n  width: 100%;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.zmiti-search-main-ui .zmiti-search-list {\n  -webkit-box-flex: 1;\n  width: 100%;\n  box-sizing: border-box;\n  overflow: hidden;\n  position: relative;\n}\n\n.zmiti-search-main-ui .zmiti-search-list header span {\n  margin-left: 20px;\n  color: #999;\n}\n\n.zmiti-search-main-ui .zmiti-search-list .zmiti-user-item {\n  text-indent: 2em;\n  height: 70px;\n  line-height: 70px;\n}\n\n.zmiti-search-main-ui .zmiti-search-list .zmiti-user-item:last-of-type {\n  border-bottom: 1px solid #f7f7f7;\n}\n\n.zmiti-search-main-ui .zmiti-search-list .zmiti-user-item label {\n  color: #0085c3;\n}\n\n.zmiti-search-main-ui .zmiti-search-list .zmiti-user-item span {\n  color: #999999;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li {\n  margin: 20px 0;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li > section {\n  -webkit-transition: 0.2s;\n  transition: 0.2s;\n  overflow: hidden;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li header {\n  line-height: 100px;\n  height: 100px;\n  padding: 0 40px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  border-bottom: 1px solid #f4f4f4;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li header div:nth-of-type(2) {\n  color: #ddd;\n  font-size: 24px;\n  padding-right: 1em;\n  position: relative;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li header div:nth-of-type(2):before {\n  content: \"\";\n  width: 12px;\n  height: 12px;\n  border: 2px solid #ccc;\n  position: absolute;\n  right: 0;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  border-left: none;\n  border-bottom: none;\n  top: 42px;\n}\n\n.zmiti-search-main-ui .zmiti-search-list li header div:nth-of-type(2).active:before {\n  content: \"\";\n  right: 0;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  border: 2px solid #ccc;\n  border-left: none;\n  border-top: none;\n  top: 38px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  width: 750px;\n  padding: 0 20px 80px 20px;\n  box-sizing: border-box;\n  margin: 20px auto;\n  border-bottom: 1px solid #f4f4f4;\n  color: #999999;\n  height: 60px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div {\n  height: 60px;\n  line-height: 60px;\n  font-size: 28px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div select {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(1) {\n  padding-right: 30px;\n  width: 100px;\n  text-align: center;\n  position: relative;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(1):before {\n  content: '';\n  position: absolute;\n  width: 10px;\n  height: 10px;\n  border: 2px solid #999;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  border-top: none;\n  border-left: none;\n  right: 20px;\n  top: 20px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(1) ul {\n  position: absolute;\n  border: 1px solid #ccc;\n  width: 100%;\n  display: none;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(2) {\n  -webkit-box-flex: 1;\n  background: #f5f5f5;\n  border-radius: 40px;\n  position: relative;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(2):before {\n  content: '';\n  position: absolute;\n  width: 24px;\n  height: 24px;\n  border-radius: 50%;\n  border: 2px solid #dddddd;\n  left: 20px;\n  top: 8px;\n  -webkit-transform: translateY(6px);\n  transform: translateY(6px);\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(2):after {\n  content: '';\n  position: absolute;\n  width: 12px;\n  top: 36px;\n  left: 40px;\n  -webkit-transform: translateY(6px) rotate(45deg);\n  transform: translateY(6px) rotate(45deg);\n  border: 2px solid #dddddd;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(2) input {\n  position: absolute;\n  width: 320px;\n  background: transparent;\n  height: 100%;\n  border: none;\n  outline: none;\n  font-size: 30px;\n  color: #999;\n  left: 70px;\n  padding: 0;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(2) input::-webkit-input-placeholder {\n  color: #ddd;\n  font-size: 28px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(3) {\n  text-align: center;\n  width: 130px;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(3) div {\n  background: #f5f5f5;\n  border-radius: 20px;\n  margin: 0 auto;\n  margin-left: 20px;\n  padding: 0 5px;\n  -webkit-transition: 0.1s;\n  transition: 0.1s;\n}\n\n.zmiti-search-main-ui .zmiti-search-header > div:nth-of-type(3) div.active {\n  background: #2c7f4d;\n  color: #fff;\n}\n\n.zmiti-search-main-ui .zmiti-search-footer {\n  height: 80px;\n  line-height: 80px;\n  background-image: -webkit-linear-gradient(left, #fe6500, #f00000);\n  color: #fff;\n  text-align: center;\n  width: 100%;\n  margin-top: 10px;\n}\n\n.zmiti-search-main-ui.show {\n  opacity: 1;\n  z-index: 501;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-	module.exports = "\r\n\t<transition name=\"team\">\r\n\t\t<div class=\"lt-full zmiti-search-main-ui\" :class=\"{'show':show}\">\r\n\t\t\t<div class=\"zmiti-search-result-C\">\r\n\t\t\t\t<header class=\"zmiti-search-header\" v-if='showHeader'>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<span>{{where===0?'姓名':where===1?'省份':'责任人'}}</span>\r\n\t\t\t\t\t\t<select class=\"zmiti-where\" v-model=\"where\">\r\n\t\t\t\t\t\t\t<option :value=\"0\">姓名</option>\r\n\t\t\t\t\t\t\t<option :value=\"1\">省份</option>\r\n\t\t\t\t\t\t\t<option :value=\"2\">责任人</option>\r\n\t\t\t\t\t\t</select>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<input ref='keyword' type=\"text\" placeholder=\"搜索\"  v-model=\"keyword\" />\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<div v-tap='[search]' :class=\"{'active':isPress}\" @touchstart='isPress = true' @touchend='isPress = false'>搜 索</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</header>\r\n\t\t\t\t<div class=\"zmiti-search-list\" ref='list'>\r\n\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t<li v-for='(user,i) in userList' :key=\"i\">\r\n\t\t\t\t\t\t\t<header v-tap='[toggleUser,user]'>\r\n\t\t\t\t\t\t\t\t<div>{{user.username}} <span>{{user.provicename}}</span>\t </div>\r\n\t\t\t\t\t\t\t\t<div :class=\"{'active':user.isdetail}\">{{user.isdetail ? \"收起\":\"查看详情\"}}</div>\r\n\t\t\t\t\t\t\t</header>\r\n\t\t\t\t\t\t\t<section :style=\"{minHeight:user.isdetail?'700px':0,height:user.isdetail?'700px':0}\">\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">姓名 ：</label><span>{{user.username}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">性别 ：</label><span>{{user.sex === 1 ? '男' :'女'}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">民族 ：</label><span>{{user.nation}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">职务 ：</label><span>{{user.job}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">座机号 ：</label><span>{{user.telphone}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">邮箱 ：</label><span>{{user.email}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">省份 ：</label><span>{{user.provicename}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">手机 ：</label><span>{{user.mobile}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">房间 ：</label><span>{{user.roomnumber}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t<div class='zmiti-user-item'>\r\n\t\t\t\t\t\t\t\t\t<label for=\"\">座位 ：</label><span>{{user.seatnumber}}</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li style=\"height:50px;\"></li>\r\n\t\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"zmiti-search-footer\" v-tap='[back]'>返回</div>\r\n\t\t</div>\r\n\t</transition>\r\n";
-
-/***/ }),
-/* 38 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -25642,7 +25308,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 39 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25757,7 +25423,7 @@
 	});
 
 /***/ }),
-/* 40 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!

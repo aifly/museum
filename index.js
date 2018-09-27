@@ -193,7 +193,7 @@ new Vue({
 
 		});
 		zmitiUtil.getOauthurl(obserable);
-		//zmitiUtil.wxConfig(document.title, window.desc);
+		zmitiUtil.wxConfig(document.title, window.desc);
 		this.updatePv();
 		return;
 		/*$.ajax({
