@@ -8,7 +8,7 @@
 				<div class='wm-game-wrap' :style="{height:viewH-100+'px'}">
 					
 					<div class='wm-game-Q'>
-						<section>
+						<section  v-if='culturalRelicsList[current]'>
 							<span></span>
 							<span></span>
 							<span></span>
@@ -17,20 +17,21 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div class='wm-game-Q-title'>
+							<div class='wm-game-Q-title' >
 								<div ref='text'>
-									<div>
-										<h1>后母戊鼎</h1>
+									<div >
+										<h1>{{culturalRelicsList[current].title}}</h1>
 										<div>
-											原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作
-										原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作原器1939年3月在河南安阳出土，是商王祖庚或祖甲为祭祀其母戊所制，是商周时期青铜文化的代表作
+											<section v-for='(text,i) in culturalRelicsList[current].content.split("|")' :key="i">
+												{{text}}
+											</section>
 										</div>
 										<h3 style="height:50px;"></h3>
 									</div>
 								</div>
 							</div>
 							<div class='wm-game-Q-pic'>
-								<img :src="imgs.goods1" alt="">
+								<img :src="culturalRelicsList[current].image" alt="">
 							</div>
 						</section>
 					</div>
@@ -44,37 +45,43 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div class='wm-game-result-C' ref='result'>
+							<div v-if='resultArr.length>0' class='wm-game-result-C' ref='result'>
 								<ul>
 									<li v-for='(item,i) in questionLen' :key="i">
 										<img :src="imgs.resultBg" alt="">
+										<img  v-if='resultArr[i] === true' class='wm-game-cultural-pic' :src="culturalRelicsList[i].image" alt="">
+										<img  v-if='resultArr[i] === false' class='wm-game-cultural-pic wrong' :src="imgs.wrong" alt="">
 									</li>
 									<li style="height:10px;"></li>
 								</ul>
 							</div>
-							<div class='wm-game-main-place' ref='game'>
+							<div v-if='resultArr.length>0' class='wm-game-main-place' ref='game'>
 								<ul>
 									<li>
-										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i'>
+										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
-											<img :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
+											<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src="imgs.wrong" alt="">
 										</div>
 									</li>
 									<li>
-										<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'>
+										<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>
 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
-											<img :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
+											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
+											<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src="imgs.wrong" alt="">
 										</div>
 									</li>
 								</ul>
 							</div>
-							<div class='wm-game-time'>
+							<div v-if='resultArr.length>0 && culturalRelicsList[current]' class='wm-game-time' >
 								<div>
-									<div>{{current+" / "+ questionLen.length}}</div>
+									<div>{{(current+1)+" / "+ questionLen.length}}</div>
 								</div>
 								<div ref='send'>
-									<div :style="{height:100+'px',width:width+'px'}">
-										<span>后母戊鼎</span> 派送中... <img :src="imgs.send" alt="">
+									<div :style="{height:100+'px',width:width+'px'}" class='zmiti-text-overflow'>
+										<span>{{culturalRelicsList[current].title}}</span> 派送中... <img :src="imgs.send" alt="">
 									</div>
 								</div>
 								<div>
@@ -83,6 +90,24 @@
 									</div>
 								</div>
 							</div>
+							<section v-if='resultArr.length<=0' class='wm-result-page'>
+								<div class='wm-result-person'>
+									<div><img :src="imgs.person" alt=""></div>
+									<div>
+										<div>
+											60秒正确投送了XX博物馆
+										</div>
+										<div>您是知识达人！</div>
+									</div>
+								</div>
+								<div class='wm-result-btns'>
+									<div><img :src="imgs.wxBtn" alt=""></div>
+									<div><img :src="imgs.restartBtn" alt=""></div>
+								</div>
+								<div class='wm-share'>
+									<span>分享成绩</span>
+								</div>
+							</section>
 						</div>
 					</div>
 				</div>
@@ -108,11 +133,14 @@
 				show:true,
 				time:60,
 				questionLen:new Array(10),
-				current:1,
+				current:0,
 				width:0,
 				viewW:window.innerWidth,
 				viewH:window.innerHeight,
+				resultArr:[],
 				museums:window.museums,
+				culturalRelicsList:[],
+				canTap:true
 			}
 		},
 		components:{
@@ -120,16 +148,42 @@
 		
 		methods:{
 
-			touchstart(e){
-				this.isCanMove = true;
-				this.startX = e.changedTouches[0].pageX - this.transX;
-				this.startY = e.changedTouches[0].pageY -this.transY;
+			choose(m,i){
+				if(this.canTap){
+					this.canTap = false;
+					if(this.resultArr.length>=this.questionLen.length){
+						this.canTap = false;
+						return;
+					}
+	
+					if(m.key  === this.culturalRelicsList[this.current].key){
+						m.isRight = true;
+						this.resultArr.push(true)
+					}else{
+						m.isRight = false;
+						this.resultArr.push(false);
+					}
+					
+					this.museums = this.museums.concat([]);
+					setTimeout(() => {
+						this.current++;
+						this.current = Math.min(this.current,this.questionLen.length-1);
+						m.isRight = null;
+						this.museums = this.museums.concat([]);
+						setTimeout(() => {
+							this.scroll.refresh();
+							this.canTap = true;
+						}, 100);
+					}, 1000);
+				}
+			},
 
-				//return false;
+			touchstart(e){
+				e.preventDefault();
+			
 			},
 			imgLoaded($event,m,index){
-				console.log($event.path[0].clientHeight);
-				m.width = this.$refs['museums'][index].offsetHeight;
+				m.width = $event.path[0].clientHeight;
 				m.height = 40;
 				this.museums = this.museums.concat([]);
 			}
@@ -138,25 +192,40 @@
 		},
 		mounted(){
 
-			this.scroll = new IScroll(this.$refs['text'],{
-				scrollbars:true,
-				//mouseWheel:true
-			});
 
-			this.resultScroll = new IScroll(this.$refs['result'],{
-				zmitiV:true
-			});
-			this.gameScroll = new IScroll(this.$refs['game'],{
-				zmitiV:true
-			})
+			
+			window.ss = this;
+			var arr = window.culturalRelicsList.concat([]);
+			for(var i = 0; i<this.questionLen.length;i++){
+				
+				var index = (Math.random()*this.questionLen.length)|0;
+				this.culturalRelicsList.push(arr.splice(index,1)[0]);
+			}
+
 
 			setTimeout(() => {
-				this.scroll.refresh();
-				this.resultScroll.refresh();
-				this.gameScroll.refresh();
-			}, 1000);
+				this.scroll = new IScroll(this.$refs['text'],{
+					scrollbars:true,
+					//mouseWheel:true
+				});
+				
+				this.$refs['result'] && (this.resultScroll = new IScroll(this.$refs['result'],{
+					zmitiV:true
+				}));
+				this.$refs['game'] && (this.gameScroll = new IScroll(this.$refs['game'],{
+					zmitiV:true
+				}));
+				setTimeout(() => {
+					this.scroll.refresh();
+					this.$refs['result'] && this.resultScroll.refresh();
+					this.$refs['game'] && this.gameScroll.refresh();
+				}, 1000);
 
-			this.width = this.$refs['send'].offsetHeight;
+				this.$refs['send'] && (this.width = this.$refs['send'].offsetHeight);
+			}, 100);
+
+		
+
 			 
 		}
 	}

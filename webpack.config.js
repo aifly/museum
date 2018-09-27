@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var port = 4050;
+var port = 4051;
 var config = {
     entry: {
         'index': "./index.js",

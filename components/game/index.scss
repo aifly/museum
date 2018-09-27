@@ -203,6 +203,60 @@ $color: #fffb88;
                                         height: 60px;
                                         -webkit-box-flex: 1;
                                         margin-top: 20px;
+                                        @include pos(r);
+                                        .wm-game-cultural-pic{
+                                            @include pos(a);
+                                            
+                                            left: 50%;
+                                            top: 50%;
+                                            max-width: 50px;;
+                                            max-height: 50px;
+                                            @include transform(translate3d(-50%,-50%,0) scale(.8) rotate(90deg));
+                                            
+                                            &.wrong{
+                                                
+                                                @include transform(translate3d(-50%,-50%,0) scale(.5) rotate(90deg));
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                                
+                            }
+
+                            .wm-result-page {
+                                
+                                //
+                                @include pos(a);
+                                left: 50%;
+                                top: 50%;
+                                @include transform( translate(-50%,-50%) rotate(90deg));
+                                width: 52vh;
+                                height: 450px;
+                                border: 1px solid red;
+
+                                .wm-result-person{
+                                    @include displayBox(horizontal);
+                                    img{
+                                        width: 100px;
+                                    }
+                                }
+                                .wm-result-btns{
+                                    @include displayBox(horizontal);
+                                    div{
+                                        margin: 0 20px;
+                                    }
+                                    img{
+                                        width: 160px;
+                                    }
+                                }
+                                .wm-share{
+                                    text-align: right;
+                                    span{
+                                        margin-right: 30px;
+                                        text-decoration: underline;;
+                                        font-size:26px;
                                     }
                                 }
                             }
@@ -219,6 +273,19 @@ $color: #fffb88;
                                         -webkit-box-flex:1;
 
                                         margin-left:50px;
+
+                                        .wm-result-img{
+                                            @include pos(a);
+                                            z-index: 10;
+                                            $size:50px;
+                                            width: $size;
+                                            left: 50%;
+                                            top: 50%;
+                                            margin-left: -$size/2;
+                                            margin-top: -$size/2;
+                                            @include transform(rotate(90deg));
+
+                                        }
                                             
                                         div{
                                             margin: 20px 0;
@@ -228,12 +295,16 @@ $color: #fffb88;
                                                 display: inline-block;
                                             }
                                             span{
+                                                font-size:24px;
+                                                @include pos(a);
+                                                left: 0;
                                                 display: inline-block;
                                                 text-align: center;
                                                 width: 100%;
                                                 height: 100%;
+                                                min-width: 200px;
                                                 @include transformOrigin(left top);;
-                                                @include transform(rotate(90deg));
+                                                @include transform(rotate(90deg) );
                                             }
                                         }
                                     }
@@ -448,14 +519,17 @@ $color: #fffb88;
                             top: 0%;
 
                             @include transform(translate3d(0, 0%, 0));
+                            img{
+                                @include transform(rotate(90deg));
+                            }
                         }
                     }
 
                     img {
                         width: auto;
                         height: auto;
-                        max-width: 100%;
-                        max-height: 100%;
+                        max-width: 80%;
+                        max-height: 80%;
                         display: block;
                     }
                 }
