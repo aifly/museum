@@ -41,7 +41,7 @@ var zmitiUtil = {
 
 		var img =  'http://h5.zmiti.com/public/'+window.h5name+'/assets/images/300.jpg';
 
-		var appId = this.wxInfo().wxappid;
+		var appId ='wxfacf4a639d9e3bcc';// this.wxInfo().wxappid;
 
 
 		var durl = url || location.href.split('#')[0];
@@ -52,8 +52,8 @@ var zmitiUtil = {
 
 		$.ajax({
 			type: 'get',
-			url: "http://h5.zhongguowangshi.com/tree/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
-			url: "http://api.zmiti.com/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
+			//url: "http://h5.zhongguowangshi.com/tree/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
+			url: "http://api.zmiti.com/weixin/jssdk.php?type=signature&durl=" + code_durl,
 			dataType: 'jsonp',
 			jsonp: "callback",
 			jsonpCallback: "jsonFlickrFeed",
@@ -61,7 +61,6 @@ var zmitiUtil = {
 
 			},
 			success: function(data) {
-
 				wx.config({
 					debug: isDebug, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 					appId: appId, // 必填，公众号的唯一标识

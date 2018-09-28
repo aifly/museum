@@ -17,8 +17,8 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div class='wm-game-Q-title' >
-								<div ref='text'>
+							<div class='wm-game-Q-title' ref='title'>
+								<div ref='text' :style='{width:titleWidth+"px"}'>
 									<div >
 										<h1>{{culturalRelicsList[current].title}}</h1>
 										<div>
@@ -30,7 +30,7 @@
 									</div>
 								</div>
 							</div>
-							<div class='wm-game-Q-pic'>
+							<div class='wm-game-Q-pic' :style="{height:titleWidth+'px'}">
 								<img :src="culturalRelicsList[current].image" alt="">
 							</div>
 						</section>
@@ -45,7 +45,7 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div v-if='resultArr.length<=questionLen.length' class='wm-game-result-C' ref='result'>
+							<div v-if='!showResult' class='wm-game-result-C' ref='result'>
 								<ul>
 									<li v-for='(item,i) in questionLen' :key="i">
 										<img :src="imgs.resultBg" alt="">
@@ -55,7 +55,7 @@
 									<li style="height:10px;"></li>
 								</ul>
 							</div>
-							<div v-if='resultArr.length<=questionLen.length' class='wm-game-main-place' ref='game'>
+							<div v-if='!showResult' class='wm-game-main-place' ref='game'>
 								<ul>
 									<li>
 										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
@@ -75,9 +75,9 @@
 									</li>
 								</ul>
 							</div>
-							<div v-if='resultArr.length<=questionLen.length && culturalRelicsList[current]' class='wm-game-time' >
+							<div v-if='!showResult && culturalRelicsList[current]' class='wm-game-time' >
 								<div>
-									<div>{{(current+1)+" / "+ questionLen.length}}</div>
+									<div>{{(current+1<10?'0'+(current+1):current+1)+" / "+ questionLen.length}}</div>
 								</div>
 								<div ref='send'>
 									<div :style="{height:100+'px',width:width+'px'}" class='zmiti-text-overflow'>
@@ -90,7 +90,7 @@
 									</div>
 								</div>
 							</div>
-							<section v-if='resultArr.length>questionLen.length' class='wm-result-page'>
+							<section v-if='showResult' class='wm-result-page'>
 								<div class='wm-result-person'>
 									<div><img :src="imgs.person" alt=""></div>
 									<div>
@@ -156,6 +156,8 @@
 				rightCount:0,
 				canTap:true,
 				href:window.location.href,
+				showResult:false,
+				titleWidth:0
 			}
 		},
 		components:{
@@ -166,17 +168,17 @@
 			clearTip(){
 				if(this.countdown<0){
 					this.showTip = false;
+					this.t = setInterval(()=>{
+						this.time--;
+						if(this.time<=0){
+							clearInterval(this.t);//
+							for(var i =0 ;i<this.questionLen.length+1;i++){
+								this.resultArr.push(i);
+							}
+						}
+					},1000)
 				}
 
-				this.t = setInterval(()=>{
-					this.time--;
-					if(this.time<=0){
-						clearInterval(this.t);//
-						for(var i =0 ;i<this.questionLen.length+1;i++){
-							this.resultArr.push(i);
-						}
-					}
-				},1000)
 
 			},
 
@@ -187,12 +189,14 @@
 			choose(m,i){
 				if(this.canTap){
 					this.canTap = false;
+					var time = 0;
 					if(this.resultArr.length>=this.questionLen.length){
 						this.resultArr.push(1);
 						this.canTap = false;
+						time = 1000;
 						return;
 					}
-	
+
 					if(m.key  === this.culturalRelicsList[this.current].key){
 						m.isRight = true;
 						this.rightCount++;
@@ -201,7 +205,6 @@
 						m.isRight = false;
 						this.resultArr.push(false);
 					}
-					
 					this.museums = this.museums.concat([]);
 					setTimeout(() => {
 						this.current++;
@@ -210,9 +213,15 @@
 						this.museums = this.museums.concat([]);
 						setTimeout(() => {
 							this.scroll.refresh();
-							this.canTap = true;
+							if(this.resultArr.length<this.questionLen.length){
+								this.canTap = true;
+							}else{
+								this.showResult = true;
+							}
 						}, 100);
 					}, 1000);
+
+	
 				}
 			},
 
@@ -221,11 +230,14 @@
 			
 			},
 			imgLoaded($event,m,index){
-				m.width = $event.path[0].clientHeight;
+				//alert($event.target.height);
+				m.width =$event.path ? $event.path[0].clientHeight :$event.target.height;//$event.target.height;
+				//alert(m.width);
 				m.height = 40;
 				this.museums = this.museums.concat([]);
 			},
 			init(){
+
 				var t = setInterval(()=>{
 					this.countdown--;
 					if(this.countdown<=0){
@@ -269,7 +281,11 @@
 		},
 		mounted(){
 
+
+			this.titleWidth = this.$refs['title'].offsetHeight;
+
 			this.obserable.on("initGame",()=>{
+				this.titleWidth = this.$refs['title'].offsetHeight;
 				this.show = true;
 				this.init();
 			})
