@@ -19,15 +19,17 @@
 							<label></label>
 							<div class='wm-game-Q-title' ref='title'>
 								<div ref='text' :style='{width:titleWidth+"px"}'>
-									<div >
-										<h1>{{culturalRelicsList[current].title}}</h1>
-										<div>
-											<section v-for='(text,i) in culturalRelicsList[current].content.split("|")' :key="i">
-												{{text}}
-											</section>
+									<transition-group name='fade' tag='div'>
+										<div v-for='(cul,i) in culturalRelicsList' :key='i' v-if='i===current'>
+											<h1>{{cul.title}}</h1>
+											<div>
+												<section v-for='(text,i) in cul.content.split("|")' :key="i">
+													{{text}}
+												</section>
+											</div>
+											<h3 style="height:50px;"></h3>
 										</div>
-										<h3 style="height:50px;"></h3>
-									</div>
+									</transition-group>
 								</div>
 							</div>
 							<div class='wm-game-Q-pic' :style="{height:titleWidth+'px'}">
@@ -36,7 +38,7 @@
 						</section>
 					</div>
 					<div class='wm-game-Q-content'>
-						<div class='wm-game-Q-C'>
+						<div class='wm-game-Q-C' >
 							<span></span>
 							<span></span>
 							<span></span>
@@ -45,7 +47,7 @@
 							<label></label>
 							<label></label>
 							<label></label>
-							<div v-if='!showResult' class='wm-game-result-C' ref='result'>
+							<div v-if='!showResult' class='wm-game-result-C' ref='result' >
 								<ul>
 									<li v-for='(item,i) in questionLen' :key="i">
 										<img :src="imgs.resultBg" alt="">
@@ -55,7 +57,7 @@
 									<li style="height:10px;"></li>
 								</ul>
 							</div>
-							<div v-if='!showResult' class='wm-game-main-place' ref='game'>
+							<div v-if='!showResult' class='wm-game-main-place' ref='game' :class='{"active":changing}'>
 								<ul>
 									<li>
 										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
@@ -97,7 +99,7 @@
 										<div>
 											60秒正确投送了{{rightCount}}个博物馆
 										</div>
-										<div>您是知识达人！</div>
+										<div>您是{{level}}！</div>
 									</div>
 								</div>
 								<div class='wm-result-btns'>
@@ -119,8 +121,19 @@
 			</div>
 		</div>
 		<div class="wm-game-loading lt-full" v-if='showTip' v-tap='[clearTip]'>
-			<span v-if='countdown>=0'>{{countdown}}</span>
-			<div v-else><img :src="imgs.tip" alt=""></div>
+			<transition name='fade'>
+				<span v-if='!showInfo&&countdown===3'>{{countdown}}</span>
+			</transition>
+			<transition name='fade'>
+				<span v-if='!showInfo&&countdown===2'>{{countdown}}</span>
+			</transition>
+			<transition name='fade'>
+				<span v-if='!showInfo&&countdown===1'>{{countdown}}</span>
+			</transition>
+			<transition name='fade'>
+				<span v-if='!showInfo&&countdown===0'>{{countdown}}</span>
+			</transition>
+			<div v-if='showInfo'><img :src="imgs.tip" alt=""></div>
 		</div>
 		<div class="wm-mask lt-full" v-if='showMask' v-tap='[showShare,false]'>
 			<img :src="imgs.arrow" alt="">
@@ -145,6 +158,8 @@
 				time:60,
 				showTip:true,
 				showMask:false,
+				changing:false,
+				showInfo:true,
 				questionLen:new Array(10),
 				current:0,
 				width:0,
@@ -157,26 +172,54 @@
 				canTap:true,
 				href:window.location.href,
 				showResult:false,
-				titleWidth:0
+				titleWidth:0,
+				level:'草根'
 			}
 		},
 		components:{
+		},
+
+		watch:{
+			current(val){
+				if(val>0){
+					this.changing = true;
+					setTimeout(()=>{
+						this.changing = false;
+					},500)
+				}
+			}
 		},
 		
 		methods:{
 
 			clearTip(){
-				if(this.countdown<0){
-					this.showTip = false;
-					this.t = setInterval(()=>{
+				if(!this.showInfo){
+					return;
+				}
+				this.showInfo = false;
+
+
+				var t = setInterval(()=>{
+					this.countdown--;
+
+					if(this.countdown<=0){
+						clearInterval(t);
+						this.showTip = false;
+						this.t = setInterval(()=>{
 						this.time--;
 						if(this.time<=0){
 							clearInterval(this.t);//
+							this.showResult = true;
 							for(var i =0 ;i<this.questionLen.length+1;i++){
 								this.resultArr.push(i);
 							}
 						}
 					},1000)
+					}
+				},1500)
+
+				if(this.countdown<0){
+					
 				}
 
 
@@ -200,6 +243,18 @@
 					if(m.key  === this.culturalRelicsList[this.current].key){
 						m.isRight = true;
 						this.rightCount++;
+						if(this.rightCount<=10){
+							this.level = '大师';
+						}
+						if(this.rightCount<=9){
+							this.level = '达人';
+						}
+						if(this.rightCount<7){
+							this.level = '骨干';
+						}
+						if(this.rightCount<4){
+							this.level = '精英';
+						}
 						this.resultArr.push(true)
 					}else{
 						m.isRight = false;
@@ -212,7 +267,9 @@
 						m.isRight = null;
 						this.museums = this.museums.concat([]);
 						setTimeout(() => {
-							this.scroll.refresh();
+							setTimeout(()=>{
+								this.scroll.refresh();
+							},1000);
 							if(this.resultArr.length<this.questionLen.length){
 								this.canTap = true;
 							}else{
@@ -238,12 +295,7 @@
 			},
 			init(){
 
-				var t = setInterval(()=>{
-					this.countdown--;
-					if(this.countdown<=0){
-						//clearInterval(t);
-					}
-				},1000)
+				
 				
 				window.ss = this;
 				var arr = window.culturalRelicsList.concat([]);

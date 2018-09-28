@@ -58,9 +58,9 @@
 
 	var _componentsIndexIndex2 = _interopRequireDefault(_componentsIndexIndex);
 
-	var _componentsFormIndex = __webpack_require__(17);
+	var _componentsMusicIndex = __webpack_require__(36);
 
-	var _componentsFormIndex2 = _interopRequireDefault(_componentsFormIndex);
+	var _componentsMusicIndex2 = _interopRequireDefault(_componentsMusicIndex);
 
 	var _componentsGameIndex = __webpack_require__(27);
 
@@ -132,10 +132,9 @@
 	 	<audio src='./assets/music/photo.mp3' ref='photo'></audio>
 	 	<audio src='./assets/music/bg.mp3' ref='audio'></audio>
 	 	<audio src='./assets/music/tu.mp3' ref='tu' loop></audio>
-	 	<Music :obserable='obserable'></Music>
 	 	<Main :pv='pv' :nickname='nickname' :headimgurl='headimgurl'  v-if='show && !isShare'  :obserable='obserable'></Main>
 	 	*/
-		template: '<div>\n\t\t\t<section>\n\t\t\t\t<Game :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Game>\n\t\t\t\t<Index :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Index>\n\t\t\t\t<Form :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Form>\n\t\t\t\t<div  v-if=\'!loaded\' :style=\'{background:"#fff"}\' class=\'zmiti-loading lt-full\'>\n\t\t\t\t\t<div class=\'zmiti-loading-ui\'>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img src=' + _componentsLibAssets.imgs.logo + ' />\n\t\t\t\t\t\t\t<span :style = "scaleStyle" ></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\'zmiti-progress\'>{{width}}%</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\t</div>',
+		template: '<div>\n\t\t\t\t<Music :obserable=\'obserable\'></Music>\n\t\t\t<section>\n\t\t\t\t<Game :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Game>\n\t\t\t\t<Index :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Index>\n\t\t\t\t<Form :pv=\'pv\' :nickname=\'nickname\' :headimgurl=\'headimgurl\'   v-if=\'show && !isShare\'  :obserable=\'obserable\'></Form>\n\t\t\t\t<div  v-if=\'!loaded\' :style=\'{background:"#fff"}\' class=\'zmiti-loading lt-full\'>\n\t\t\t\t\t<div class=\'zmiti-loading-ui\'>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img src=' + _componentsLibAssets.imgs.logo + ' />\n\t\t\t\t\t\t\t<span :style = "scaleStyle" ></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\'zmiti-progress\'>{{width}}%</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\t</div>',
 		methods: {
 
 			loading: function loading(arr, fn, fnEnd) {
@@ -185,7 +184,7 @@
 		},
 		components: {
 			Index: _componentsIndexIndex2['default'],
-			Form: _componentsFormIndex2['default'],
+			Music: _componentsMusicIndex2['default'],
 			Game: _componentsGameIndex2['default'],
 			Toast: _componentsToastToast2['default']
 		},
@@ -12196,7 +12195,7 @@
 
 
 	// module
-	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis;\r\n}\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n\r\n.zmiti-play.rotate {\r\n  -webkit-animation: rotate 5s linear infinite;\r\n  animation: rotate 5s linear infinite;\r\n}\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n.zmiti-index-main-ui {\r\n  overflow: hidden;\r\n  width: 10rem;\r\n  left: 50% !important;\r\n  margin-left: -375px;\r\n  background: #ffffff;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-pack: start;\r\n  opacity: 0;\r\n  z-index: -1;\r\n}\r\n\r\n.zmiti-index-main-ui h4 {\r\n  height: 6vh;\r\n}\r\n\r\n.zmiti-index-main-ui .wm-index-task-btn {\r\n  margin-top: 30px;\r\n  width: 400px;\r\n}\r\n\r\n.zmiti-index-main-ui .wm-index-title {\r\n  width: 680px;\r\n  margin: 30px 0;\r\n}\r\n\r\n.zmiti-index-main-ui.show {\r\n  opacity: 1;\r\n  z-index: 500;\r\n}\r\n\r\n@media all and (max-height: 1108px) {\r\n  .zmiti-index-main-ui h4 {\r\n    height: 6vh;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-task-btn {\r\n    margin-top: 30px;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-index {\r\n    width: 400px;\r\n  }\r\n  .zmiti-index-main-ui .wm-index-title {\r\n    width: 600px;\r\n    margin: 30px 0;\r\n  }\r\n}\r\n", ""]);
+	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0; }\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis; }\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem; }\r\n  .zmiti-play.rotate {\r\n    -webkit-animation: rotate 5s linear infinite;\r\n    animation: rotate 5s linear infinite; }\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg); } }\r\n.zmiti-index-main-ui {\r\n  overflow: hidden;\r\n  width: 10rem;\r\n  left: 50% !important;\r\n  margin-left: -375px;\r\n  background: #ffffff;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-pack: start;\r\n  opacity: 0;\r\n  z-index: -1; }\r\n  .zmiti-index-main-ui h4 {\r\n    height: 6vh; }\r\n  .zmiti-index-main-ui .wm-index-task-btn {\r\n    margin-top: 30px;\r\n    width: 400px;\r\n    -webkit-animation: move 1s infinite linear alternate;\r\n    animation: move 1s infinite linear alternate; }\r\n@-webkit-keyframes move {\r\n  to {\r\n    -webkit-transform: translate(0, 6px);\r\n    transform: translate(0, 6px); } }\r\n  .zmiti-index-main-ui .wm-index-title {\r\n    width: 680px;\r\n    margin: 30px 0; }\r\n  .zmiti-index-main-ui.show {\r\n    opacity: 1;\r\n    z-index: 500; }\r\n\r\n@media all and (max-height: 1108px) {\r\n  .zmiti-index-main-ui h4 {\r\n    height: 6vh; }\r\n  .zmiti-index-main-ui .wm-index-task-btn {\r\n    margin-top: 30px; }\r\n  .zmiti-index-main-ui .wm-index-index {\r\n    width: 400px; }\r\n  .zmiti-index-main-ui .wm-index-title {\r\n    width: 600px;\r\n    margin: 30px 0; } }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
 
 	// exports
 
@@ -22294,299 +22293,10 @@
 	module.exports = "\r\n\t<div :style=\"{background:'url('+imgs.indexBg+') no-repeat center bottom',backgroundSize:'cover'}\" class=\"lt-full zmiti-index-main-ui \"  :class=\"{'show':show}\">\r\n\t\t<h4></h4>\r\n\t\t<div class='wm-index-index'>\r\n\t\t\t<img :src=\"imgs.index\" alt=\"\">\r\n\t\t</div>\r\n\t\t<div class='wm-index-title'>\r\n\t\t\t<img :src=\"imgs.title\" alt=\"\">\r\n\t\t</div>\r\n\t\t<div class='wm-index-task-btn' v-tap='[initGame]'>\r\n\t\t\t<img :src=\"imgs.getTaskBtn\" alt=\"\">\r\n\t\t</div>\r\n\t\t\r\n\r\n\t</div>\r\n";
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(18)
-	__vue_template__ = __webpack_require__(26)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\project\\museum\\components\\form\\index.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// <template>
-	// 	<transition name='main'>
-	// 		<div class="zmiti-form-main-ui lt-full" :class="{'show':show}">
-	//
-	// 		</div>
-	// 	</transition>
-	// </template>
-	//
-	// <script>
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	__webpack_require__(19);
-
-	var _libAssetsJs = __webpack_require__(13);
-
-	var _libUtil = __webpack_require__(14);
-
-	var _libUtil2 = _interopRequireDefault(_libUtil);
-
-	var _jquery = __webpack_require__(15);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _toastToast = __webpack_require__(21);
-
-	var _toastToast2 = _interopRequireDefault(_toastToast);
-
-	exports['default'] = {
-		props: ['obserable'],
-		name: 'zmitiindex',
-		data: function data() {
-			return {
-				imgs: _libAssetsJs.imgs,
-				showTeam: false,
-				show: true,
-				msg: "",
-				showMsg: '',
-				errorMsg: '',
-				viewW: window.innerWidth,
-				viewH: window.innerHeight,
-				showMasks: false,
-				isPress: false,
-				nickname: 'fly',
-				headimgurl: 'http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKbnW4CtREqdY27y7CTbqhOhDT3tcpPUicqPnaZOpNLodfCW9Tcbd7gbB2NzyzyWeibmbCWaiaQrsdg/0',
-				formUser: {
-					username: '',
-					sex: '',
-					nation: '',
-					job: '',
-					provicename: '',
-					mobile: '',
-					telphone: '',
-					email: ''
-				},
-				provinceList: ["--请选择省份--", "北京", "天津", "河北", "山西", "内蒙古", "辽宁", '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '兵团', '中国文明网'],
-				showBtn: true
-			};
-		},
-
-		components: {
-			Toast: _toastToast2['default']
-		},
-		methods: {
-			regEmail: function regEmail() {
-				var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-				return reg.test(this.formUser.email);
-			},
-			submit: function submit() {
-				var _this = this;
-
-				var s = this;
-
-				this.$refs['mobile'].blur();
-
-				if (!s.formUser.username) {
-					this.errorMsg = '用户名不能用空';
-					setTimeout(function () {
-						_this.errorMsg = '';
-					}, 1000);
-					return;
-				}
-
-				if (this.formUser.email.length <= 0) {
-					this.errorMsg = '邮箱不能为空';
-					setTimeout(function () {
-						_this.errorMsg = '';
-					}, 1000);
-					return;
-				}
-
-				if (!this.regEmail()) {
-					this.errorMsg = '邮箱格式错误';
-					setTimeout(function () {
-						_this.errorMsg = '';
-					}, 1000);
-					return;
-				}
-				var data = this.formUser;
-				if (!data.provicename) {
-					data.provicename = '北京';
-				}
-				data.wxopenid = window.openid || _libUtil2['default'].randomString();
-				data.pnumber = window.pNumber;
-
-				_jquery2['default'].ajax({
-					url: window.baseUrl + '/wenming/post_signup/',
-					type: 'post',
-					data: data,
-					success: function success(data) {
-						if (data.getret === 0) {
-							//s.msg = '提交成功';
-							s.errorMsg = '';
-
-							s.showMsg = '你已经成功提交信息，请等待后台审核。';
-
-							_jquery2['default'].ajax({
-								url: window.baseUrl + '/share/wmsendsms/',
-								type: 'post',
-								data: {
-									mobile: s.formUser.mobile,
-									smstype: 1, //1.报名成功短信,2.审核通过短信,3.审核未通过短信
-									username: s.formUser.username,
-									projectname: document.title,
-									getdate: window.getdate
-								},
-								error: function error() {},
-								success: function success(data) {}
-							});
-						} else {
-							s.errorMsg = data.getmsg;
-							s.msg = '';
-							setTimeout(function () {
-								s.errorMsg = '';
-							}, 2000);
-						}
-					}
-				});
-			},
-			closeInfo: function closeInfo() {
-				this.showMsg = '';
-			}
-
-		},
-
-		mounted: function mounted() {
-			var _this2 = this;
-
-			window.s = this;
-
-			var obserable = this.obserable;
-
-			obserable.on('showForm', function () {
-				_this2.show = true;
-			});
-
-			obserable.on('hideForm', function () {
-				_this2.show = false;
-			});
-
-			obserable.on('setUserInfo', function (data) {
-				_this2.nickname = data.nickname;
-				_this2.headimgurl = data.headimgurl;
-			});
-
-			var s = this;
-			var t = setInterval(function () {
-
-				if (window.openid) {
-					clearInterval(t);
-					_jquery2['default'].ajax({
-						url: window.baseUrl + '/wenming/getsignuplist/',
-						type: 'post',
-						data: {
-							wxopenid: window.openid,
-							pnumber: window.pNumber
-
-						},
-						error: function error() {},
-						success: function success(data) {
-							if (data.getret === 0) {
-								if (data.list.length <= 0) {
-									return;
-								}
-								s.userinfo = data.list[0];
-
-								if (s.userinfo.issign) {
-									//已签到
-									obserable.trigger({
-										type: 'toggleIndex',
-										data: {
-											show: true
-										}
-									});
-									s.show = false;
-								}
-								if (s.userinfo.status * 1 === 0) {
-									s.showMsg = '你已经成功提交信息，请等待后台审核！';
-								} else if (s.userinfo.status * 1 === 1) {
-									s.showMsg = '你已通过后台审核，请到现场签到！';
-								}
-
-								s.formUser = {};
-							}
-						}
-					});
-				}
-			}, 30);
-
-			window.onresize = function () {
-
-				setTimeout(function () {
-					_this2.showBtn = window.innerHeight >= _this2.viewH;
-				}, 10);
-			};
-		}
-
-	};
-
-	// </script>
-	module.exports = exports['default'];
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(20);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!./index.css", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!./index.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(7)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis;\r\n}\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n\r\n.zmiti-play.rotate {\r\n  -webkit-animation: rotate 5s linear infinite;\r\n  animation: rotate 5s linear infinite;\r\n}\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n.zmiti-form-main-ui {\r\n  overflow: hidden;\r\n  background: #f3f3f4;\r\n  opacity: 0;\r\n  z-index: -1;\r\n  position: absolute !important;\r\n}\r\n\r\n.zmiti-form-main-ui.show {\r\n  opacity: 1;\r\n  z-index: 202;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-wx-tip {\r\n  background: #fff;\r\n  color: #f00;\r\n  text-align: center;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-wx-tip img {\r\n  width: 40px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask {\r\n  background: rgba(0, 0, 0, 0.5);\r\n  z-index: 100;\r\n  height: 100% !important;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div {\r\n  position: relative;\r\n  min-width: 500px;\r\n  max-width: 600px;\r\n  min-height: 280px;\r\n  background: #fff;\r\n  border-radius: 8px;\r\n  overflow: hidden;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number {\r\n  color: #999;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n  height: 100%;\r\n  padding: 40px;\r\n  position: absolute;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div div.zmiti-number > div {\r\n  color: #f90;\r\n  margin-top: -100px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-msg-mask > div .zmiti-btn {\r\n  position: absolute;\r\n  width: 100%;\r\n  left: 0;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item {\r\n  background: #fff;\r\n  padding-left: 20px;\r\n  height: 90px;\r\n  color: #777777;\r\n  line-height: 100px;\r\n  position: relative;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item:before {\r\n  content: \"\";\r\n  width: 730px;\r\n  height: 1px;\r\n  position: absolute;\r\n  background: #f5f5f5;\r\n  left: 20px;\r\n  bottom: 0;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item span {\r\n  position: absolute;\r\n  left: 144px;\r\n  color: #000;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item input {\r\n  margin-left: 40px;\r\n  width: 510px;\r\n  height: 50px;\r\n  outline: none;\r\n  font-size: 30px;\r\n  border: none;\r\n  position: absolute;\r\n  top: 20px;\r\n  left: 105px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item input::-webkit-input-placeholder {\r\n  color: #dddddd;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item.select:after {\r\n  content: attr(data-content);\r\n  color: #dddddd;\r\n  position: absolute;\r\n  left: 155px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item.select label:before {\r\n  content: \"\";\r\n  width: 24px;\r\n  height: 24px;\r\n  border: 2px solid #ccc;\r\n  position: absolute;\r\n  right: 60px;\r\n  -webkit-transform: rotate(45deg);\r\n  transform: rotate(45deg);\r\n  border-left: none;\r\n  border-bottom: none;\r\n  top: 30px;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item select {\r\n  outline: none;\r\n  font-size: 28px;\r\n  width: 80%;\r\n  height: 100%;\r\n  left: 100px;\r\n  top: 0;\r\n  opacity: 0;\r\n  z-index: 100;\r\n  position: absolute;\r\n}\r\n\r\n.zmiti-form-main-ui .zmiti-form-item label::after {\r\n  content: '*';\r\n  color: #f00;\r\n  position: absolute;\r\n  margin-top: 4px;\r\n  margin-left: 4px;\r\n}\r\n\r\n.zmiti-btn {\r\n  width: 110%;\r\n  height: 90px;\r\n  line-height: 90px;\r\n  text-align: center;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\r\n  color: #fff;\r\n  background-image: -webkit-linear-gradient(left, #fe6500, #f00000);\r\n}\r\n\r\n.zmiti-btn.active {\r\n  -webkit-transform-origin: bottom;\r\n  transform-origin: bottom;\r\n  -webkit-transform: scale(0.95);\r\n  transform: scale(0.95);\r\n}\r\n\r\n@-webkit-keyframes ar {\r\n  from {\r\n    margin-top: -5px;\r\n  }\r\n  to {\r\n    margin-top: 5px;\r\n  }\r\n}\r\n", ""]);
-
-	// exports
-
-
-/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22758,12 +22468,7 @@
 	module.exports = "\r\n\t<div class=\"zmiti-toast-main-ui\" :class='{\"hide\":!msg && !errorMsg}'>\r\n\t\t<span :class=\"{'success':msg,'error':errorMsg}\"></span>{{msg||errorMsg}}\r\n\t</div>\r\n";
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-	module.exports = "\r\n\t<transition name='main'>\r\n\t\t<div class=\"zmiti-form-main-ui lt-full\" :class=\"{'show':show}\">\r\n\t\t\t \r\n\t\t</div>\r\n\t</transition>\r\n";
-
-/***/ }),
+/* 26 */,
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22810,15 +22515,17 @@
 	// 							<label></label>
 	// 							<div class='wm-game-Q-title' ref='title'>
 	// 								<div ref='text' :style='{width:titleWidth+"px"}'>
-	// 									<div >
-	// 										<h1>{{culturalRelicsList[current].title}}</h1>
-	// 										<div>
-	// 											<section v-for='(text,i) in culturalRelicsList[current].content.split("|")' :key="i">
-	// 												{{text}}
-	// 											</section>
+	// 									<transition-group name='fade' tag='div'>
+	// 										<div v-for='(cul,i) in culturalRelicsList' :key='i' v-if='i===current'>
+	// 											<h1>{{cul.title}}</h1>
+	// 											<div>
+	// 												<section v-for='(text,i) in cul.content.split("|")' :key="i">
+	// 													{{text}}
+	// 												</section>
+	// 											</div>
+	// 											<h3 style="height:50px;"></h3>
 	// 										</div>
-	// 										<h3 style="height:50px;"></h3>
-	// 									</div>
+	// 									</transition-group>
 	// 								</div>
 	// 							</div>
 	// 							<div class='wm-game-Q-pic' :style="{height:titleWidth+'px'}">
@@ -22827,7 +22534,7 @@
 	// 						</section>
 	// 					</div>
 	// 					<div class='wm-game-Q-content'>
-	// 						<div class='wm-game-Q-C'>
+	// 						<div class='wm-game-Q-C' >
 	// 							<span></span>
 	// 							<span></span>
 	// 							<span></span>
@@ -22836,7 +22543,7 @@
 	// 							<label></label>
 	// 							<label></label>
 	// 							<label></label>
-	// 							<div v-if='!showResult' class='wm-game-result-C' ref='result'>
+	// 							<div v-if='!showResult' class='wm-game-result-C' ref='result' >
 	// 								<ul>
 	// 									<li v-for='(item,i) in questionLen' :key="i">
 	// 										<img :src="imgs.resultBg" alt="">
@@ -22846,7 +22553,7 @@
 	// 									<li style="height:10px;"></li>
 	// 								</ul>
 	// 							</div>
-	// 							<div v-if='!showResult' class='wm-game-main-place' ref='game'>
+	// 							<div v-if='!showResult' class='wm-game-main-place' ref='game' :class='{"active":changing}'>
 	// 								<ul>
 	// 									<li>
 	// 										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
@@ -22888,7 +22595,7 @@
 	// 										<div>
 	// 											60秒正确投送了{{rightCount}}个博物馆
 	// 										</div>
-	// 										<div>您是知识达人！</div>
+	// 										<div>您是{{level}}！</div>
 	// 									</div>
 	// 								</div>
 	// 								<div class='wm-result-btns'>
@@ -22910,8 +22617,19 @@
 	// 			</div>
 	// 		</div>
 	// 		<div class="wm-game-loading lt-full" v-if='showTip' v-tap='[clearTip]'>
-	// 			<span v-if='countdown>=0'>{{countdown}}</span>
-	// 			<div v-else><img :src="imgs.tip" alt=""></div>
+	// 			<transition name='fade'>
+	// 				<span v-if='!showInfo&&countdown===3'>{{countdown}}</span>
+	// 			</transition>
+	// 			<transition name='fade'>
+	// 				<span v-if='!showInfo&&countdown===2'>{{countdown}}</span>
+	// 			</transition>
+	// 			<transition name='fade'>
+	// 				<span v-if='!showInfo&&countdown===1'>{{countdown}}</span>
+	// 			</transition>
+	// 			<transition name='fade'>
+	// 				<span v-if='!showInfo&&countdown===0'>{{countdown}}</span>
+	// 			</transition>
+	// 			<div v-if='showInfo'><img :src="imgs.tip" alt=""></div>
 	// 		</div>
 	// 		<div class="wm-mask lt-full" v-if='showMask' v-tap='[showShare,false]'>
 	// 			<img :src="imgs.arrow" alt="">
@@ -22955,6 +22673,8 @@
 				time: 60,
 				showTip: true,
 				showMask: false,
+				changing: false,
+				showInfo: true,
 				questionLen: new Array(10),
 				current: 0,
 				width: 0,
@@ -22967,28 +22687,55 @@
 				canTap: true,
 				href: window.location.href,
 				showResult: false,
-				titleWidth: 0
+				titleWidth: 0,
+				level: '草根'
 			};
 		},
 		components: {},
 
+		watch: {
+			current: function current(val) {
+				var _this = this;
+
+				if (val > 0) {
+					this.changing = true;
+					setTimeout(function () {
+						_this.changing = false;
+					}, 500);
+				}
+			}
+		},
+
 		methods: {
 
 			clearTip: function clearTip() {
-				var _this = this;
+				var _this2 = this;
 
-				if (this.countdown < 0) {
-					this.showTip = false;
-					this.t = setInterval(function () {
-						_this.time--;
-						if (_this.time <= 0) {
-							clearInterval(_this.t); //
-							for (var i = 0; i < _this.questionLen.length + 1; i++) {
-								_this.resultArr.push(i);
-							}
-						}
-					}, 1000);
+				if (!this.showInfo) {
+					return;
 				}
+				this.showInfo = false;
+
+				var t = setInterval(function () {
+					_this2.countdown--;
+
+					if (_this2.countdown <= 0) {
+						clearInterval(t);
+						_this2.showTip = false;
+						_this2.t = setInterval(function () {
+							_this2.time--;
+							if (_this2.time <= 0) {
+								clearInterval(_this2.t); //
+								_this2.showResult = true;
+								for (var i = 0; i < _this2.questionLen.length + 1; i++) {
+									_this2.resultArr.push(i);
+								}
+							}
+						}, 1000);
+					}
+				}, 1500);
+
+				if (this.countdown < 0) {}
 			},
 
 			showShare: function showShare() {
@@ -22998,7 +22745,7 @@
 			},
 
 			choose: function choose(m, i) {
-				var _this2 = this;
+				var _this3 = this;
 
 				if (this.canTap) {
 					this.canTap = false;
@@ -23013,6 +22760,18 @@
 					if (m.key === this.culturalRelicsList[this.current].key) {
 						m.isRight = true;
 						this.rightCount++;
+						if (this.rightCount <= 10) {
+							this.level = '大师';
+						}
+						if (this.rightCount <= 9) {
+							this.level = '达人';
+						}
+						if (this.rightCount < 7) {
+							this.level = '骨干';
+						}
+						if (this.rightCount < 4) {
+							this.level = '精英';
+						}
 						this.resultArr.push(true);
 					} else {
 						m.isRight = false;
@@ -23020,16 +22779,18 @@
 					}
 					this.museums = this.museums.concat([]);
 					setTimeout(function () {
-						_this2.current++;
-						_this2.current = Math.min(_this2.current, _this2.questionLen.length - 1);
+						_this3.current++;
+						_this3.current = Math.min(_this3.current, _this3.questionLen.length - 1);
 						m.isRight = null;
-						_this2.museums = _this2.museums.concat([]);
+						_this3.museums = _this3.museums.concat([]);
 						setTimeout(function () {
-							_this2.scroll.refresh();
-							if (_this2.resultArr.length < _this2.questionLen.length) {
-								_this2.canTap = true;
+							setTimeout(function () {
+								_this3.scroll.refresh();
+							}, 1000);
+							if (_this3.resultArr.length < _this3.questionLen.length) {
+								_this3.canTap = true;
 							} else {
-								_this2.showResult = true;
+								_this3.showResult = true;
 							}
 						}, 100);
 					}, 1000);
@@ -23047,14 +22808,7 @@
 				this.museums = this.museums.concat([]);
 			},
 			init: function init() {
-				var _this3 = this;
-
-				var t = setInterval(function () {
-					_this3.countdown--;
-					if (_this3.countdown <= 0) {
-						//clearInterval(t);
-					}
-				}, 1000);
+				var _this4 = this;
 
 				window.ss = this;
 				var arr = window.culturalRelicsList.concat([]);
@@ -23066,37 +22820,37 @@
 				}
 
 				setTimeout(function () {
-					_this3.scroll = new _assetsJsIscroll2['default'](_this3.$refs['text'], {
+					_this4.scroll = new _assetsJsIscroll2['default'](_this4.$refs['text'], {
 						scrollbars: true
 					});
 
 					//mouseWheel:true
-					_this3.$refs['result'] && (_this3.resultScroll = new _assetsJsIscroll2['default'](_this3.$refs['result'], {
+					_this4.$refs['result'] && (_this4.resultScroll = new _assetsJsIscroll2['default'](_this4.$refs['result'], {
 						zmitiV: true
 					}));
-					_this3.$refs['game'] && (_this3.gameScroll = new _assetsJsIscroll2['default'](_this3.$refs['game'], {
+					_this4.$refs['game'] && (_this4.gameScroll = new _assetsJsIscroll2['default'](_this4.$refs['game'], {
 						zmitiV: true
 					}));
 					setTimeout(function () {
-						_this3.scroll.refresh();
-						_this3.$refs['result'] && _this3.resultScroll.refresh();
-						_this3.$refs['game'] && _this3.gameScroll.refresh();
+						_this4.scroll.refresh();
+						_this4.$refs['result'] && _this4.resultScroll.refresh();
+						_this4.$refs['game'] && _this4.gameScroll.refresh();
 					}, 1000);
 
-					_this3.$refs['send'] && (_this3.width = _this3.$refs['send'].offsetHeight);
+					_this4.$refs['send'] && (_this4.width = _this4.$refs['send'].offsetHeight);
 				}, 100);
 			}
 
 		},
 		mounted: function mounted() {
-			var _this4 = this;
+			var _this5 = this;
 
 			this.titleWidth = this.$refs['title'].offsetHeight;
 
 			this.obserable.on("initGame", function () {
-				_this4.titleWidth = _this4.$refs['title'].offsetHeight;
-				_this4.show = true;
-				_this4.init();
+				_this5.titleWidth = _this5.$refs['title'].offsetHeight;
+				_this5.show = true;
+				_this5.init();
 			});
 		}
 	};
@@ -23139,7 +22893,7 @@
 
 
 	// module
-	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0; }\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis; }\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem; }\r\n  .zmiti-play.rotate {\r\n    -webkit-animation: rotate 5s linear infinite;\r\n    animation: rotate 5s linear infinite; }\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg); } }\r\n.zmiti-game-main-ui {\r\n  z-index: -1;\r\n  opacity: 0;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n  position: relative; }\r\n  .zmiti-game-main-ui .wm-game-main-content {\r\n    width: 680px;\r\n    height: 100vh;\r\n    display: -webkit-box;\r\n    -webkit-box-align: center;\r\n    -webkit-box-pack: center;\r\n    -webkit-box-orient: vertical; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel {\r\n      height: 50px; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-reel img {\r\n        display: block;\r\n        position: relative;\r\n        top: 15px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel1 img {\r\n      top: -5px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-area {\r\n      -webkit-box-flex: 1;\r\n      width: 624px;\r\n      -webkit-transform: scale(0.99, 1);\r\n      transform: scale(0.99, 1);\r\n      -webkit-transform-origin: left;\r\n      transform-origin: left;\r\n      box-flex: 1;\r\n      display: -webkit-box;\r\n      -webkit-box-align: center;\r\n      -webkit-box-pack: center;\r\n      -webkit-box-orient: horizontal; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap {\r\n        height: 100%;\r\n        width: 630px;\r\n        position: relative;\r\n        display: -webkit-box;\r\n        -webkit-box-align: center;\r\n        -webkit-box-pack: center;\r\n        -webkit-box-orient: vertical; }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap:before {\r\n          z-index: -1;\r\n          content: '';\r\n          position: absolute;\r\n          width: 100%;\r\n          left: 0;\r\n          top: 0;\r\n          height: 100%;\r\n          background: -webkit-linear-gradient(top, #a46e35, #e2c06c 30%, #a46e34 100%); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div {\r\n          margin: 20px 0;\r\n          box-sizing: border-box;\r\n          width: 90%; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) {\r\n            box-flex: 2;\r\n            -webkit-box-flex: 2;\r\n            background: #fff;\r\n            font-size: 30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) h1 {\r\n              text-align: center;\r\n              text-indent: 0;\r\n              color: #c42542;\r\n              font-weight: normal; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content {\r\n            background: #f2ede1;\r\n            box-flex: 5;\r\n            -webkit-box-flex: 5;\r\n            position: relative;\r\n            overflow: hidden; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C {\r\n              position: absolute;\r\n              width: 500px;\r\n              left: 30px;\r\n              top: 30px;\r\n              height: 92%;\r\n              border: 2px solid #e4c26d;\r\n              background: #fff;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: horizontal; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label {\r\n                position: absolute;\r\n                background: #fff; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(1) {\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(2) {\r\n                  left: -33px;\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  bottom: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(3) {\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -10px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(4) {\r\n                  top: -10px;\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  right: -32px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span {\r\n                border-right: 2px solid #e4c26d;\r\n                -webkit-transform: rotate(45deg);\r\n                transform: rotate(45deg);\r\n                position: absolute;\r\n                z-index: 10;\r\n                width: 50px;\r\n                height: 50px;\r\n                background: #fff;\r\n                border-radius: 50%;\r\n                left: -25px;\r\n                top: -25px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(2) {\r\n                  left: auto;\r\n                  right: -25px;\r\n                  -webkit-transform: rotate(135deg);\r\n                  transform: rotate(135deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(3) {\r\n                  top: auto;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-45deg);\r\n                  transform: rotate(-45deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(4) {\r\n                  left: auto;\r\n                  top: auto;\r\n                  right: -25px;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-135deg);\r\n                  transform: rotate(-135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C {\r\n                width: 80px;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: vertical; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li {\r\n                    width: 60px;\r\n                    height: 60px;\r\n                    -webkit-box-flex: 1;\r\n                    margin-top: 20px;\r\n                    position: relative; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic {\r\n                      position: absolute;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      max-width: 50px;\r\n                      max-height: 50px;\r\n                      -webkit-transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg);\r\n                      transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg); }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic.wrong {\r\n                        -webkit-transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg);\r\n                        transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page {\r\n                position: absolute;\r\n                left: 50%;\r\n                top: 50%;\r\n                -webkit-transform: translate(-50%, -50%) rotate(90deg);\r\n                transform: translate(-50%, -50%) rotate(90deg);\r\n                width: 52vh;\r\n                height: 450px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  text-align: center;\r\n                  margin: 100px 0 50px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person img {\r\n                    width: 100px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person div div:nth-of-type(1) {\r\n                    color: #b20000; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  margin: 40px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns div {\r\n                    margin: 0 20px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns img {\r\n                    width: 250px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share {\r\n                  text-align: right; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share span {\r\n                    margin-right: 30px;\r\n                    text-decoration: underline;\r\n                    font-size: 26px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place {\r\n                -webkit-box-flex: 1;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  -webkit-box-align: start; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li {\r\n                    box-sizing: border-box;\r\n                    -webkit-box-flex: 1;\r\n                    margin-left: 50px; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li .wm-result-img {\r\n                      position: absolute;\r\n                      z-index: 10;\r\n                      width: 50px;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      margin-left: -25px;\r\n                      margin-top: -25px;\r\n                      -webkit-transform: rotate(90deg);\r\n                      transform: rotate(90deg); }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div {\r\n                      margin: 20px 0;\r\n                      position: relative; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div img {\r\n                        width: 90%;\r\n                        display: inline-block; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div span {\r\n                        font-size: 24px;\r\n                        position: absolute;\r\n                        left: 0;\r\n                        display: inline-block;\r\n                        text-align: center;\r\n                        width: 100%;\r\n                        height: 100%;\r\n                        min-width: 200px;\r\n                        -webkit-transform-origin: left top;\r\n                        transform-origin: left top;\r\n                        -webkit-transform: rotate(90deg);\r\n                        transform: rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time {\r\n                width: 80px;\r\n                height: 100%;\r\n                display: -webkit-box;\r\n                -webkit-box-align: center;\r\n                -webkit-box-pack: center;\r\n                -webkit-box-orient: vertical; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) div {\r\n                    text-indent: 1em;\r\n                    width: 120%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #e4c26d;\r\n                    color: #fff;\r\n                    border-top-right-radius: 30px;\r\n                    border-bottom-right-radius: 30px;\r\n                    -webkit-transform: translate(-50px, 20px) rotate(90deg);\r\n                    transform: translate(-50px, 20px) rotate(90deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) {\r\n                  -webkit-box-flex: 1;\r\n                  position: relative;\r\n                  width: 100%; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div {\r\n                    -webkit-transform-origin: left top;\r\n                    transform-origin: left top;\r\n                    -webkit-transform: translate(100px, 0) rotate(90deg);\r\n                    transform: translate(100px, 0) rotate(90deg);\r\n                    line-height: 130px;\r\n                    position: absolute;\r\n                    left: 0;\r\n                    top: 0;\r\n                    width: 100%;\r\n                    height: 100%;\r\n                    text-align: center; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div span {\r\n                      color: #c42542; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div img {\r\n                      width: 70px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) div {\r\n                    text-indent: 1em;\r\n                    width: 100%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #c42542;\r\n                    color: #fff;\r\n                    border-top-left-radius: 30px;\r\n                    border-bottom-left-radius: 30px;\r\n                    -webkit-transform: translate(-36px, 40px) rotate(90deg);\r\n                    transform: translate(-36px, 40px) rotate(90deg); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q {\r\n          position: relative; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section {\r\n            position: absolute;\r\n            width: 100%;\r\n            height: 100%;\r\n            -webkit-transform: scale(0.9, 0.8);\r\n            transform: scale(0.9, 0.8);\r\n            background: #f2ede1;\r\n            border: 2px solid #e4c26d; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label {\r\n              position: absolute;\r\n              background: #fff; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(1) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                top: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(2) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                bottom: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(3) {\r\n                width: 30px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                left: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(4) {\r\n                width: 10px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                right: -30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span {\r\n              border-right: 2px solid #e4c26d;\r\n              -webkit-transform: rotate(45deg);\r\n              transform: rotate(45deg);\r\n              position: absolute;\r\n              z-index: 10;\r\n              width: 50px;\r\n              height: 50px;\r\n              background: #fff;\r\n              border-radius: 50%;\r\n              left: -25px;\r\n              top: -25px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(2) {\r\n                left: auto;\r\n                right: -25px;\r\n                -webkit-transform: rotate(135deg);\r\n                transform: rotate(135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(3) {\r\n                top: auto;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-45deg);\r\n                transform: rotate(-45deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(4) {\r\n                left: auto;\r\n                top: auto;\r\n                right: -25px;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-135deg);\r\n                transform: rotate(-135deg); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title {\r\n              height: 100%;\r\n              position: absolute;\r\n              width: 60%;\r\n              left: 5%; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title:after {\r\n                content: '';\r\n                width: 2px;\r\n                height: 80%;\r\n                top: 10%;\r\n                background: #e4c26d;\r\n                right: 0;\r\n                position: absolute; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div {\r\n                padding: 20px;\r\n                box-sizing: border-box;\r\n                width: 280px;\r\n                text-indent: 2em;\r\n                height: 340px;\r\n                overflow: hidden;\r\n                -webkit-transform-origin: left top;\r\n                transform-origin: left top;\r\n                -webkit-transform: rotate(90deg) translate3d(0, -350px, 0);\r\n                transform: rotate(90deg) translate3d(0, -350px, 0); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic {\r\n              width: 200px;\r\n              height: 280px;\r\n              position: absolute;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: vertical;\r\n              right: 0;\r\n              top: 0%;\r\n              -webkit-transform: translate3d(0, 0%, 0);\r\n              transform: translate3d(0, 0%, 0); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic img {\r\n                -webkit-transform: rotate(90deg);\r\n                transform: rotate(90deg); }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q img {\r\n            width: auto;\r\n            height: auto;\r\n            max-width: 92%;\r\n            max-height: 92%;\r\n            display: block; }\r\n  .zmiti-game-main-ui.show {\r\n    z-index: 520;\r\n    opacity: 1; }\r\n\r\n.wm-mask {\r\n  background: rgba(0, 0, 0, 0.7);\r\n  position: fixed !important;\r\n  text-align: right; }\r\n  .wm-mask img {\r\n    width: 50%;\r\n    margin-right: 10px;\r\n    margin-top: 10px; }\r\n\r\n.wm-game-loading {\r\n  position: fixed !important;\r\n  background: rgba(0, 0, 0, 0.7);\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal; }\r\n  .wm-game-loading span {\r\n    display: block;\r\n    font-size: 200px;\r\n    color: #fff;\r\n    -webkit-transform: rotate(90deg);\r\n    transform: rotate(90deg); }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
+	exports.push([module.id, ".lt-full {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0; }\r\n\r\n.zmiti-text-overflow {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  word-break: break-all;\r\n  text-overflow: ellipsis;\r\n  -webkit-text-overflow: ellipsis; }\r\n\r\n.zmiti-play {\r\n  width: .8rem;\r\n  height: .8rem;\r\n  border-radius: 50%;\r\n  position: fixed;\r\n  z-index: 1000;\r\n  right: .5rem;\r\n  top: .5rem; }\r\n  .zmiti-play.rotate {\r\n    -webkit-animation: rotate 5s linear infinite;\r\n    animation: rotate 5s linear infinite; }\r\n\r\n@-webkit-keyframes rotate {\r\n  to {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg); } }\r\n.zmiti-game-main-ui {\r\n  z-index: -1;\r\n  opacity: 0;\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal;\r\n  position: relative; }\r\n  .zmiti-game-main-ui .wm-game-main-content {\r\n    width: 680px;\r\n    height: 100vh;\r\n    display: -webkit-box;\r\n    -webkit-box-align: center;\r\n    -webkit-box-pack: center;\r\n    -webkit-box-orient: vertical; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel {\r\n      height: 50px; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-reel img {\r\n        display: block;\r\n        position: relative;\r\n        top: 15px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-reel1 img {\r\n      top: -5px; }\r\n    .zmiti-game-main-ui .wm-game-main-content .wm-game-area {\r\n      -webkit-box-flex: 1;\r\n      width: 624px;\r\n      -webkit-transform: scale(0.99, 1);\r\n      transform: scale(0.99, 1);\r\n      -webkit-transform-origin: left;\r\n      transform-origin: left;\r\n      box-flex: 1;\r\n      display: -webkit-box;\r\n      -webkit-box-align: center;\r\n      -webkit-box-pack: center;\r\n      -webkit-box-orient: horizontal; }\r\n      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap {\r\n        height: 100%;\r\n        width: 630px;\r\n        position: relative;\r\n        display: -webkit-box;\r\n        -webkit-box-align: center;\r\n        -webkit-box-pack: center;\r\n        -webkit-box-orient: vertical; }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap:before {\r\n          z-index: -1;\r\n          content: '';\r\n          position: absolute;\r\n          width: 100%;\r\n          left: 0;\r\n          top: 0;\r\n          height: 100%;\r\n          background: -webkit-linear-gradient(top, #a46e35, #e2c06c 30%, #a46e34 100%); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div {\r\n          margin: 20px 0;\r\n          box-sizing: border-box;\r\n          width: 90%; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) {\r\n            box-flex: 2;\r\n            -webkit-box-flex: 2;\r\n            background: #fff;\r\n            font-size: 30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div:nth-of-type(1) h1 {\r\n              text-align: center;\r\n              text-indent: 0;\r\n              color: #c42542;\r\n              font-weight: normal; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content {\r\n            background: #f2ede1;\r\n            box-flex: 5;\r\n            -webkit-box-flex: 5;\r\n            position: relative;\r\n            overflow: hidden; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C {\r\n              position: absolute;\r\n              width: 500px;\r\n              left: 30px;\r\n              top: 30px;\r\n              height: 92%;\r\n              border: 2px solid #e4c26d;\r\n              background: #fff;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: horizontal; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label {\r\n                position: absolute;\r\n                background: #fff; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(1) {\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(2) {\r\n                  left: -33px;\r\n                  width: 700px;\r\n                  height: 30px;\r\n                  z-index: 10;\r\n                  bottom: -33px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(3) {\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  left: -33px;\r\n                  top: -10px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C label:nth-of-type(4) {\r\n                  top: -10px;\r\n                  width: 30px;\r\n                  height: 103%;\r\n                  z-index: 10;\r\n                  right: -32px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span {\r\n                border-right: 2px solid #e4c26d;\r\n                -webkit-transform: rotate(45deg);\r\n                transform: rotate(45deg);\r\n                position: absolute;\r\n                z-index: 10;\r\n                width: 50px;\r\n                height: 50px;\r\n                background: #fff;\r\n                border-radius: 50%;\r\n                left: -25px;\r\n                top: -25px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(2) {\r\n                  left: auto;\r\n                  right: -25px;\r\n                  -webkit-transform: rotate(135deg);\r\n                  transform: rotate(135deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(3) {\r\n                  top: auto;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-45deg);\r\n                  transform: rotate(-45deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > span:nth-of-type(4) {\r\n                  left: auto;\r\n                  top: auto;\r\n                  right: -25px;\r\n                  bottom: -25px;\r\n                  -webkit-transform: rotate(-135deg);\r\n                  transform: rotate(-135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > div.active {\r\n                opacity: 0;\r\n                -webkit-transition: 0.3s;\r\n                transition: 0.3s; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C {\r\n                width: 80px;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: vertical; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li {\r\n                    width: 60px;\r\n                    height: 60px;\r\n                    -webkit-box-flex: 1;\r\n                    margin-top: 20px;\r\n                    position: relative; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic {\r\n                      position: absolute;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      max-width: 50px;\r\n                      max-height: 50px;\r\n                      -webkit-transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg);\r\n                      transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(90deg); }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C ul li .wm-game-cultural-pic.wrong {\r\n                        -webkit-transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg);\r\n                        transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page {\r\n                position: absolute;\r\n                left: 50%;\r\n                top: 50%;\r\n                -webkit-transform: translate(-50%, -50%) rotate(90deg);\r\n                transform: translate(-50%, -50%) rotate(90deg);\r\n                width: 52vh;\r\n                height: 450px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  text-align: center;\r\n                  margin: 100px 0 50px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person img {\r\n                    width: 100px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-person div div:nth-of-type(1) {\r\n                    color: #b20000; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  margin: 40px 0; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns div {\r\n                    margin: 0 20px; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-result-btns img {\r\n                    width: 250px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share {\r\n                  text-align: right; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-result-page .wm-share span {\r\n                    margin-right: 30px;\r\n                    text-decoration: underline;\r\n                    font-size: 26px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place {\r\n                -webkit-box-flex: 1;\r\n                height: 100%;\r\n                overflow: hidden; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul {\r\n                  display: -webkit-box;\r\n                  -webkit-box-align: center;\r\n                  -webkit-box-pack: center;\r\n                  -webkit-box-orient: horizontal;\r\n                  -webkit-box-align: start; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li {\r\n                    box-sizing: border-box;\r\n                    -webkit-box-flex: 1;\r\n                    margin-left: 50px; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li .wm-result-img {\r\n                      position: absolute;\r\n                      z-index: 10;\r\n                      width: 50px;\r\n                      left: 50%;\r\n                      top: 50%;\r\n                      margin-left: -25px;\r\n                      margin-top: -25px;\r\n                      -webkit-transform: rotate(90deg);\r\n                      transform: rotate(90deg); }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div {\r\n                      margin: 20px 0;\r\n                      position: relative; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div img {\r\n                        width: 90%;\r\n                        display: inline-block; }\r\n                      .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-main-place ul li div span {\r\n                        font-size: 24px;\r\n                        position: absolute;\r\n                        left: 0;\r\n                        display: inline-block;\r\n                        text-align: center;\r\n                        width: 100%;\r\n                        height: 100%;\r\n                        min-width: 200px;\r\n                        -webkit-transform-origin: left top;\r\n                        transform-origin: left top;\r\n                        -webkit-transform: rotate(90deg);\r\n                        transform: rotate(90deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time {\r\n                width: 80px;\r\n                height: 100%;\r\n                display: -webkit-box;\r\n                -webkit-box-align: center;\r\n                -webkit-box-pack: center;\r\n                -webkit-box-orient: vertical; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(1) div {\r\n                    text-indent: 1em;\r\n                    width: 120%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #e4c26d;\r\n                    color: #fff;\r\n                    border-top-right-radius: 30px;\r\n                    border-bottom-right-radius: 30px;\r\n                    -webkit-transform: translate(-50px, 20px) rotate(90deg);\r\n                    transform: translate(-50px, 20px) rotate(90deg); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) {\r\n                  -webkit-box-flex: 1;\r\n                  position: relative;\r\n                  width: 100%; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div {\r\n                    -webkit-transform-origin: left top;\r\n                    transform-origin: left top;\r\n                    -webkit-transform: translate(100px, 0) rotate(90deg);\r\n                    transform: translate(100px, 0) rotate(90deg);\r\n                    line-height: 130px;\r\n                    position: absolute;\r\n                    left: 0;\r\n                    top: 0;\r\n                    width: 100%;\r\n                    height: 100%;\r\n                    text-align: center; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div span {\r\n                      color: #c42542; }\r\n                    .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(2) > div img {\r\n                      width: 70px; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) {\r\n                  width: 120px;\r\n                  height: 120px;\r\n                  position: relative; }\r\n                  .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-time div:nth-of-type(3) div {\r\n                    text-indent: 1em;\r\n                    width: 100%;\r\n                    height: 50%;\r\n                    line-height: 60px;\r\n                    position: absolute;\r\n                    background: #c42542;\r\n                    color: #fff;\r\n                    border-top-left-radius: 30px;\r\n                    border-bottom-left-radius: 30px;\r\n                    -webkit-transform: translate(-36px, 40px) rotate(90deg);\r\n                    transform: translate(-36px, 40px) rotate(90deg); }\r\n        .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q {\r\n          position: relative; }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section {\r\n            position: absolute;\r\n            width: 100%;\r\n            height: 100%;\r\n            -webkit-transform: scale(0.9, 0.8);\r\n            transform: scale(0.9, 0.8);\r\n            background: #f2ede1;\r\n            border: 2px solid #e4c26d; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label {\r\n              position: absolute;\r\n              background: #fff; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(1) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                top: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(2) {\r\n                width: 100%;\r\n                height: 30px;\r\n                z-index: 10;\r\n                bottom: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(3) {\r\n                width: 30px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                left: -33px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section label:nth-of-type(4) {\r\n                width: 10px;\r\n                height: 100%;\r\n                z-index: 10;\r\n                right: -30px; }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span {\r\n              border-right: 2px solid #e4c26d;\r\n              -webkit-transform: rotate(45deg);\r\n              transform: rotate(45deg);\r\n              position: absolute;\r\n              z-index: 10;\r\n              width: 50px;\r\n              height: 50px;\r\n              background: #fff;\r\n              border-radius: 50%;\r\n              left: -25px;\r\n              top: -25px; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(2) {\r\n                left: auto;\r\n                right: -25px;\r\n                -webkit-transform: rotate(135deg);\r\n                transform: rotate(135deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(3) {\r\n                top: auto;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-45deg);\r\n                transform: rotate(-45deg); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(4) {\r\n                left: auto;\r\n                top: auto;\r\n                right: -25px;\r\n                bottom: -25px;\r\n                -webkit-transform: rotate(-135deg);\r\n                transform: rotate(-135deg); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title {\r\n              height: 100%;\r\n              position: absolute;\r\n              width: 62%;\r\n              left: 5%; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title:after {\r\n                content: '';\r\n                width: 2px;\r\n                height: 80%;\r\n                top: 10%;\r\n                background: #e4c26d;\r\n                right: -8px;\r\n                position: absolute; }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div {\r\n                padding: 20px;\r\n                box-sizing: border-box;\r\n                width: 280px;\r\n                text-indent: 2em;\r\n                height: 340px;\r\n                overflow: hidden;\r\n                -webkit-transform-origin: left top;\r\n                transform-origin: left top;\r\n                -webkit-transform: rotate(90deg) translate3d(0, -350px, 0);\r\n                transform: rotate(90deg) translate3d(0, -350px, 0); }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-enter-active, .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-leave-active {\r\n                  -webkit-transition: 0.5s;\r\n                  transition: 0.5s; }\r\n                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-enter, .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-leave-to {\r\n                  opacity: 0;\r\n                  -webkit-transform: translate(-200px, 0);\r\n                  transform: translate(-200px, 0); }\r\n            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic {\r\n              width: 200px;\r\n              height: 280px;\r\n              position: absolute;\r\n              display: -webkit-box;\r\n              -webkit-box-align: center;\r\n              -webkit-box-pack: center;\r\n              -webkit-box-orient: vertical;\r\n              right: 0;\r\n              top: 0%;\r\n              -webkit-transform: translate3d(0, 0%, 0);\r\n              transform: translate3d(0, 0%, 0); }\r\n              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic img {\r\n                -webkit-transform: rotate(90deg);\r\n                transform: rotate(90deg); }\r\n          .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q img {\r\n            width: auto;\r\n            height: auto;\r\n            max-width: 92%;\r\n            max-height: 92%;\r\n            display: block; }\r\n  .zmiti-game-main-ui.show {\r\n    z-index: 520;\r\n    opacity: 1; }\r\n\r\n.wm-mask {\r\n  background: rgba(0, 0, 0, 0.7);\r\n  position: fixed !important;\r\n  text-align: right; }\r\n  .wm-mask img {\r\n    width: 50%;\r\n    margin-right: 10px;\r\n    margin-top: 10px; }\r\n\r\n.wm-game-loading {\r\n  position: fixed !important;\r\n  background: rgba(0, 0, 0, 0.7);\r\n  display: -webkit-box;\r\n  -webkit-box-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-orient: horizontal; }\r\n  .wm-game-loading span {\r\n    display: block;\r\n    font-size: 200px;\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    color: #fff;\r\n    -webkit-transform: translate(-50%, -50%) rotate(90deg);\r\n    transform: translate(-50%, -50%) rotate(90deg); }\r\n    .wm-game-loading span.fade-enter-active, .wm-game-loading span.fade-leave-active {\r\n      transition: opacity .3s, font-size .5s;\r\n      -webkit-transition: opacity .3s, font-size .5s; }\r\n    .wm-game-loading span.fade-enter, .wm-game-loading span.fade-leave-to {\r\n      opacity: 0;\r\n      -webkit-transform: translate(-50%, -50%) rotate(90deg);\r\n      transform: translate(-50%, -50%) rotate(90deg);\r\n      font-size: 100px; }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
 
 	// exports
 
@@ -25251,7 +25005,7 @@
 /* 32 */
 /***/ (function(module, exports) {
 
-	module.exports = "\r\n\t<div class='zmiti-game-main-ui lt-full' :style=\"{background:'url('+imgs.gameBg+') no-repeat center center',backgroundSize:'cover'}\" :class=\"{'show':show}\">\r\n\t\t<div class='wm-game-main-content'>\r\n\t\t\t<div class='wm-game-reel'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-area'>\r\n\t\t\t\t<div class='wm-game-wrap' :style=\"{height:viewH-100+'px'}\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class='wm-game-Q'>\r\n\t\t\t\t\t\t<section  v-if='culturalRelicsList[current]'>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-title' ref='title'>\r\n\t\t\t\t\t\t\t\t<div ref='text' :style='{width:titleWidth+\"px\"}'>\r\n\t\t\t\t\t\t\t\t\t<div >\r\n\t\t\t\t\t\t\t\t\t\t<h1>{{culturalRelicsList[current].title}}</h1>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<section v-for='(text,i) in culturalRelicsList[current].content.split(\"|\")' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t{{text}}\r\n\t\t\t\t\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<h3 style=\"height:50px;\"></h3>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-pic' :style=\"{height:titleWidth+'px'}\">\r\n\t\t\t\t\t\t\t\t<img :src=\"culturalRelicsList[current].image\" alt=\"\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</section>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class='wm-game-Q-content'>\r\n\t\t\t\t\t\t<div class='wm-game-Q-C'>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div v-if='!showResult' class='wm-game-result-C' ref='result'>\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li v-for='(item,i) in questionLen' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t<img :src=\"imgs.resultBg\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === true' class='wm-game-cultural-pic' :src=\"culturalRelicsList[i].image\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === false' class='wm-game-cultural-pic wrong' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li style=\"height:10px;\"></li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='!showResult' class='wm-game-main-place' ref='game'>\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='!showResult && culturalRelicsList[current]' class='wm-game-time' >\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>{{(current+1<10?'0'+(current+1):current+1)+\" / \"+ questionLen.length}}</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div ref='send'>\r\n\t\t\t\t\t\t\t\t\t<div :style=\"{height:100+'px',width:width+'px'}\" class='zmiti-text-overflow'>\r\n\t\t\t\t\t\t\t\t\t\t<span>{{culturalRelicsList[current].title}}</span> 派送中... <img :src=\"imgs.send\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t{{time}} s\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<section v-if='showResult' class='wm-result-page'>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-person'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.person\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t60秒正确投送了{{rightCount}}个博物馆\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>您是知识达人！</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-btns'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.wxBtn\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<a :href=\"href\"><img :src=\"imgs.restartBtn\" alt=\"\"></a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-share'>\r\n\t\t\t\t\t\t\t\t\t<span v-tap='[showShare]'>分享成绩</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-reel wm-game-reel1'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-game-loading lt-full\" v-if='showTip' v-tap='[clearTip]'>\r\n\t\t\t<span v-if='countdown>=0'>{{countdown}}</span>\r\n\t\t\t<div v-else><img :src=\"imgs.tip\" alt=\"\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-mask lt-full\" v-if='showMask' v-tap='[showShare,false]'>\r\n\t\t\t<img :src=\"imgs.arrow\" alt=\"\">\r\n\t\t</div>\r\n\t</div>\r\n";
+	module.exports = "\r\n\t<div class='zmiti-game-main-ui lt-full' :style=\"{background:'url('+imgs.gameBg+') no-repeat center center',backgroundSize:'cover'}\" :class=\"{'show':show}\">\r\n\t\t<div class='wm-game-main-content'>\r\n\t\t\t<div class='wm-game-reel'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-area'>\r\n\t\t\t\t<div class='wm-game-wrap' :style=\"{height:viewH-100+'px'}\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class='wm-game-Q'>\r\n\t\t\t\t\t\t<section  v-if='culturalRelicsList[current]'>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-title' ref='title'>\r\n\t\t\t\t\t\t\t\t<div ref='text' :style='{width:titleWidth+\"px\"}'>\r\n\t\t\t\t\t\t\t\t\t<transition-group name='fade' tag='div'>\r\n\t\t\t\t\t\t\t\t\t\t<div v-for='(cul,i) in culturalRelicsList' :key='i' v-if='i===current'>\r\n\t\t\t\t\t\t\t\t\t\t\t<h1>{{cul.title}}</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<section v-for='(text,i) in cul.content.split(\"|\")' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t{{text}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<h3 style=\"height:50px;\"></h3>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</transition-group>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class='wm-game-Q-pic' :style=\"{height:titleWidth+'px'}\">\r\n\t\t\t\t\t\t\t\t<img :src=\"culturalRelicsList[current].image\" alt=\"\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</section>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class='wm-game-Q-content'>\r\n\t\t\t\t\t\t<div class='wm-game-Q-C' >\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<span></span>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<label></label>\r\n\t\t\t\t\t\t\t<div v-if='!showResult' class='wm-game-result-C' ref='result' >\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li v-for='(item,i) in questionLen' :key=\"i\">\r\n\t\t\t\t\t\t\t\t\t\t<img :src=\"imgs.resultBg\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === true' class='wm-game-cultural-pic' :src=\"culturalRelicsList[i].image\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<img  v-if='resultArr[i] === false' class='wm-game-cultural-pic wrong' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li style=\"height:10px;\"></li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='!showResult' class='wm-game-main-place' ref='game' :class='{\"active\":changing}'>\r\n\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>\r\n\t\t\t\t\t\t\t\t\t\t\t<span :style='{width:(m.width||0)+\"px\",height:(m.height||0)+\"px\"}'>{{m.name}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' :src=\"m.image\" alt=\"\" @load='imgLoaded($event,m,i)'>\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src=\"imgs.right\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t\t<img @touchstart='touchstart' class='wm-result-img ' v-if='m.isRight===false' :src=\"imgs.wrong\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div v-if='!showResult && culturalRelicsList[current]' class='wm-game-time' >\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>{{(current+1<10?'0'+(current+1):current+1)+\" / \"+ questionLen.length}}</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div ref='send'>\r\n\t\t\t\t\t\t\t\t\t<div :style=\"{height:100+'px',width:width+'px'}\" class='zmiti-text-overflow'>\r\n\t\t\t\t\t\t\t\t\t\t<span>{{culturalRelicsList[current].title}}</span> 派送中... <img :src=\"imgs.send\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t{{time}} s\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<section v-if='showResult' class='wm-result-page'>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-person'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.person\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t60秒正确投送了{{rightCount}}个博物馆\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>您是{{level}}！</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-result-btns'>\r\n\t\t\t\t\t\t\t\t\t<div><img :src=\"imgs.wxBtn\" alt=\"\"></div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<a :href=\"href\"><img :src=\"imgs.restartBtn\" alt=\"\"></a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class='wm-share'>\r\n\t\t\t\t\t\t\t\t\t<span v-tap='[showShare]'>分享成绩</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</section>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class='wm-game-reel wm-game-reel1'>\r\n\t\t\t\t<img :src=\"imgs.reel1\" alt=\"\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-game-loading lt-full\" v-if='showTip' v-tap='[clearTip]'>\r\n\t\t\t<transition name='fade'>\r\n\t\t\t\t<span v-if='!showInfo&&countdown===3'>{{countdown}}</span>\r\n\t\t\t</transition>\r\n\t\t\t<transition name='fade'>\r\n\t\t\t\t<span v-if='!showInfo&&countdown===2'>{{countdown}}</span>\r\n\t\t\t</transition>\r\n\t\t\t<transition name='fade'>\r\n\t\t\t\t<span v-if='!showInfo&&countdown===1'>{{countdown}}</span>\r\n\t\t\t</transition>\r\n\t\t\t<transition name='fade'>\r\n\t\t\t\t<span v-if='!showInfo&&countdown===0'>{{countdown}}</span>\r\n\t\t\t</transition>\r\n\t\t\t<div v-if='showInfo'><img :src=\"imgs.tip\" alt=\"\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"wm-mask lt-full\" v-if='showMask' v-tap='[showShare,false]'>\r\n\t\t\t<img :src=\"imgs.arrow\" alt=\"\">\r\n\t\t</div>\r\n\t</div>\r\n";
 
 /***/ }),
 /* 33 */
@@ -25527,6 +25281,198 @@
 	   }
 	}))
 
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(37)
+	__vue_template__ = __webpack_require__(38)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\project\\museum\\components\\music\\index.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// <template>
+	// 	<div  class="lt-full zmiti-music-main-ui" :style='{height:"10vh"}'>
+	// 		<audio ref='music' v-for='audio in audios' :src='audio.src' :autoplay="audio.autoplay" :loop="audio.loop"></audio>
+	//
+	// 		<div  @click='toggleMusic' class='zmiti-play' :class='{"rotate":rotate}' :style="playStyle">
+	// 			<img  :src='imgs.play'/>
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _jquery = __webpack_require__(15);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _libAssets = __webpack_require__(13);
+
+	var audios = [];
+
+	for (var music in _libAssets.musics) {
+		audios.push(_libAssets.musics[music]);
+	}
+
+	exports['default'] = {
+		props: ['obserable'],
+		name: 'zmitiindex',
+		data: function data() {
+			return {
+				audios: audios,
+				imgs: _libAssets.imgs,
+				rotate: false,
+				playStyle: {}
+			};
+		},
+		components: {},
+
+		methods: {
+
+			toggleMusic: function toggleMusic() {
+
+				var music = this.$refs['music'][0];
+				music[music.paused ? 'play' : 'pause']();
+			},
+			playAudioMuted: function playAudioMuted() {
+				//静音播放
+
+				this.audios.forEach(function (audio, i) {
+					if (i > 0) {
+						if (audio.autoplay) {
+
+							audio.muted = true; //静音
+							audio.play();
+						}
+					}
+				});
+			}
+		},
+		mounted: function mounted() {
+			var _this = this;
+
+			var obserable = this.obserable;
+
+			var audio = this.$refs['music'][0];
+			var len = audio;
+			len && (0, _jquery2['default'])(audio).on('play', function () {
+
+				_this.rotate = true;
+			}).on('pause', function () {
+				_this.rotate = false;
+			});
+
+			len && audio.play();
+			audio.volume = .1;
+
+			this.playAudioMuted();
+
+			obserable.on('playVoice', function (key) {
+				_this.audios.forEach(function (audio, i) {
+					if (i > 0) {
+
+						if (audio.name === key) {
+							_this.$refs['music'][i].currentTime = 0;
+							_this.$refs['music'][i].muted = false; //取消静音
+							_this.$refs['music'][i].play();
+						}
+					}
+				});
+			});
+
+			obserable.on('pauseVoice', function (key) {
+
+				_this.audios.forEach(function (audio, i) {
+					if (i > 0) {
+						if (audio.name === key) {
+							//audio.currentTime = 0;
+
+							_this.$refs['music'][i].pause();
+							_this.$refs['music'][i].muted = false; //取消静音
+						}
+					}
+				});
+			});
+
+			obserable.on('setPlay', function (data) {
+
+				_this.playStyle = data;
+			});
+
+			var s = this;
+			document.addEventListener("WeixinJSBridgeReady", function () {
+				WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+					audio && (audio.volume = .1);
+					len && audio.play();
+					s.playAudioMuted();
+				});
+			}, false);
+
+			var play = function play() {
+				document.removeEventListener("WeixinJSBridgeReady", play);
+				document.removeEventListener("YixinJSBridgeReady", play);
+				s.playAudioMuted();
+				len && audio.play();
+				audio && (audio.volume = .1);
+			};
+
+			if (window.WeixinJSBridge) {
+				audio && (audio.volume = .1);
+				len && audio.play();
+				s.playAudioMuted();
+			}
+			//weixin
+			if (typeof WeixinJSBridge == "undefined") {
+				document.addEventListener("WeixinJSBridgeReady", play, false);
+				s.playAudioMuted();
+			} else {
+				//yixin
+				document.addEventListener('YixinJSBridgeReady', play, false);
+				len && audio.play();
+				s.playAudioMuted();
+			}
+
+			obserable.on('toggleBgMusic', function (data) {
+
+				var audio = _this.$refs['music'][0];
+				audio[data ? 'play' : 'pause']();
+			});
+		}
+	};
+
+	// </script>
+	module.exports = exports['default'];
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+	module.exports = "\r\n\t<div  class=\"lt-full zmiti-music-main-ui\" :style='{height:\"10vh\"}'>\r\n\t\t<audio ref='music' v-for='audio in audios' :src='audio.src' :autoplay=\"audio.autoplay\" :loop=\"audio.loop\"></audio>\r\n\r\n\t\t<div  @click='toggleMusic' class='zmiti-play' :class='{\"rotate\":rotate}' :style=\"playStyle\">\r\n\t\t\t<img  :src='imgs.play'/>\r\n\t\t</div>\r\n\t</div>\r\n";
 
 /***/ })
 /******/ ]);

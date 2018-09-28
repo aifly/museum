@@ -17,6 +17,12 @@ $bgColor: #ffffff;
 	.wm-index-task-btn{
 		margin-top: 30px;
 		width: 400px;
+		@include animation(move 1s infinite linear alternate);
+	}
+	@-webkit-keyframes move{
+		to{
+			@include transform(translate(0,6px));
+		}
 	}
 	.wm-index-title{
 		width: 680px;

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import './components/css/index.css';
 import Index from './components/index/index';
-import Form from './components/form/index';
+import Music from './components/music/index';
 import Game from './components/game/index';
  
 import Obserable from './components/lib/obserable';
@@ -60,10 +60,10 @@ new Vue({
 		<audio src='./assets/music/photo.mp3' ref='photo'></audio>
 		<audio src='./assets/music/bg.mp3' ref='audio'></audio>
 		<audio src='./assets/music/tu.mp3' ref='tu' loop></audio>
-		<Music :obserable='obserable'></Music>
 		<Main :pv='pv' :nickname='nickname' :headimgurl='headimgurl'  v-if='show && !isShare'  :obserable='obserable'></Main>
 		*/
 		template: `<div>
+				<Music :obserable='obserable'></Music>
 			<section>
 				<Game :pv='pv' :nickname='nickname' :headimgurl='headimgurl'   v-if='show && !isShare'  :obserable='obserable'></Game>
 				<Index :pv='pv' :nickname='nickname' :headimgurl='headimgurl'   v-if='show && !isShare'  :obserable='obserable'></Index>
@@ -127,7 +127,7 @@ new Vue({
 	},
 	components: {
 		Index,
-		Form,
+		Music,
 		Game,
 		Toast
 	},

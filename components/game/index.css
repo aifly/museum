@@ -168,6 +168,10 @@
                   bottom: -25px;
                   -webkit-transform: rotate(-135deg);
                   transform: rotate(-135deg); }
+              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C > div.active {
+                opacity: 0;
+                -webkit-transition: 0.3s;
+                transition: 0.3s; }
               .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap > div.wm-game-Q-content .wm-game-Q-C .wm-game-result-C {
                 width: 80px;
                 height: 100%;
@@ -364,7 +368,7 @@
                 height: 100%;
                 z-index: 10;
                 right: -30px; }
-            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span {
+            .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span {
               border-right: 2px solid #e4c26d;
               -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
@@ -376,17 +380,17 @@
               border-radius: 50%;
               left: -25px;
               top: -25px; }
-              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(2) {
+              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(2) {
                 left: auto;
                 right: -25px;
                 -webkit-transform: rotate(135deg);
                 transform: rotate(135deg); }
-              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(3) {
+              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(3) {
                 top: auto;
                 bottom: -25px;
                 -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg); }
-              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section span:nth-of-type(4) {
+              .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section > span:nth-of-type(4) {
                 left: auto;
                 top: auto;
                 right: -25px;
@@ -396,7 +400,7 @@
             .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title {
               height: 100%;
               position: absolute;
-              width: 60%;
+              width: 62%;
               left: 5%; }
               .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title:after {
                 content: '';
@@ -404,7 +408,7 @@
                 height: 80%;
                 top: 10%;
                 background: #e4c26d;
-                right: 0;
+                right: -8px;
                 position: absolute; }
               .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div {
                 padding: 20px;
@@ -417,6 +421,13 @@
                 transform-origin: left top;
                 -webkit-transform: rotate(90deg) translate3d(0, -350px, 0);
                 transform: rotate(90deg) translate3d(0, -350px, 0); }
+                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-enter-active, .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-leave-active {
+                  -webkit-transition: 0.5s;
+                  transition: 0.5s; }
+                .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-enter, .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-title > div div.fade-leave-to {
+                  opacity: 0;
+                  -webkit-transform: translate(-200px, 0);
+                  transform: translate(-200px, 0); }
             .zmiti-game-main-ui .wm-game-main-content .wm-game-area .wm-game-wrap .wm-game-Q > section .wm-game-Q-pic {
               width: 200px;
               height: 280px;
@@ -461,8 +472,19 @@
   .wm-game-loading span {
     display: block;
     font-size: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
     color: #fff;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg); }
+    -webkit-transform: translate(-50%, -50%) rotate(90deg);
+    transform: translate(-50%, -50%) rotate(90deg); }
+    .wm-game-loading span.fade-enter-active, .wm-game-loading span.fade-leave-active {
+      transition: opacity .3s, font-size .5s;
+      -webkit-transition: opacity .3s, font-size .5s; }
+    .wm-game-loading span.fade-enter, .wm-game-loading span.fade-leave-to {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -50%) rotate(90deg);
+      transform: translate(-50%, -50%) rotate(90deg);
+      font-size: 100px; }
 
 /*# sourceMappingURL=index.css.map */

@@ -343,3 +343,12 @@ window.museums = [
  		});
  	}
  })();
+
+ var musics = {
+	music: {
+		src: './assets/music/bg.mp3',
+		autoplay: false,
+		name: 'bg',
+		loop: true
+	}
+}

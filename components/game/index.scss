@@ -99,6 +99,7 @@ $color: #fffb88;
                         .wm-game-Q-C {
                             @include pos(a);
 
+
                             width: 500px;
                             left: 30px;
                             top: 30px;
@@ -188,7 +189,13 @@ $color: #fffb88;
                                 }
                             }
 
-                            & > div {}
+                            & > div {
+                                &.active{
+                                    opacity:0;
+                                    @include transition(.3s);
+                                }
+
+                            }
 
                             .wm-game-result-C {
                                 width: 80px;
@@ -441,7 +448,7 @@ $color: #fffb88;
                             }
                         }
 
-                        span {
+                        &>span {
                             border-right: 2px solid #e4c26d;
 
                             @include transform(rotate(45deg));
@@ -488,7 +495,7 @@ $color: #fffb88;
 
                             @include pos(a);
 
-                            width: 60%;
+                            width: 62%;
                             left: 5%;
 
                             &:after {
@@ -497,7 +504,7 @@ $color: #fffb88;
                                 height: 80%;
                                 top: 10%;
                                 background: #e4c26d;
-                                right: 0;
+                                right: -8px ;
 
                                 @include pos(a);
                             }
@@ -512,6 +519,16 @@ $color: #fffb88;
 
                                 @include transformOrigin(left top);
                                 @include transform(rotate(90deg) translate3d(0, -350px, 0));
+
+                                div{
+                                    &.fade-enter-active, &.fade-leave-active {
+                                      @include transition(.5s);
+                                    }
+                                    &.fade-enter, &.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+                                      opacity: 0;
+                                      @include transform(translate(-200px,0));
+                                    }
+                                }
                             }
                         }
 
@@ -571,7 +588,20 @@ $color: #fffb88;
     span{
         display: block;
         font-size: 200px;
+        @include pos(a);
+        left: 50%;
+        top: 50%;
         color:#fff;
-        @include transform(rotate(90deg));;
+
+        @include transform(translate(-50%,-50%) rotate(90deg));;
+        &.fade-enter-active, &.fade-leave-active {
+          transition:opacity .3s, font-size .5s;
+          -webkit-transition:opacity .3s, font-size .5s;
+        }
+        &.fade-enter, &.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+          opacity: 0;
+          @include transform(translate(-50%,-50%) rotate(90deg));;
+          font-size:100px;
+        }
     }
 }
