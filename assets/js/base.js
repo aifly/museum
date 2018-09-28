@@ -28,7 +28,7 @@
 	fuhejian:'./assets/images/fuhejian.png',
 	konglongdanhuashi:'./assets/images/konglongdanhuashi.png',
 	wxBtn:'./assets/images/wm-btn.png',
-	restartBtn: './assets/images/restart-btn.png',
+	restartBtn: './assets/images/restart-btn1.png',
 	guobaoxizun: './assets/images/guobaoxizun.png',
 	qianfuzhuang: './assets/images/qianfuzhuang.png',
 	xianrenbenma: './assets/images/xianrenbenma.png',

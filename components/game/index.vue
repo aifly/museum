@@ -60,7 +60,7 @@
 							<div v-if='!showResult' class='wm-game-main-place' ref='game' :class='{"active":changing}'>
 								<ul>
 									<li>
-										<div ref='museums' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
+										<div ref='museums' :id='"b_"+i' v-if='i%2===0' v-for='(m,i) in museums' :key='i' v-tap='[choose,m,i]'>
 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
 											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
 											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
@@ -68,7 +68,7 @@
 										</div>
 									</li>
 									<li>
-										<div ref='museums' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>
+										<div ref='museums' :id='"b_"+i' v-if='i%2!==0' v-for='(m,i) in museums' :key='i'  v-tap='[choose,m,i]'>
 											<span :style='{width:(m.width||0)+"px",height:(m.height||0)+"px"}'>{{m.name}}</span>
 											<img @touchstart='touchstart' :src="m.image" alt="" @load='imgLoaded($event,m,i)'>
 											<img @touchstart='touchstart' class='wm-result-img' v-if='m.isRight' :src="imgs.right" alt="">
@@ -138,6 +138,7 @@
 		<div class="wm-mask lt-full" v-if='showMask' v-tap='[showShare,false]'>
 			<img :src="imgs.arrow" alt="">
 		</div>
+		<div class="wm-copyright">中国文明网出品</div>
 	</div>
 </template>
 
@@ -169,6 +170,7 @@
 				museums:window.museums,
 				culturalRelicsList:window.culturalRelicsList,
 				rightCount:0,
+				currentKey:-1,
 				canTap:true,
 				href:window.location.href,
 				showResult:false,
@@ -197,8 +199,6 @@
 					return;
 				}
 				this.showInfo = false;
-
-
 				var t = setInterval(()=>{
 					this.countdown--;
 
@@ -239,9 +239,11 @@
 						time = 1000;
 						return;
 					}
-
+					var isRight = false;
+					
 					if(m.key  === this.culturalRelicsList[this.current].key){
-						m.isRight = true;
+						isRight = true;
+						
 						this.rightCount++;
 						if(this.rightCount<=10){
 							this.level = '大师';
@@ -262,20 +264,72 @@
 					}
 					this.museums = this.museums.concat([]);
 					setTimeout(() => {
-						this.current++;
-						this.current = Math.min(this.current,this.questionLen.length-1);
-						m.isRight = null;
-						this.museums = this.museums.concat([]);
-						setTimeout(() => {
+						if(!isRight){//回答错误
+							this.currentKey = this.culturalRelicsList[this.current].key;
+							var key = this.culturalRelicsList[this.current].key;
+							var index = 0;
+							this.museums.forEach((item,i)=>{
+								if(key === item.key){
+									index = i;
+								}
+							});
+							this.museums[index].isRight = true;
+
+							this.museums = this.museums.concat([]);
+
+							this.gameScroll.scrollToElement(document.getElementById('b_'+index),500);
+							
 							setTimeout(()=>{
-								this.scroll.refresh();
-							},1000);
-							if(this.resultArr.length<this.questionLen.length){
-								this.canTap = true;
-							}else{
-								this.showResult = true;
-							}
-						}, 100);
+
+								this.current++;
+								this.current = Math.min(this.current,this.questionLen.length-1);
+								m.isRight = null;
+								this.museums[index].isRight = null;
+								this.museums = this.museums.concat([]);
+								this.gameScroll.scrollTo(0,0,0);
+								setTimeout(() => {
+									setTimeout(()=>{
+										this.scroll.refresh();
+									},1000);
+									if(this.resultArr.length<this.questionLen.length){
+										this.canTap = true;
+									}else{
+										this.showResult = true;
+									}
+								}, 100);
+
+							},1600)
+
+						}
+						else{
+							this.current++;
+							this.current = Math.min(this.current,this.questionLen.length-1);
+							m.isRight = null;
+							this.museums = this.museums.concat([]);
+							setTimeout(() => {
+								setTimeout(()=>{
+									this.scroll.refresh();
+								},1000);
+								if(this.resultArr.length<this.questionLen.length){
+									this.canTap = true;
+								}else{
+									this.showResult = true;
+								}
+							}, 100)
+							this.current = Math.min(this.current,this.questionLen.length-1);
+								m.isRight = null;
+								this.museums = this.museums.concat([]);
+								setTimeout(() => {
+									setTimeout(()=>{
+										this.scroll.refresh();
+									},1000);
+									if(this.resultArr.length<this.questionLen.length){
+										this.canTap = true;
+									}else{
+										this.showResult = true;
+									}
+								}, 100);;
+						}
 					}, 1000);
 
 	

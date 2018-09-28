@@ -581,10 +581,24 @@ $color: #fffb88;
 }
 
 
+.wm-copyright{
+    color:#be0000;
+    @include pos(a);
+    width: 66vh;
+    height: 60px;
+    line-height: 60px;
+    bottom:66vh;
+    left: 0;
+    @include transform(rotate(90deg));
+    @include transformOrigin(left bottom);
+    text-align: center;
+}
+
 .wm-game-loading{
     position:fixed !important;
     background:rgba(0,0,0,.7);
     @include displayBox(horizontal);
+    z-index: 100;
     span{
         display: block;
         font-size: 200px;

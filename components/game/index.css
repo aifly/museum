@@ -462,13 +462,28 @@
     margin-right: 10px;
     margin-top: 10px; }
 
+.wm-copyright {
+  color: #be0000;
+  position: absolute;
+  width: 66vh;
+  height: 60px;
+  line-height: 60px;
+  bottom: 66vh;
+  left: 0;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transform-origin: left bottom;
+  transform-origin: left bottom;
+  text-align: center; }
+
 .wm-game-loading {
   position: fixed !important;
   background: rgba(0, 0, 0, 0.7);
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
-  -webkit-box-orient: horizontal; }
+  -webkit-box-orient: horizontal;
+  z-index: 100; }
   .wm-game-loading span {
     display: block;
     font-size: 200px;
