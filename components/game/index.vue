@@ -32,7 +32,7 @@
 									</transition-group>
 								</div>
 							</div>
-							<div class='wm-game-Q-pic' :style="{height:titleWidth+'px'}">
+							<div class='wm-game-Q-pic' v-tap='[showDeatilCulturalImg]' :style="{height:titleWidth+'px'}">
 								<img :src="culturalRelicsList[current].image" alt="">
 							</div>
 						</section>
@@ -103,7 +103,7 @@
 									</div>
 								</div>
 								<div class='wm-result-btns'>
-									<div><img :src="imgs.wxBtn" alt=""></div>
+									<div> <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5ODA0NDIzOA==&scene=126#wechat_redirect"><img :src="imgs.wxBtn" alt=""></a> </div>
 									<div>
 										<a :href="href"><img :src="imgs.restartBtn" alt=""></a>
 									</div>
@@ -139,6 +139,10 @@
 			<img :src="imgs.arrow" alt="">
 		</div>
 		<div class="wm-copyright">中国文明网出品</div>
+
+		<div class='wm-mask-img-C lt-full' v-if='showDetailImg' @touchstart='showDetailImg = false'>
+			<img :src="culturalRelicsList[current].image" alt="">
+		</div>
 	</div>
 </template>
 
@@ -164,6 +168,7 @@
 				questionLen:new Array(10),
 				current:0,
 				width:0,
+				showDetailImg:false,
 				viewW:window.innerWidth,
 				viewH:window.innerHeight,
 				resultArr:[],
@@ -194,6 +199,10 @@
 		
 		methods:{
 
+			showDeatilCulturalImg(){
+				this.showDetailImg = true;
+			},
+
 			clearTip(){
 				if(!this.showInfo){
 					return;
@@ -204,11 +213,13 @@
 
 					if(this.countdown<=0){
 						clearInterval(t);
+						this.showDetailImg = true;
 						this.showTip = false;
 						this.t = setInterval(()=>{
 						this.time--;
 						if(this.time<=0){
 							clearInterval(this.t);//
+							this.showDetailImg = false;
 							this.showResult = true;
 							for(var i =0 ;i<this.questionLen.length+1;i++){
 								this.resultArr.push(i);
@@ -290,6 +301,7 @@
 								setTimeout(() => {
 									setTimeout(()=>{
 										this.scroll.refresh();
+										this.showDetailImg = true;
 									},1000);
 									if(this.resultArr.length<this.questionLen.length){
 										this.canTap = true;
@@ -322,6 +334,7 @@
 								setTimeout(() => {
 									setTimeout(()=>{
 										this.scroll.refresh();
+										this.showDetailImg = true;
 									},1000);
 									if(this.resultArr.length<this.questionLen.length){
 										this.canTap = true;
