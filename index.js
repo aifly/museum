@@ -107,17 +107,32 @@ new Vue({
 		},
 	
 		updatePv() {
+			
+			var s = this;
+
 			$.ajax({
-				url: window.protocol + '//api.zmiti.com/v2/custom/update_pvnum/',
+				url: 'http://h5.wenming.cn/v1/wmshare/h5_view/',
+				type: 'post',
+				data: {
+					h5id:  window.h5name,
+					appsecret: 'c9GxtUre3kOJCgvp',
+				},
+				success: function (data) {
+					s.pv = data.data.num1;
+					s.randomPv = data.data.num2;
+				}
+			})
+
+			return;
+			$.ajax({
+				url: window.protocol + '//h5.wenming.cn/v1/share/h5_view/',
 				type: 'post',
 				data: {
 					customid: 68
 				}
 			}).done((data) => {
 				if (data.getret === 0) {
-					this.pv = data.totalpv;
-					this.randomPv = data.randtotalpv;
-
+				
 
 					//zmitiUtil.wxConfig('我是第'+this.pv+'位参与者',window.desc);
 					//zmitiUtil.wxConfig('我是'+(this.nickname||'新华社网友') +'，已获得改革开放40周年勋章，一起来吧！','勋章编号：No.'+this.pv);

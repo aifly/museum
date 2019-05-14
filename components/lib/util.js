@@ -39,9 +39,9 @@ var zmitiUtil = {
 	wxConfig: function(title, desc, url, isDebug = false) {
 		var s = this;
 
-		var img =  'http://h5.zmiti.com/public/'+window.h5name+'/assets/images/300.jpg';
+		var img =  'http://h5.wenming.cn/public/'+window.h5name+'/assets/images/300.jpg';
 
-		var appId ='wxfacf4a639d9e3bcc';// this.wxInfo().wxappid;
+		var appId ='wxec2401ee9a70f3d9';// this.wxInfo().wxappid;
 
 
 		var durl = url || location.href.split('#')[0];
@@ -53,7 +53,7 @@ var zmitiUtil = {
 		$.ajax({
 			type: 'get',
 			//url: "http://h5.zhongguowangshi.com/tree/weixin/jssdk.php?type=signature&durl=" + code_durl + '&worksid=' + window.customid,
-			url: "http://api.zmiti.com/weixin/jssdk.php?type=signature&durl=" + code_durl,
+			url: "http://h5.wenming.cn/weixin/jssdk.php?type=signature&durl=" + code_durl,
 			dataType: 'jsonp',
 			jsonp: "callback",
 			jsonpCallback: "jsonFlickrFeed",
