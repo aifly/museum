@@ -152,6 +152,12 @@
 	import $ from 'jquery';
 	import Vue from 'vue';
 	import IScroll from '../../assets/js/iscroll';
+
+	 Array.prototype.derangedArray = function() {
+        for(var j, x, i = this.length; i; j = parseInt(Math.random() * i), x = this[--i], this[i] = this[j], this[j] = x);
+        return this;
+    };
+
 	export default {
 		props:['obserable','pv','randomPv','nickname','headimgurl'],
 		name:'zmitiindex',
@@ -165,7 +171,7 @@
 				showMask:false,
 				changing:false,
 				showInfo:true,
-				questionLen:new Array(10),
+				questionLen:new Array(5),
 				current:0,
 				width:0,
 				showDetailImg:false,
@@ -256,16 +262,16 @@
 						isRight = true;
 						
 						this.rightCount++;
-						if(this.rightCount<=10){
+						if(this.rightCount<=5){
 							this.level = '大师';
 						}
-						if(this.rightCount<=9){
+						if(this.rightCount<=4){
 							this.level = '达人';
 						}
-						if(this.rightCount<7){
+						if(this.rightCount<=3){
 							this.level = '骨干';
 						}
-						if(this.rightCount<4){
+						if(this.rightCount<3){
 							this.level = '精英';
 						}
 						this.resultArr.push(true)
