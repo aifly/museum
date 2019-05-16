@@ -2,7 +2,7 @@
 	play: './assets/images/play.png',
 	logo: './assets/images/logo.png',
 	arrow: './assets/images/arrow.png',
-	title: './assets/images/title1.png',
+	title: './assets/images/title2.png',
 	index: './assets/images/index.png',
 	indexBg:'./assets/images/index-bg.jpg',
 	getTaskBtn: './assets/images/get-task-btn.png',

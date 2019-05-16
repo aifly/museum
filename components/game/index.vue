@@ -151,6 +151,7 @@
 	import {imgs,mainImgList} from '../lib/assets.js';
 	import $ from 'jquery';
 	import Vue from 'vue';
+	import zmitiUtil from '../../components/lib/util.js'
 	import IScroll from '../../assets/js/iscroll';
 
 	 Array.prototype.derangedArray = function() {
@@ -186,7 +187,7 @@
 				href:window.location.href,
 				showResult:false,
 				titleWidth:0,
-				level:'草根'
+				level:'逛馆小白，要加油哦！'
 			}
 		},
 		components:{
@@ -262,23 +263,23 @@
 						isRight = true;
 						
 						this.rightCount++;
-						if(this.rightCount<=5){
-							this.level = '大师';
+						if(this.rightCount === 5){
+							this.level = '逛馆大师，对于各大博物馆藏品如数家珍！';
 						}
-						if(this.rightCount<=4){
-							this.level = '达人';
+						if(this.rightCount>=2 && this.rightCount<=4){
+							this.level = '逛馆达人，你去过的博物馆数不胜数！';
 						}
-						if(this.rightCount<=3){
-							this.level = '骨干';
+						if(this.rightCount<=1){
+							this.level = '逛馆小白，要加油哦！';
 						}
-						if(this.rightCount<3){
-							this.level = '精英';
-						}
-						this.resultArr.push(true)
+						this.resultArr.push(true);
+						
+						
 					}else{
 						m.isRight = false;
 						this.resultArr.push(false);
 					}
+					zmitiUtil.wxConfig('我是'+ this.level.substring(0,4)+'，我在博物馆等你！', window.desc);
 					this.museums = this.museums.concat([]);
 					setTimeout(() => {
 						if(!isRight){//回答错误
